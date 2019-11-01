@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+	<data name="cbOsnovaniya.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>None</value>
+	</data>
+	<assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+	<data name="cbVytekayuschie.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleCenter</value>
+	</data>
+	<data name="pnlVytekayuschie.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="cbVytekayuschie.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleLeft</value>
+	</data>
+	<data name="pnlOsnovaniya.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="&gt;&gt;rbOsnovaniyaVse.Parent" xml:space="preserve">
+    <value>pnlOsnovaniya</value>
+  </data>
+	<data name="&gt;&gt;rbOsnovaniyaNeposredstvennye.Name" xml:space="preserve">
+    <value>rbOsnovaniyaNeposredstvennye</value>
+  </data>
+	<data name="$this.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 0</value>
+	</data>
+	<data name="$this.AutoScrollMargin" type="System.Drawing.Size, System.Drawing">
+		<value>0, 0</value>
+	</data>
+	<data name="&gt;&gt;pnlVytekayuschie.Name" xml:space="preserve">
+    <value>pnlVytekayuschie</value>
+  </data>
+	<data name="rbOsnovaniyaNeposredstvennye.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+		<value>Normal</value>
+	</data>
+	<data name="rbVytekayuschieNeposredstvennye.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+		<value>Normal</value>
+	</data>
+	<data name="pnlOsnovaniya.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbOsnovaniyaVse.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbVytekayuschieVse.Size" type="System.Drawing.Size, System.Drawing">
+		<value>128, 16</value>
+	</data>
+	<assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+	<data name="cbOsnovaniya.Visible" type="System.Boolean, mscorlib">
+		<value>True</value>
+	</data>
+	<data name="rbOsnovaniyaVse.Size" type="System.Drawing.Size, System.Drawing">
+		<value>128, 16</value>
+	</data>
+	<data name="$this.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="$this.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbOsnovaniyaVse.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="pnlVytekayuschie.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="&gt;&gt;pnlOsnovaniya.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<data name="rbOsnovaniyaNeposredstvennye.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleLeft</value>
+	</data>
+	<data name="rbVytekayuschieNeposredstvennye.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+		<value>Standard</value>
+	</data>
+	<data name="$this.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
+		<value>0, 0</value>
+	</data>
+	<data name="cbOsnovaniya.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+		<value>Top, Left</value>
+	</data>
+	<data name="rbOsnovaniyaVse.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleLeft</value>
+	</data>
+	<data name="$this.Text" xml:space="preserve">
+    <value>Documents linked with document</value>
+  </data>
+	<data name="rbOsnovaniyaNeposredstvennye.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="&gt;&gt;pnlOsnovaniya.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+	<data name="rbVytekayuschieVse.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="$this.AutoScroll" type="System.Boolean, mscorlib">
+		<value>False</value>
+	</data>
+	<data name="rbOsnovaniyaNeposredstvennye.ImageIndex" type="System.Int32, mscorlib">
+		<value>-1</value>
+	</data>
+	<data name="rbVytekayuschieVse.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbOsnovaniyaNeposredstvennye.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+		<value>Standard</value>
+	</data>
+	<data name="rbVytekayuschieNeposredstvennye.Enabled" type="System.Boolean, mscorlib">
+		<value>True</value>
+	</data>
+	<data name="cbVytekayuschie.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+		<value>Standard</value>
+	</data>
+	<data name="$this.Icon" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="pnlOsnovaniya.Location" type="System.Drawing.Point, System.Drawing">
+		<value>104, 32</value>
+	</data>
+	<data name="rbVytekayuschieNeposredstvennye.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbVytekayuschieVse.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="pnlVytekayuschie.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="rbVytekayuschieVse.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 16</value>
+	</data>
+	<data name="pnlOsnovaniya.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbOsnovaniyaVse.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="&gt;&gt;rbOsnovaniyaNeposredstvennye.Parent" xml:space="preserve">
+    <value>pnlOsnovaniya</value>
+  </data>
+	<data name="rbVytekayuschieNeposredstvennye.Size" type="System.Drawing.Size, System.Drawing">
+		<value>128, 16</value>
+	</data>
+	<data name="cbVytekayuschie.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="&gt;&gt;pnlOsnovaniya.Name" xml:space="preserve">
+    <value>pnlOsnovaniya</value>
+  </data>
+	<data name="rbVytekayuschieNeposredstvennye.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="&gt;&gt;rbVytekayuschieVse.Parent" xml:space="preserve">
+    <value>pnlVytekayuschie</value>
+  </data>
+	<data name="rbOsnovaniyaNeposredstvennye.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleLeft</value>
+	</data>
+	<data name="cbVytekayuschie.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>None</value>
+	</data>
+	<data name="&gt;&gt;rbVytekayuschieVse.Name" xml:space="preserve">
+    <value>rbVytekayuschieVse</value>
+  </data>
+	<data name="cbVytekayuschie.Enabled" type="System.Boolean, mscorlib">
+		<value>True</value>
+	</data>
+	<data name="rbOsnovaniyaVse.Visible" type="System.Boolean, mscorlib">
+		<value>True</value>
+	</data>
+	<data name="&gt;&gt;rbOsnovaniyaVse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="pnlVytekayuschie.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="$this.Enabled" type="System.Boolean, mscorlib">
+		<value>True</value>
+	</data>
+	<data name="pnlOsnovaniya.TabIndex" type="System.Int32, mscorlib">
+		<value>2</value>
+	</data>
+	<data name="&gt;&gt;rbOsnovaniyaNeposredstvennye.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="pnlOsnovaniya.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbVytekayuschieVse.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+		<value>Normal</value>
+	</data>
+	<data name="rbVytekayuschieVse.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="cbOsnovaniya.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+		<value>Standard</value>
+	</data>
+	<data name="rbOsnovaniyaVse.Text" xml:space="preserve">
+    <value>all</value>
+  </data>
+	<data name="rbVytekayuschieNeposredstvennye.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 0</value>
+	</data>
+	<data name="rbOsnovaniyaNeposredstvennye.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="pnlOsnovaniya.AutoScrollMargin" type="System.Drawing.Size, System.Drawing">
+		<value>0, 0</value>
+	</data>
+	<data name="rbOsnovaniyaNeposredstvennye.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 0</value>
+	</data>
+	<data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="rbOsnovaniyaVse.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+		<value>Standard</value>
+	</data>
+	<data name="&gt;&gt;cbOsnovaniya.Name" xml:space="preserve">
+    <value>cbOsnovaniya</value>
+  </data>
+	<data name="cbOsnovaniya.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="cbOsnovaniya.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="&gt;&gt;rbVytekayuschieNeposredstvennye.Parent" xml:space="preserve">
+    <value>pnlVytekayuschie</value>
+  </data>
+	<data name="rbVytekayuschieVse.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="pnlVytekayuschie.AutoScroll" type="System.Boolean, mscorlib">
+		<value>False</value>
+	</data>
+	<data name="&gt;&gt;rbVytekayuschieNeposredstvennye.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="$this.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbVytekayuschieVse.Visible" type="System.Boolean, mscorlib">
+		<value>True</value>
+	</data>
+	<data name="cbVytekayuschie.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="&gt;&gt;pnlVytekayuschie.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="pnlVytekayuschie.AutoScrollMargin" type="System.Drawing.Size, System.Drawing">
+		<value>0, 0</value>
+	</data>
+	<data name="cbOsnovaniya.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
+		<value>0, 0</value>
+	</data>
+	<data name="rbVytekayuschieVse.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleLeft</value>
+	</data>
+	<data name="rbVytekayuschieNeposredstvennye.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+		<value>0, 0</value>
+	</data>
+	<data name="cbOsnovaniya.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="cbVytekayuschie.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="pnlVytekayuschie.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="cbOsnovaniya.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 32</value>
+	</data>
+	<data name="pnlVytekayuschie.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
+		<value>0, 0</value>
+	</data>
+	<data name="rbOsnovaniyaVse.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="pnlOsnovaniya.Size" type="System.Drawing.Size, System.Drawing">
+		<value>128, 32</value>
+	</data>
+	<data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+		<value>CenterScreen</value>
+	</data>
+	<data name="rbOsnovaniyaVse.ImageIndex" type="System.Int32, mscorlib">
+		<value>-1</value>
+	</data>
+	<data name="rbVytekayuschieVse.Text" xml:space="preserve">
+    <value>all</value>
+  </data>
+	<data name="rbVytekayuschieVse.Enabled" type="System.Boolean, mscorlib">
+		<value>True</value>
+	</data>
+	<data name="rbVytekayuschieNeposredstvennye.Visible" type="System.Boolean, mscorlib">
+		<value>True</value>
+	</data>
+	<data name="pnlOsnovaniya.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+		<value>Top, Left</value>
+	</data>
+	<data name="rbOsnovaniyaNeposredstvennye.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleCenter</value>
+	</data>
+	<data name="cbVytekayuschie.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbVytekayuschieNeposredstvennye.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleLeft</value>
+	</data>
+	<data name="&gt;&gt;cbOsnovaniya.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="rbOsnovaniyaVse.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleCenter</value>
+	</data>
+	<data name="cbOsnovaniya.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="pnlVytekayuschie.TabIndex" type="System.Int32, mscorlib">
+		<value>4</value>
+	</data>
+	<data name="&gt;&gt;cbVytekayuschie.Name" xml:space="preserve">
+    <value>cbVytekayuschie</value>
+  </data>
+	<data name="rbOsnovaniyaNeposredstvennye.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="cbVytekayuschie.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 72</value>
+	</data>
+	<data name="rbVytekayuschieNeposredstvennye.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="pnlOsnovaniya.AutoScroll" type="System.Boolean, mscorlib">
+		<value>False</value>
+	</data>
+	<data name="rbVytekayuschieVse.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="rbVytekayuschieVse.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="pnlVytekayuschie.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>None</value>
+	</data>
+	<data name="rbVytekayuschieVse.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleLeft</value>
+	</data>
+	<data name="rbOsnovaniyaVse.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="&gt;&gt;rbOsnovaniyaVse.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+	<data name="pnlOsnovaniya.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbVytekayuschieVse.ImageIndex" type="System.Int32, mscorlib">
+		<value>-1</value>
+	</data>
+	<data name="&gt;&gt;rbVytekayuschieNeposredstvennye.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="&gt;&gt;cbVytekayuschie.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+	<data name="rbVytekayuschieNeposredstvennye.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>None</value>
+	</data>
+	<data name="rbVytekayuschieNeposredstvennye.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleCenter</value>
+	</data>
+	<data name="pnlVytekayuschie.Size" type="System.Drawing.Size, System.Drawing">
+		<value>128, 32</value>
+	</data>
+	<data name="rbOsnovaniyaNeposredstvennye.Visible" type="System.Boolean, mscorlib">
+		<value>True</value>
+	</data>
+	<data name="cbOsnovaniya.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbOsnovaniyaVse.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="pnlOsnovaniya.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>None</value>
+	</data>
+	<data name="rbOsnovaniyaVse.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 16</value>
+	</data>
+	<data name="cbOsnovaniya.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbOsnovaniyaNeposredstvennye.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="&gt;&gt;cbOsnovaniya.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
+		<value>5, 13</value>
+	</data>
+	<data name="cbVytekayuschie.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="cbVytekayuschie.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="pnlOsnovaniya.Enabled" type="System.Boolean, mscorlib">
+		<value>True</value>
+	</data>
+	<data name="&gt;&gt;cbOsnovaniya.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+	<data name="rbVytekayuschieNeposredstvennye.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="rbOsnovaniyaNeposredstvennye.Enabled" type="System.Boolean, mscorlib">
+		<value>True</value>
+	</data>
+	<data name="cbOsnovaniya.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+		<value>Normal</value>
+	</data>
+	<data name="rbOsnovaniyaVse.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="&gt;&gt;rbVytekayuschieVse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>SvyazannyiDokument</value>
+  </data>
+	<data name="rbVytekayuschieNeposredstvennye.Text" xml:space="preserve">
+    <value>direct</value>
+  </data>
+	<data name="rbVytekayuschieNeposredstvennye.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+		<value>Top, Left</value>
+	</data>
+	<data name="cbVytekayuschie.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleLeft</value>
+	</data>
+	<data name="&gt;&gt;pnlVytekayuschie.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>Kesco.Document.Search.Dialogs.Base, Document, Version=1.0.5731.25821, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+	<data name="rbVytekayuschieVse.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>None</value>
+	</data>
+	<data name="rbOsnovaniyaNeposredstvennye.Size" type="System.Drawing.Size, System.Drawing">
+		<value>128, 16</value>
+	</data>
+	<data name="pnlVytekayuschie.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbOsnovaniyaNeposredstvennye.Text" xml:space="preserve">
+    <value>direct</value>
+  </data>
+	<data name="$this.Name" xml:space="preserve">
+    <value>SvyazannyiDokument</value>
+  </data>
+	<data name="cbVytekayuschie.Size" type="System.Drawing.Size, System.Drawing">
+		<value>104, 24</value>
+	</data>
+	<data name="cbVytekayuschie.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+		<value>Normal</value>
+	</data>
+	<data name="rbOsnovaniyaVse.Enabled" type="System.Boolean, mscorlib">
+		<value>True</value>
+	</data>
+	<data name="&gt;&gt;rbVytekayuschieVse.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+	<data name="&gt;&gt;rbVytekayuschieNeposredstvennye.Name" xml:space="preserve">
+    <value>rbVytekayuschieNeposredstvennye</value>
+  </data>
+	<data name="rbOsnovaniyaNeposredstvennye.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>None</value>
+	</data>
+	<data name="cbVytekayuschie.TabIndex" type="System.Int32, mscorlib">
+		<value>2</value>
+	</data>
+	<data name="rbOsnovaniyaNeposredstvennye.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+		<value>Top, Left</value>
+	</data>
+	<data name="rbVytekayuschieNeposredstvennye.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbVytekayuschieNeposredstvennye.ImageIndex" type="System.Int32, mscorlib">
+		<value>-1</value>
+	</data>
+	<data name="rbVytekayuschieVse.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+		<value>Standard</value>
+	</data>
+	<data name="rbOsnovaniyaVse.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+		<value>Normal</value>
+	</data>
+	<data name="rbVytekayuschieNeposredstvennye.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleLeft</value>
+	</data>
+	<data name="cbOsnovaniya.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleLeft</value>
+	</data>
+	<data name="cbVytekayuschie.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbOsnovaniyaVse.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleLeft</value>
+	</data>
+	<data name="&gt;&gt;rbOsnovaniyaVse.Name" xml:space="preserve">
+    <value>rbOsnovaniyaVse</value>
+  </data>
+	<data name="&gt;&gt;cbVytekayuschie.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<data name="cbOsnovaniya.ImageIndex" type="System.Int32, mscorlib">
+		<value>-1</value>
+	</data>
+	<data name="cbOsnovaniya.Size" type="System.Drawing.Size, System.Drawing">
+		<value>96, 24</value>
+	</data>
+	<data name="pnlOsnovaniya.Visible" type="System.Boolean, mscorlib">
+		<value>True</value>
+	</data>
+	<data name="cbOsnovaniya.Text" xml:space="preserve">
+    <value>main</value>
+  </data>
+	<data name="pnlVytekayuschie.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+		<value>Top, Left</value>
+	</data>
+	<data name="rbOsnovaniyaVse.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="$this.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbVytekayuschieNeposredstvennye.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+		<value>292, 151</value>
+	</data>
+	<data name="pnlVytekayuschie.Visible" type="System.Boolean, mscorlib">
+		<value>True</value>
+	</data>
+	<data name="&gt;&gt;rbOsnovaniyaNeposredstvennye.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="rbOsnovaniyaNeposredstvennye.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="pnlVytekayuschie.Location" type="System.Drawing.Point, System.Drawing">
+		<value>104, 72</value>
+	</data>
+	<data name="cbVytekayuschie.Visible" type="System.Boolean, mscorlib">
+		<value>True</value>
+	</data>
+	<data name="pnlOsnovaniya.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="&gt;&gt;pnlVytekayuschie.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="pnlOsnovaniya.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
+		<value>0, 0</value>
+	</data>
+	<data name="cbVytekayuschie.Text" xml:space="preserve">
+    <value>subsequent</value>
+  </data>
+	<data name="cbVytekayuschie.ImageIndex" type="System.Int32, mscorlib">
+		<value>-1</value>
+	</data>
+	<data name="rbOsnovaniyaVse.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>None</value>
+	</data>
+	<data name="&gt;&gt;pnlOsnovaniya.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="cbVytekayuschie.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+		<value>Top, Left</value>
+	</data>
+	<data name="cbOsnovaniya.Enabled" type="System.Boolean, mscorlib">
+		<value>True</value>
+	</data>
+	<data name="rbOsnovaniyaNeposredstvennye.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbVytekayuschieVse.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>Inherit</value>
+	</data>
+	<data name="rbVytekayuschieNeposredstvennye.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="cbOsnovaniya.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleCenter</value>
+	</data>
+	<data name="rbOsnovaniyaNeposredstvennye.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="&gt;&gt;cbVytekayuschie.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="cbOsnovaniya.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleLeft</value>
+	</data>
+	<data name="cbOsnovaniya.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbOsnovaniyaNeposredstvennye.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+		<value />
+	</data>
+	<data name="rbVytekayuschieVse.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+		<value>MiddleCenter</value>
+	</data>
+	<data name="rbOsnovaniyaVse.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+		<value>Top, Left</value>
+	</data>
+	<data name="rbVytekayuschieVse.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+		<value>Top, Left</value>
+	</data>
+	<data name="pnlVytekayuschie.Enabled" type="System.Boolean, mscorlib">
+		<value>True</value>
+	</data>
+	<metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+		<value>en</value>
+	</metadata>
+	<metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+		<value>True</value>
+	</metadata>
+</root>

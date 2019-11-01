@@ -1,0 +1,1206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Document" xml:space="preserve">
+    <value>Document</value>
+  </data>
+  <data name="Num" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value>on</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Enviroment_Servers_Error1" xml:space="preserve">
+    <value>No information about local archive</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>image</value>
+  </data>
+  <data name="OImage" xml:space="preserve">
+    <value>image</value>
+  </data>
+  <data name="Select_SelectDocDialog_Message2" xml:space="preserve">
+    <value>e-form</value>
+  </data>
+  <data name="Select_SelectDocDialog_Message1" xml:space="preserve">
+    <value>Probably given document is already in archive. Before to save the electronic form as the new document, be convinced, thatis is not the e-form to one of document in archive.</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="Rights" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="InArchiv" xml:space="preserve">
+    <value>In archive</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="FindPlural" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>on</value>
+  </data>
+  <data name="NoNumber" xml:space="preserve">
+    <value>[number is not specified]</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>[date is not specified]</value>
+  </data>
+  <data name="Select_SelectDocDialog_ChooseDocDialog_Load_Message1" xml:space="preserve">
+    <value>similar document</value>
+  </data>
+  <data name="Select_SelectDocDialog_ChooseDocDialog_Load_Message2" xml:space="preserve">
+    <value>similar documents</value>
+  </data>
+  <data name="Select_SelectDocDialog_ChooseDocDialog_Load_Message3" xml:space="preserve">
+    <value>similar documents</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="DocumentType" xml:space="preserve">
+    <value>Document type</value>
+  </data>
+  <data name="DocumentNumber" xml:space="preserve">
+    <value>Document number</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="AccessToEdit" xml:space="preserve">
+    <value>Access to edit</value>
+  </data>
+  <data name="Available" xml:space="preserve">
+    <value>Available</value>
+  </data>
+  <data name="NotAvailable" xml:space="preserve">
+    <value>Not available</value>
+  </data>
+  <data name="HaveEForm" xml:space="preserve">
+    <value>have e-form</value>
+  </data>
+  <data name="Select_SelectDocDialog_buttonOK_Click_Message1" xml:space="preserve">
+    <value>This document is not available for you.</value>
+  </data>
+  <data name="Select_SelectDocDialog_buttonOK_Click_Message2" xml:space="preserve">
+    <value>You can add the new image only to the document accessible to you, for all other documents you can see the list of the employees what having rights to this document (it is caused through the context menu).</value>
+  </data>
+  <data name="NotEnoughRights" xml:space="preserve">
+    <value>Not enough rights</value>
+  </data>
+  <data name="Select_SelectDocDialog_buttonOK_Click_Message3" xml:space="preserve">
+    <value>This document already has the e-form</value>
+  </data>
+  <data name="Select_SelectDocDialog_buttonOK_Click_Message4" xml:space="preserve">
+    <value>You can add the new e-form only to the document accessible to you what does not having the e-form.</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Choice" xml:space="preserve">
+    <value>Choice</value>
+  </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>Create new</value>
+  </data>
+  <data name="Outgoing" xml:space="preserve">
+    <value>outgoing</value>
+  </data>
+  <data name="Incoming" xml:space="preserve">
+    <value>incoming</value>
+  </data>
+  <data name="Select_SelectTypeDialog_Message1" xml:space="preserve">
+    <value>document of type</value>
+  </data>
+  <data name="Select_SelectTypeDialog_SelectType_Load_Error1" xml:space="preserve">
+    <value>The object is not initialized </value>
+  </data>
+  <data name="Similar" xml:space="preserve">
+    <value>Similar</value>
+  </data>
+  <data name="SpecifyTypes" xml:space="preserve">
+    <value>Specify types</value>
+  </data>
+  <data name="Select_SelectTypeDialog_types_DoubleClick_Message1" xml:space="preserve">
+    <value>The direction of movement of the document is not chosen</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_UpdateControls_Message1" xml:space="preserve">
+    <value>Image is main</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_UpdateControls_Message2" xml:space="preserve">
+    <value>Image is not main</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Message1" xml:space="preserve">
+    <value>Image with ID</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Message2" xml:space="preserve">
+    <value>not found</value>
+  </data>
+  <data name="Archive" xml:space="preserve">
+    <value>Archive</value>
+  </data>
+  <data name="Place" xml:space="preserve">
+    <value>Place</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="External" xml:space="preserve">
+    <value>External</value>
+  </data>
+  <data name="Sender" xml:space="preserve">
+    <value>Sender</value>
+  </data>
+  <data name="Receiver" xml:space="preserve">
+    <value>Recipient</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="SendTime" xml:space="preserve">
+    <value>Sent time</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Error1" xml:space="preserve">
+    <value>No document ID</value>
+  </data>
+  <data name="Search_FrmSave_FrmSave_Load_Title1" xml:space="preserve">
+    <value>Saving of set of parameters of search</value>
+  </data>
+  <data name="Search_FrmSave_FrmSave_Load_Title2" xml:space="preserve">
+    <value>Loading set of parameters of search</value>
+  </data>
+  <data name="Search_FrmSave_FrmSave_Load_Message1" xml:space="preserve">
+    <value>Name of saved set of parameters of search</value>
+  </data>
+  <data name="Search_FrmSave_FrmSave_Load_Message2" xml:space="preserve">
+    <value>Name of loading set of parameters of search</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="Search_FrmSave_FrmSave_Closing_Message1" xml:space="preserve">
+    <value>It is necessary to choose saved set of parameters</value>
+  </data>
+  <data name="Search_FrmSave_FrmSave_Closing_Message2" xml:space="preserve">
+    <value>It is necessary to specify name of saved set of parameters</value>
+  </data>
+  <data name="Search_FrmSave_LoadXML_Message1" xml:space="preserve">
+    <value>Error at loading a set of parameters of search</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Message3" xml:space="preserve">
+    <value>Receive from</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Message4" xml:space="preserve">
+    <value>From number</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Message5" xml:space="preserve">
+    <value>Received fax</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Title1" xml:space="preserve">
+    <value>Adding image</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Message6" xml:space="preserve">
+    <value>Name of file is not specified</value>
+  </data>
+  <data name="DocumentSearch" xml:space="preserve">
+    <value>Document search</value>
+  </data>
+  <data name="SaveInquiry" xml:space="preserve">
+    <value>Save inquiry</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Save as</value>
+  </data>
+  <data name="Search_OptionsDialog_LoadXML_Error1" xml:space="preserve">
+    <value>XML structure of inquiry does not correspond to the standard</value>
+  </data>
+  <data name="Search_OptionsDialog_SaveXML_Message1" xml:space="preserve">
+    <value>Other inquiry with such name already exists.</value>
+  </data>
+  <data name="Overwrite" xml:space="preserve">
+    <value>Overwrite?</value>
+  </data>
+  <data name="SavingInquiry" xml:space="preserve">
+    <value>Saving inquiry</value>
+  </data>
+  <data name="Search_OptionsDialog_ValidateXML_Error1" xml:space="preserve">
+    <value>Remove this parameter from set of search?</value>
+  </data>
+  <data name="Search_OptionsDialog_ValidateXML_Error2" xml:space="preserve">
+    <value>Any parameter of search is not specified.</value>
+  </data>
+  <data name="Search_OptionsDialog_ValidateXML_Error3" xml:space="preserve">
+    <value>Continue choice of parameters?</value>
+  </data>
+  <data name="Search_OptionsDialog_SaveDialogOld_Message1" xml:space="preserve">
+    <value>Inquiry name</value>
+  </data>
+  <data name="ToSearch" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Choose" xml:space="preserve">
+    <value>Choose</value>
+  </data>
+  <data name="Search_Dialogs_Employee_Message1" xml:space="preserve">
+    <value>employee is not chosen</value>
+  </data>
+  <data name="Search_Dialogs_SvyazannyiDokument_FillElement_Error1" xml:space="preserve">
+    <value>It is necessary to choose the document.</value>
+  </data>
+  <data name="Search_Dialogs_SvyazannyiDokument_FillElement_Error2" xml:space="preserve">
+    <value>It is necessary to specify to search 'main' or 'subsequent'.</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>and</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>or</value>
+  </data>
+  <data name="Search_Dialogs_КодДокумента_Error1" xml:space="preserve">
+    <value>Document ID is specified incorrectly</value>
+  </data>
+  <data name="NotSelected" xml:space="preserve">
+    <value>[is not chosen]</value>
+  </data>
+  <data name="Search_Dialogs_ТипДокумента_Message1" xml:space="preserve">
+    <value>Including similar types</value>
+  </data>
+  <data name="Search_Dialogs_ТипДокумента_Message2" xml:space="preserve">
+    <value>Including specifications of type</value>
+  </data>
+  <data name="OptionsDialogs_Base_Error1" xml:space="preserve">
+    <value>It is necessary to specify an option for change</value>
+  </data>
+  <data name="Image_ImageControl_Zoom_Error1" xml:space="preserve">
+    <value>Size more then maximum allowed</value>
+  </data>
+  <data name="Image_ImageControl_Zoom_Error2" xml:space="preserve">
+    <value>Size less minimally allowable</value>
+  </data>
+  <data name="Image_ImageControl_FitTo_Error1" xml:space="preserve">
+    <value>Incorrect parameter</value>
+  </data>
+  <data name="Image_ImageControl_FitTo_Error2" xml:space="preserve">
+    <value>Allowable values</value>
+  </data>
+  <data name="Image_ImageControl_PrintSelection_Error1" xml:space="preserve">
+    <value>Error at printing of the selected fragment</value>
+  </data>
+  <data name="Image_ImageControl_imgEdit_MouseDownEvent_Message1" xml:space="preserve">
+    <value>Note properties</value>
+  </data>
+  <data name="Image_ImageControl_imgEdit_MouseDownEvent_Message2" xml:space="preserve">
+    <value>Delete note</value>
+  </data>
+  <data name="Dialog_DocPrintDialog_Error1" xml:space="preserve">
+    <value>There is no print form for this document type.</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Dialog_DocPrintDialog_LoadPrinters_Error1" xml:space="preserve">
+    <value>There are no installed printers!</value>
+  </data>
+  <data name="Dialog_DocPrintDialog_Print_Error1" xml:space="preserve">
+    <value>Printer not selected</value>
+  </data>
+  <data name="Dialog_PrintAllDialog_Title1" xml:space="preserve">
+    <value>Choose settings of printing of document folder</value>
+  </data>
+  <data name="PrinterOp_Status1" xml:space="preserve">
+    <value>Another</value>
+  </data>
+  <data name="PrinterOp_Status2" xml:space="preserve">
+    <value>Anknown</value>
+  </data>
+  <data name="PrinterOp_Status3" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="PrinterOp_Status4" xml:space="preserve">
+    <value>Printing</value>
+  </data>
+  <data name="PrinterOp_Status5" xml:space="preserve">
+    <value>Warming</value>
+  </data>
+  <data name="PrinterOp_Status6" xml:space="preserve">
+    <value>Print stop</value>
+  </data>
+  <data name="PrinterOp_Status7" xml:space="preserve">
+    <value>Offline</value>
+  </data>
+  <data name="PrinterOp_PrinterProperties_Error1" xml:space="preserve">
+    <value>It is impossible to receive printer data.</value>
+  </data>
+  <data name="PrinterOp_PrinterProperties_Error2" xml:space="preserve">
+    <value>Error ID</value>
+  </data>
+  <data name="PrinterOp_PrinterProperties_Error3" xml:space="preserve">
+    <value>Can not open the printer</value>
+  </data>
+  <data name="PrinterOp_PrinterProperties_SetOrientation_Error1" xml:space="preserve">
+    <value>It was not possible establish orientation of page.</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>index</value>
+  </data>
+  <data name="Dialog_CheckedControlCollection_Error1" xml:space="preserve">
+    <value>is out of range (range dimantion</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning1" xml:space="preserve">
+    <value>You have not specified number of the document. Continue?</value>
+  </data>
+  <data name="InputError" xml:space="preserve">
+    <value>Input error</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning2" xml:space="preserve">
+    <value>Number of the document specified by you does not contain figures. Continue?</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning3" xml:space="preserve">
+    <value>You have not specified date of the document. Continue?</value>
+  </data>
+  <data name="RepeatInput" xml:space="preserve">
+    <value>Repeat input.</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning4" xml:space="preserve">
+    <value>You have not specified any</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning5" xml:space="preserve">
+    <value>Between</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning6" xml:space="preserve">
+    <value>any company of Holding is not specified.</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning7" xml:space="preserve">
+    <value>At saving of the document, not specifying between</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning8" xml:space="preserve">
+    <value>any company of Holding, it will not be accessible to any employee, except for you.</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning9" xml:space="preserve">
+    <value>You are sure, that want to save the document without the company of Holding.</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning10" xml:space="preserve">
+    <value>You have specified only one</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning11" xml:space="preserve">
+    <value>For most of documents it is required to specify not less than two</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning12" xml:space="preserve">
+    <value>Save the document with one</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>not found.</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Error1" xml:space="preserve">
+    <value>saving to archive is impossible.</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Error2" xml:space="preserve">
+    <value>File was not copied:</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Error3" xml:space="preserve">
+    <value>The document is not saved!</value>
+  </data>
+  <data name="DocumentID" xml:space="preserve">
+    <value>document ID</value>
+  </data>
+  <data name="ImageID" xml:space="preserve">
+    <value>image ID</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Error4" xml:space="preserve">
+    <value>The document is saved, but it was not possible to save</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Error5" xml:space="preserve">
+    <value>is already saved in archive</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="InWork" xml:space="preserve">
+    <value>In work</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="MailingListEditDialog_buttonSave_Click_Error1" xml:space="preserve">
+    <value>You should specify the name of mailing list.</value>
+  </data>
+  <data name="MailingListEditDialog_buttonSave_Click_Error2" xml:space="preserve">
+    <value>You should specify the employees who are included in mailing list .</value>
+  </data>
+  <data name="MailingList" xml:space="preserve">
+    <value>Mailing list</value>
+  </data>
+  <data name="ContactEdit" xml:space="preserve">
+    <value>Contact edit</value>
+  </data>
+  <data name="Dialog_PersonContactDialog_buttonAdd_Click_Warning1" xml:space="preserve">
+    <value>You can not add contact to the person</value>
+  </data>
+  <data name="Dialog_PersonContactDialog_buttonAdd_Click_Warning2" xml:space="preserve">
+    <value>Conect to curator of the given person or to secretaries.</value>
+  </data>
+  <data name="Dialog_SavePartDialog_Title1" xml:space="preserve">
+    <value>Delete part of image</value>
+  </data>
+  <data name="Dialog_SendFaxDialog_SendFax_Error1" xml:space="preserve">
+    <value>Error at sending. Contact to administrator.</value>
+  </data>
+  <data name="Dialog_SendFaxDialog_SendFax_Error2" xml:space="preserve">
+    <value>Can not find the contact</value>
+  </data>
+  <data name="Dialog_SendFaxDialog_SendFax_Error3" xml:space="preserve">
+    <value>Creating artificial person</value>
+  </data>
+  <data name="Dialog_SendFaxDialog_SendFax_Error4" xml:space="preserve">
+    <value>Creating natural person</value>
+  </data>
+  <data name="Dialog_SendMessageDialog_SendMessageDialog_Load_Title1" xml:space="preserve">
+    <value>for document</value>
+  </data>
+  <data name="Dialog_SendMessageDialog_SendMessageDialog_Load_Title2" xml:space="preserve">
+    <value>for {0} documents</value>
+  </data>
+  <data name="Dialog_SendMessageDialog_Send_Message1" xml:space="preserve">
+    <value>You have not specified the text of any message!</value>
+  </data>
+  <data name="Dialog_SendMessageDialog_Send_Message2" xml:space="preserve">
+    <value>Input text and repeat sending.</value>
+  </data>
+  <data name="Dialog_SendMessageDialog_Send_Message3" xml:space="preserve">
+    <value>You have not specified any recipients of the general message!</value>
+  </data>
+  <data name="Dialog_SendMessageDialog_Send_Message4" xml:space="preserve">
+    <value>Specified them and repeat sending.</value>
+  </data>
+  <data name="Dialog_SendFaxDialog_buttonSend_Click_Error1" xml:space="preserve">
+    <value>The form for sending is not specified</value>
+  </data>
+  <data name="DocControl_image_NeedSave_Message1" xml:space="preserve">
+    <value>Save changes</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>page</value>
+  </data>
+  <data name="Save1" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="MenuList_menuDel_Click_Message1" xml:space="preserve">
+    <value>Delete document link</value>
+  </data>
+  <data name="MainDocuments" xml:space="preserve">
+    <value>Main documents</value>
+  </data>
+  <data name="Field" xml:space="preserve">
+    <value>field</value>
+  </data>
+  <data name="SubsequentDocuments" xml:space="preserve">
+    <value>Subsequent documents</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="OnSum" xml:space="preserve">
+    <value>on sum</value>
+  </data>
+  <data name="Rouble" xml:space="preserve">
+    <value>r.</value>
+  </data>
+  <data name="Control_TransactionControl_linkLabel_LinkClicked_Message1" xml:space="preserve">
+    <value>Edit transaction</value>
+  </data>
+  <data name="Control_TransactionControl_Message1" xml:space="preserve">
+    <value>Create transaction</value>
+  </data>
+  <data name="IncomingFax" xml:space="preserve">
+    <value>Incoming fax</value>
+  </data>
+  <data name="Received" xml:space="preserve">
+    <value>received</value>
+  </data>
+  <data name="SentFax" xml:space="preserve">
+    <value>Fax sent</value>
+  </data>
+  <data name="ScanedDocument" xml:space="preserve">
+    <value>Scaned document</value>
+  </data>
+  <data name="ScanDocument" xml:space="preserve">
+    <value>Document scaned</value>
+  </data>
+  <data name="DocumentsNotFound" xml:space="preserve">
+    <value>Documents not found.</value>
+  </data>
+  <data name="DocBlock_SelectDialog_DialogEvent_Message1" xml:space="preserve">
+    <value>Do you wish to change criteria of search and repeat inquiry?</value>
+  </data>
+  <data name="NothingFound" xml:space="preserve">
+    <value>Nothing found</value>
+  </data>
+  <data name="CreatedDocument" xml:space="preserve">
+    <value>Creating document</value>
+  </data>
+  <data name="DocTypeBlock_OnLoad_Error1" xml:space="preserve">
+    <value>It is impossible to receive document type data.</value>
+  </data>
+  <data name="DocTypeBlock_OnLoad_Error2" xml:space="preserve">
+    <value>Object of the data is not initialized: </value>
+  </data>
+  <data name="PersonBlock_LoadUsedPersons_Error1" xml:space="preserve">
+    <value>It is impossible to receive persons data.</value>
+  </data>
+  <data name="FindAll" xml:space="preserve">
+    <value>Find all</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Whom" xml:space="preserve">
+    <value>Whom</value>
+  </data>
+  <data name="NoContact" xml:space="preserve">
+    <value>Send with out creating contact</value>
+  </data>
+  <data name="CreateContact" xml:space="preserve">
+    <value>Create contact</value>
+  </data>
+  <data name="Blocks_PersonSearchBlock_Find_Message1" xml:space="preserve">
+    <value>Create artificial person</value>
+  </data>
+  <data name="Blocks_PersonSearchBlock_Find_Message2" xml:space="preserve">
+    <value>Create natural person</value>
+  </data>
+  <data name="DocControl_SavePart_AddDBDocDialog_DialogEvent_Message1" xml:space="preserve">
+    <value>Document part saved</value>
+  </data>
+  <data name="PrintSettings" xml:space="preserve">
+    <value>Print settings</value>
+  </data>
+  <data name="EForm" xml:space="preserve">
+    <value>E-form</value>
+  </data>
+  <data name="OEForm" xml:space="preserve">
+    <value>e-form</value>
+  </data>
+  <data name="DocControl_Page_Error1" xml:space="preserve">
+    <value>Error saving file</value>
+  </data>
+  <data name="FileNotSaved" xml:space="preserve">
+    <value>File not saved</value>
+  </data>
+  <data name="ImageProperties" xml:space="preserve">
+    <value>Image properties</value>
+  </data>
+  <data name="SetBefore" xml:space="preserve">
+    <value>Add page from the scanner before current page</value>
+  </data>
+  <data name="SetAfter" xml:space="preserve">
+    <value>Add page from the scanner after current page</value>
+  </data>
+  <data name="DocControl_variantList_MouseUp_Message1" xml:space="preserve">
+    <value>Make main image</value>
+  </data>
+  <data name="DocControl_variantList_MouseUp_Message2" xml:space="preserve">
+    <value>Delete document image</value>
+  </data>
+  <data name="DocControl_variantList_MouseUp_Message3" xml:space="preserve">
+    <value>Save as new document</value>
+  </data>
+  <data name="DeleteEForm" xml:space="preserve">
+    <value>Delete e-form</value>
+  </data>
+  <data name="DocumentD" xml:space="preserve">
+    <value>document</value>
+  </data>
+  <data name="DocControl_variantList_DelDocItem_Click_Message1" xml:space="preserve">
+    <value>image from</value>
+  </data>
+  <data name="DocControl_variantList_DelDocItem_Click_Message2" xml:space="preserve">
+    <value>from archive.</value>
+  </data>
+  <data name="DocControl_variantList_DelDocItem_Click_Message3" xml:space="preserve">
+    <value>The image will be removed finally without an opportunity of restoration.</value>
+  </data>
+  <data name="DocControl_variantList_DelDocItem_Click_Message4" xml:space="preserve">
+    <value>Are you sure that want to remove this image from archive?</value>
+  </data>
+  <data name="DocControl_variantList_DelEForm_Click_Message1" xml:space="preserve">
+    <value>e-form of the document</value>
+  </data>
+  <data name="DocControl_variantList_DelEForm_Click_Message2" xml:space="preserve">
+    <value>The data specified in it, will be lost.</value>
+  </data>
+  <data name="DocControl_variantList_DelEForm_Click_Message3" xml:space="preserve">
+    <value>Are you sure that want to remove e-form of document from archive?</value>
+  </data>
+  <data name="ImageSaved" xml:space="preserve">
+    <value>Image Saved</value>
+  </data>
+  <data name="ToWindow" xml:space="preserve">
+    <value>to window</value>
+  </data>
+  <data name="DocControl_zoomCombo_SelectedIndexChanged_Error1" xml:space="preserve">
+    <value>Maximal zoom</value>
+  </data>
+  <data name="ToHeight" xml:space="preserve">
+    <value>to height</value>
+  </data>
+  <data name="ToWidth" xml:space="preserve">
+    <value>to width</value>
+  </data>
+  <data name="Changes" xml:space="preserve">
+    <value>Changes</value>
+  </data>
+  <data name="DocControl_ImageChanged_Message1" xml:space="preserve">
+    <value>The image was changed.</value>
+  </data>
+  <data name="DocControl_ImageChanged_Message2" xml:space="preserve">
+    <value>Goto the changed version?</value>
+  </data>
+  <data name="WithSpecifications" xml:space="preserve">
+    <value>(with specifications)</value>
+  </data>
+  <data name="MenuList_menuDel_Click_Message2" xml:space="preserve">
+    <value>Link can be deleted from e-form only</value>
+  </data>
+  <data name="DocControl_variantList_DelClick_Message1" xml:space="preserve">
+    <value>You are going to delete </value>
+  </data>
+  <data name="DocControl_variantList_DelEForm_Click_Message4" xml:space="preserve">
+    <value>Are you sure that want to remove document from archive?</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="GotMessage" xml:space="preserve">
+    <value>New message</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="MoveAndCopy" xml:space="preserve">
+    <value>Move and copy</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>Reply</value>
+  </data>
+  <data name="ReplyAll" xml:space="preserve">
+    <value>Reply all</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>Forward</value>
+  </data>
+  <data name="SendReceive" xml:space="preserve">
+    <value>Send/receive</value>
+  </data>
+  <data name="NoSelectedElements" xml:space="preserve">
+    <value>No selected elements.</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="PrintProcess" xml:space="preserve">
+    <value>Print document...</value>
+  </data>
+  <data name="CalDay" xml:space="preserve">
+    <value>Tooday</value>
+  </data>
+  <data name="CalWeek" xml:space="preserve">
+    <value>Week</value>
+  </data>
+  <data name="CalMonth" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Error6" xml:space="preserve">
+    <value>Try to save document once again.</value>
+  </data>
+  <data name="AddRecepient" xml:space="preserve">
+    <value>Add recipient</value>
+  </data>
+  <data name="Control_MenuList_ToolTip" xml:space="preserve">
+    <value>The date of main document is more then date of subsequent document</value>
+  </data>
+  <data name="Dialogs_LinkTypeDialog_ToolTip" xml:space="preserve">
+    <value>The date of main document can not be more then date of subsequent document</value>
+  </data>
+  <data name="DocControl_variantList_DelEformClick_Error" xml:space="preserve">
+    <value>E-form is signed. Delete is unavalible.</value>
+  </data>
+  <data name="DocControl_variantList_DelEformClick_ErrorTitle" xml:space="preserve">
+    <value>E-form delete error</value>
+  </data>
+  <data name="DocControl_DelEformItem_DialogEvent_Message1" xml:space="preserve">
+    <value>All images of this document was been printed. If delete the e-form the document will be delete.
+Continue?</value>
+  </data>
+  <data name="DocControl_DelEformItem_DialogEvent_Message2" xml:space="preserve">
+    <value>This e-form contains images, that was printed. Them be deleted.
+Continue?</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="DeleteConfirmation" xml:space="preserve">
+    <value>Delete confirmation</value>
+  </data>
+  <data name="DeleteConfirmationEmployees" xml:space="preserve">
+    <value>Are you sure you want to delete the selected employee?</value>
+  </data>
+  <data name="DeleteConfirmationMailingList" xml:space="preserve">
+    <value>Are you sure you want to delete the selected mailing list?</value>
+  </data>
+  <data name="MailingListName" xml:space="preserve">
+    <value>Mailing list name</value>
+  </data>
+  <data name="DocControl_variantList_MouseUp_Message4" xml:space="preserve">
+    <value>Delete print form of document</value>
+  </data>
+  <data name="PrintedImageProperties" xml:space="preserve">
+    <value>Properties of print form</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Message7" xml:space="preserve">
+    <value>Main print form</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="msgAs" xml:space="preserve">
+    <value>as</value>
+  </data>
+  <data name="msgFinishSign" xml:space="preserve">
+    <value>You sign the e-form of document as "Executed - Work is completed".
+
+This signature can not be removed in the future. 
+
+Are you sure work on the document is complete, the data in the e-form entered correctly and do not need them change?</value>
+  </data>
+  <data name="msgCancelSign" xml:space="preserve">
+    <value>You sign the image of document as "Canceled".
+
+This signature can not be removed in the future. 
+
+Are you sure work on the image of the document need to be canceled?</value>
+  </data>
+  <data name="msgSendFinishMsg" xml:space="preserve">
+    <value>Send a message to the final signature</value>
+  </data>
+  <data name="msgSendCancelMsg" xml:space="preserve">
+    <value>Send a message to the canceled signature</value>
+  </data>
+  <data name="msgSign" xml:space="preserve">
+    <value>To sign</value>
+  </data>
+  <data name="msgRemoveSignConfirm" xml:space="preserve">
+    <value>You remove the signature {0}.
+It only makes sense to change the {1}.
+{2}
+Continue?</value>
+  </data>
+  <data name="msgRemoveSignEmployeeConfirm" xml:space="preserve">
+    <value>To restore the signature will need to apply to that employee.</value>
+  </data>
+  <data name="labFinalSign" xml:space="preserve">
+    <value>final sign:</value>
+  </data>
+  <data name="labCancelSign" xml:space="preserve">
+    <value>canceled sign:</value>
+  </data>
+  <data name="labSign" xml:space="preserve">
+    <value>sign:</value>
+  </data>
+  <data name="btnDropDownTooltipText" xml:space="preserve">
+    <value>Show all signs</value>
+  </data>
+  <data name="DeleteStamp" xml:space="preserve">
+    <value>Delete stamp(s)</value>
+  </data>
+  <data name="labSigns" xml:space="preserve">
+    <value>sings:</value>
+  </data>
+  <data name="DeleteTrans" xml:space="preserve">
+    <value>This will delete the transaction on that document ({0} items).
+Continue?</value>
+  </data>
+  <data name="msgSend" xml:space="preserve">
+    <value>Send message</value>
+  </data>
+  <data name="Dialog_ColorCompressionDialog_PreMessage" xml:space="preserve">
+    <value>The saved document contains a pages with high fidelity color.
+Mark pages to save them with high fidelity color?
+
+Warning! In case of refusal ('No') all pages will be saved in black and white.</value>
+  </data>
+  <data name="Dialog_ColorCompressionDialog_ApplyToAllBut" xml:space="preserve">
+    <value>Apply to all pages</value>
+  </data>
+  <data name="Dialog_ColorCompressionDialog_BlackWhiteRadio" xml:space="preserve">
+    <value>Black&amp;White</value>
+  </data>
+  <data name="Dialog_ColorCompressionDialog_ColorRadio" xml:space="preserve">
+    <value>High fidelity color</value>
+  </data>
+  <data name="Dialog_ColorCompressionDialog_ZoomIn_Text" xml:space="preserve">
+    <value>ZoomIn</value>
+  </data>
+  <data name="Dialog_ColorCompressionDialog_ZoomOut_Text" xml:space="preserve">
+    <value>ZoomOut</value>
+  </data>
+  <data name="labStamp" xml:space="preserve">
+    <value>stamp </value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_UpdateControls_Message3" xml:space="preserve">
+    <value>Print form is main</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_UpdateControls_Message4" xml:space="preserve">
+    <value>Print form is not main</value>
+  </data>
+  <data name="Select_SelectDocUniversalDialog_Message1" xml:space="preserve">
+    <value>Selected document simular with document</value>
+  </data>
+  <data name="Select_SelectDocUniversalDialog_Message2" xml:space="preserve">
+    <value>for witch the search in going</value>
+  </data>
+  <data name="Select_SelectDocUniversalDialog_Message3" xml:space="preserve">
+    <value>Selected document is not suitable for search ristrictions</value>
+  </data>
+  <data name="DocumentName" xml:space="preserve">
+    <value>Document title</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_ImageType_Title" xml:space="preserve">
+    <value>Image Type: </value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning13" xml:space="preserve">
+    <value>Do not type the name of the document correct?</value>
+  </data>
+  <data name="ImageShowControl_mi_Click_Message1" xml:space="preserve">
+    <value>Are you sure you want to delete the selected stamps?</value>
+  </data>
+  <data name="DocControl_PageMove_Error" xml:space="preserve">
+    <value>The image of the document is signed. The change is unacceptable.</value>
+  </data>
+  <data name="DocControl_PDF_Encrypted" xml:space="preserve">
+    <value>This document has an open password. Enter the password:</value>
+  </data>
+  <data name="DocControl_PDF_EnterPass" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="DocControl_PDF_FileBusy" xml:space="preserve">
+    <value>Could not save file {0} because it is in used by another process.</value>
+  </data>
+  <data name="DocControl_PDF_FileReadonly" xml:space="preserve">
+    <value>File {0} is read only. Rewrite it?</value>
+  </data>
+  <data name="DocControl_PDF_SaveOriginQuery" xml:space="preserve">
+    <value>Attention! Saved pages will be deleted from original file!</value>
+  </data>
+  <data name="DocControl_DelPartQuery" xml:space="preserve">
+    <value>Remove page from {0} to {1}?</value>
+  </data>
+  <data name="DocControl_DelPartQuery_1" xml:space="preserve">
+    <value>Delete saved pages from a file {0}?</value>
+  </data>
+  <data name="DocControl_FileDeleted" xml:space="preserve">
+    <value>File {0} has been deleted by another user!</value>
+  </data>
+  <data name="DocControl_FileRenamed" xml:space="preserve">
+    <value>File {0} has been renamed by another user!</value>
+  </data>
+  <data name="DocControl_FileChanged" xml:space="preserve">
+    <value>Image has been changed by another user.{0}When you close the image would be reloaded.</value>
+  </data>
+  <data name="DocControl_DocNotSave" xml:space="preserve">
+    <value>Document will not be saved.</value>
+  </data>
+  <data name="Select_SelectImageDialog_Message1" xml:space="preserve">
+    <value>There is no images to add pages in the document!
+Save image as a new document image?</value>
+  </data>
+  <data name="ConflictItem" xml:space="preserve">
+    <value>The item cannot be added 
+because it conflict with item:
+ </value>
+  </data>
+  <data name="PersonIsNotValid" xml:space="preserve">
+    <value>does not exist for this document date</value>
+  </data>
+  <data name="SizeKB" xml:space="preserve">
+    <value>Size KB</value>
+  </data>
+  <data name="OnField" xml:space="preserve">
+    <value>on field</value>
+  </data>
+  <data name="Dialogs_SendFaxDialog_ImpossibleForDoc" xml:space="preserve">
+    <value>The operation can't be applied to</value>
+  </data>
+  <data name="Dialogs_SendFaxDialog_FileAttachError" xml:space="preserve">
+    <value>Couldn't attach a file</value>
+  </data>
+  <data name="NewWindowDefaultToolTip" xml:space="preserve">
+    <value>Open in a separete window (Ctrl+W)</value>
+  </data>
+  <data name="NewWindowFileNotFound" xml:space="preserve">
+    <value>The files were not found:</value>
+  </data>
+  <data name="NotSaved" xml:space="preserve">
+    <value>There is an error during the saving.
+The image does not saved.
+Repeat the image save?</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>File size</value>
+  </data>
+  <data name="Byte" xml:space="preserve">
+    <value>byte</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Pages</value>
+  </data>
+  <data name="DocControl_TmpFileWarning" xml:space="preserve">
+    <value>You will complete the work c a temporary copy of the {0}</value>
+  </data>
+  <data name="DocControl_TmpFileWarning0" xml:space="preserve">
+    <value>Changes that you made will be lost.</value>
+  </data>
+  <data name="DocControl_TmpFileWarning1" xml:space="preserve">
+    <value>Open a temporary copy in a separate window?</value>
+  </data>
+  <data name="DocControl_TmpFileWarning2" xml:space="preserve">
+    <value>Continue to work with the temporary copy?</value>
+  </data>
+  <data name="SaveChangesDialog_Change" xml:space="preserve">
+    <value>Change </value>
+  </data>
+  <data name="SaveChangesDialog_Source" xml:space="preserve">
+    <value>source </value>
+  </data>
+  <data name="SaveChangesDialog_Changed" xml:space="preserve">
+    <value>changed </value>
+  </data>
+  <data name="SaveChangesDialog_SaveToArchive" xml:space="preserve">
+    <value>Saving to Archive </value>
+  </data>
+  <data name="SaveChangesDialog_Print" xml:space="preserve">
+    <value>Print </value>
+  </data>
+  <data name="SaveChangesDialog_SendMail" xml:space="preserve">
+    <value>Send from the office </value>
+  </data>
+  <data name="SaveChangesDialog_ChangesCopy" xml:space="preserve">
+    <value>the changed copy </value>
+  </data>
+  <data name="SaveChangesDialog_DeleteInSource" xml:space="preserve">
+    <value>Delete in source </value>
+  </data>
+  <data name="SaveChangesDialog_Doc1" xml:space="preserve">
+    <value>document</value>
+  </data>
+  <data name="SaveChangesDialog_File1" xml:space="preserve">
+    <value>file</value>
+  </data>
+  <data name="DocControl_CopyExists" xml:space="preserve">
+    <value>The changes to the {0} are not provided - there is an altered copy!</value>
+  </data>
+  <data name="DocControl_ReadOnlyFile" xml:space="preserve">
+    <value>The file is unavailable for editing!</value>
+  </data>
+  <data name="SaveChangesDialog_Doc2" xml:space="preserve">
+    <value>document</value>
+  </data>
+  <data name="SaveChangesDialog_File2" xml:space="preserve">
+    <value>file</value>
+  </data>
+  <data name="DocControl_BadPDF" xml:space="preserve">
+    <value>The file {0} is damaged and can not be opened by the program document archive.
+Use another program designed for PDF file type.
+If the file is able to open in another program, please report it to customer support(p.5555)</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Error7" xml:space="preserve">
+    <value>On the image of the document is set signature or stamp.</value>
+  </data>
+  <data name="AnnulledImage" xml:space="preserve">
+    <value>Annulled  </value>
+  </data>
+  <data name="MainForm.REDOAddImageToDoc" xml:space="preserve">
+    <value>Re-add a picture</value>
+  </data>
+  <data name="MainForm.UNDOAddImageToDoc" xml:space="preserve">
+    <value>Undo add image</value>
+  </data>
+  <data name="PropertiesDocImageDialog_SetDocImageArchive_Redo" xml:space="preserve">
+    <value>Re-run changes in the original repository (image)</value>
+  </data>
+  <data name="PropertiesDocImageDialog_SetDocImageArchive_Undo" xml:space="preserve">
+    <value>Undo changes to the original store (image)</value>
+  </data>
+  <data name="PropertiesDocImageDialog_SetMainImage_Redo" xml:space="preserve">
+    <value>Redo the operation "to do main image"</value>
+  </data>
+  <data name="PropertiesDocImageDialog_SetMainImage_Undo" xml:space="preserve">
+    <value>Cancel the operation "to do main image"</value>
+  </data>
+  <data name="SignDocumentPanel_Sign_Redo" xml:space="preserve">
+    <value>Repeat the signing.</value>
+  </data>
+  <data name="SignDocumentPanel_Sign_Undo" xml:space="preserve">
+    <value>Cancel signing.</value>
+  </data>
+  <data name="SignDocumentPanel_DeleteSign_Redo" xml:space="preserve">
+    <value>Repeat the removal of signatures.</value>
+  </data>
+  <data name="SignDocumentPanel_DeleteSign_Undo" xml:space="preserve">
+    <value>Undelete signature.</value>
+  </data>
+  <data name="Dialog_PersonContactDialog_buttonAdd_Click__Warning1" xml:space="preserve">
+    <value>You can not add a contact to a person</value>
+  </data>
+  <data name="CheckTypeDialogCountry_MustHaveNotResident" xml:space="preserve">
+    <value>Among the persons of the document there are no non-residents!</value>
+  </data>
+  <data name="CheckTypeDialogCountry_OnlyRussianCompany" xml:space="preserve">
+    <value>Among the persons of the document there are non-residents!</value>
+  </data>
+  <data name="SetPrinterDefault_Question" xml:space="preserve">
+    <value>Are you sure that you want to set the selected printer as the default?</value>
+  </data>
+  <data name="DefaultPrinter" xml:space="preserve">
+    <value>Default printer</value>
+  </data>
+</root>

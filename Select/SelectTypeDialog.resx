@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="groupBox2.Text" xml:space="preserve">
+    <value>Specify of type</value>
+  </data>
+	<data name="&gt;&gt;panelPreviosSelect.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<data name="groupSynonyms.Text" xml:space="preserve">
+    <value>Similar types</value>
+  </data>
+	<data name="&gt;&gt;panelSimilar.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+	<data name="&gt;&gt;buttonOK.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+	<data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;cbSubtypes.Name" xml:space="preserve">
+    <value>cbSubtypes</value>
+  </data>
+	<data name="&gt;&gt;cbSubtypes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+	<data name="panel3.Size" type="System.Drawing.Size, System.Drawing">
+		<value>538, 351</value>
+	</data>
+	<data name="radioButtonIN.Size" type="System.Drawing.Size, System.Drawing">
+		<value>136, 24</value>
+	</data>
+	<data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;panelInOut.Parent" xml:space="preserve">
+    <value>panel5</value>
+  </data>
+	<data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+	<data name="&gt;&gt;filter.Name" xml:space="preserve">
+    <value>filter</value>
+  </data>
+	<assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+	<data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>Top</value>
+	</data>
+	<data name="&gt;&gt;synonyms.Name" xml:space="preserve">
+    <value>synonyms</value>
+  </data>
+	<data name="radioButtonIN.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 0</value>
+	</data>
+	<data name="&gt;&gt;cbSimilar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="panelSimilar.Size" type="System.Drawing.Size, System.Drawing">
+		<value>288, 16</value>
+	</data>
+	<data name="&gt;&gt;cbSimilar.Parent" xml:space="preserve">
+    <value>panelSimilar</value>
+  </data>
+	<data name="cbSimilar.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 0</value>
+	</data>
+	<assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+	<data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="&gt;&gt;radioButtonIN.Name" xml:space="preserve">
+    <value>radioButtonIN</value>
+  </data>
+	<data name="panelInOut.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 303</value>
+	</data>
+	<data name="types.Size" type="System.Drawing.Size, System.Drawing">
+		<value>241, 332</value>
+	</data>
+	<data name="filter.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+		<value>Top, Left, Right</value>
+	</data>
+	<data name="subtypes.Location" type="System.Drawing.Point, System.Drawing">
+		<value>3, 16</value>
+	</data>
+	<data name="&gt;&gt;filter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="&gt;&gt;panel4.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+	<data name="&gt;&gt;panel3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="buttonOK.Enabled" type="System.Boolean, mscorlib">
+		<value>False</value>
+	</data>
+	<data name="buttonOK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+		<value>Bottom</value>
+	</data>
+	<data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+	<data name="panel5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>Right</value>
+	</data>
+	<data name="&gt;&gt;subtypes.Name" xml:space="preserve">
+    <value>subtypes</value>
+  </data>
+	<data name="&gt;&gt;cbSimilar.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="subtypes.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>Fill</value>
+	</data>
+	<data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
+		<value>276, 13</value>
+	</data>
+	<data name="panelSubtypes.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>Top</value>
+	</data>
+	<data name="panel4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>Fill</value>
+	</data>
+	<data name="panel5.Location" type="System.Drawing.Point, System.Drawing">
+		<value>250, 0</value>
+	</data>
+	<data name="&gt;&gt;types.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+	<data name="&gt;&gt;types.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>panel4</value>
+  </data>
+	<data name="groupSynonyms.Size" type="System.Drawing.Size, System.Drawing">
+		<value>288, 120</value>
+	</data>
+	<data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="panel2.TabIndex" type="System.Int32, mscorlib">
+		<value>3</value>
+	</data>
+	<data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 10</value>
+	</data>
+	<data name="cbSubtypes.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="types.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="panel1.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="&gt;&gt;radioButtonOut.Name" xml:space="preserve">
+    <value>radioButtonOut</value>
+  </data>
+	<data name="synonyms.Location" type="System.Drawing.Point, System.Drawing">
+		<value>3, 16</value>
+	</data>
+	<data name="synonyms.Size" type="System.Drawing.Size, System.Drawing">
+		<value>282, 101</value>
+	</data>
+	<data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>SelectTypeDialog</value>
+  </data>
+	<data name="labelReturn.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="&gt;&gt;types.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="&gt;&gt;panel5.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+	<data name="&gt;&gt;panelSubtypes.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+	<data name="&gt;&gt;panelSubtypes.Name" xml:space="preserve">
+    <value>panelSubtypes</value>
+  </data>
+	<data name="panel4.Size" type="System.Drawing.Size, System.Drawing">
+		<value>247, 351</value>
+	</data>
+	<data name="label1.Text" xml:space="preserve">
+    <value>Filter:</value>
+  </data>
+	<data name="cbSubtypes.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 0</value>
+	</data>
+	<data name="&gt;&gt;synonyms.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;radioButtonIN.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="$this.Text" xml:space="preserve">
+    <value>Choice document type</value>
+  </data>
+	<data name="groupBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>Fill</value>
+	</data>
+	<data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 423</value>
+	</data>
+	<data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+	<data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="&gt;&gt;labelReturn.Name" xml:space="preserve">
+    <value>labelReturn</value>
+  </data>
+	<data name="cbSubtypes.Size" type="System.Drawing.Size, System.Drawing">
+		<value>272, 16</value>
+	</data>
+	<data name="&gt;&gt;panelSimilar.Parent" xml:space="preserve">
+    <value>panel5</value>
+  </data>
+	<data name="types.Location" type="System.Drawing.Point, System.Drawing">
+		<value>3, 16</value>
+	</data>
+	<data name="&gt;&gt;panelSimilar.Name" xml:space="preserve">
+    <value>panelSimilar</value>
+  </data>
+	<data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="subtypes.Size" type="System.Drawing.Size, System.Drawing">
+		<value>282, 132</value>
+	</data>
+	<data name="&gt;&gt;panel5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="panel4.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 0</value>
+	</data>
+	<data name="buttonOK.Size" type="System.Drawing.Size, System.Drawing">
+		<value>75, 23</value>
+	</data>
+	<data name="&gt;&gt;filter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+		<value>538, 40</value>
+	</data>
+	<data name="groupBox2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>Fill</value>
+	</data>
+	<data name="cbSimilar.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="labelReturn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="buttonOK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="radioButtonOut.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="buttonCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="radioButtonOut.Size" type="System.Drawing.Size, System.Drawing">
+		<value>136, 24</value>
+	</data>
+	<data name="&gt;&gt;cbSubtypes.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="cbSimilar.Size" type="System.Drawing.Size, System.Drawing">
+		<value>272, 16</value>
+	</data>
+	<data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+		<value>247, 351</value>
+	</data>
+	<data name="&gt;&gt;buttonOK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="radioButtonIN.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="&gt;&gt;buttonOK.Name" xml:space="preserve">
+    <value>buttonOK</value>
+  </data>
+	<data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+		<value>CenterScreen</value>
+	</data>
+	<data name="panelSimilar.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="&gt;&gt;cbSimilar.Name" xml:space="preserve">
+    <value>cbSimilar</value>
+  </data>
+	<data name="groupSynonyms.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 183</value>
+	</data>
+	<data name="&gt;&gt;radioButtonIN.Parent" xml:space="preserve">
+    <value>panelInOut</value>
+  </data>
+	<data name="&gt;&gt;panel4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;panelPreviosSelect.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="panel3.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="radioButtonOut.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 24</value>
+	</data>
+	<data name="&gt;&gt;cbSubtypes.Parent" xml:space="preserve">
+    <value>panelSubtypes</value>
+  </data>
+	<data name="&gt;&gt;subtypes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+	<data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+		<value>288, 151</value>
+	</data>
+	<data name="subtypes.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+	<data name="&gt;&gt;labelReturn.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="labelReturn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+		<value>Top, Bottom, Left, Right</value>
+	</data>
+	<data name="&gt;&gt;radioButtonOut.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="&gt;&gt;subtypes.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 16</value>
+	</data>
+	<data name="&gt;&gt;groupSynonyms.Parent" xml:space="preserve">
+    <value>panel5</value>
+  </data>
+	<data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="&gt;&gt;buttonOK.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="buttonOK.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+	<data name="cbSimilar.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+		<value>Top, Left, Right</value>
+	</data>
+	<data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>panel5</value>
+  </data>
+	<data name="splitter1.Size" type="System.Drawing.Size, System.Drawing">
+		<value>3, 351</value>
+	</data>
+	<data name="splitter1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>Right</value>
+	</data>
+	<data name="&gt;&gt;groupSynonyms.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="cbSubtypes.Text" xml:space="preserve">
+    <value>Including specifications of type</value>
+  </data>
+	<data name="panelInOut.TabIndex" type="System.Int32, mscorlib">
+		<value>2</value>
+	</data>
+	<data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
+		<value>538, 48</value>
+	</data>
+	<data name="filter.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="panelSimilar.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 167</value>
+	</data>
+	<data name="cbSimilar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="&gt;&gt;panel4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="panelSubtypes.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="&gt;&gt;panelInOut.Name" xml:space="preserve">
+    <value>panelInOut</value>
+  </data>
+	<data name="panelPreviosSelect.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>Bottom</value>
+	</data>
+	<data name="&gt;&gt;panelSimilar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="cbSimilar.Text" xml:space="preserve">
+    <value>Including similar types</value>
+  </data>
+	<data name="&gt;&gt;panel4.Name" xml:space="preserve">
+    <value>panel4</value>
+  </data>
+	<data name="label1.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="buttonCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+	<data name="&gt;&gt;radioButtonOut.Parent" xml:space="preserve">
+    <value>panelInOut</value>
+  </data>
+	<data name="&gt;&gt;panelPreviosSelect.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+	<data name="radioButtonOut.Text" xml:space="preserve">
+    <value>Outgoing document</value>
+  </data>
+	<data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+	<data name="filter.Location" type="System.Drawing.Point, System.Drawing">
+		<value>64, 8</value>
+	</data>
+	<data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 0</value>
+	</data>
+	<data name="panelPreviosSelect.Size" type="System.Drawing.Size, System.Drawing">
+		<value>538, 32</value>
+	</data>
+	<data name="&gt;&gt;groupSynonyms.Name" xml:space="preserve">
+    <value>groupSynonyms</value>
+  </data>
+	<data name="splitter1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="panelSimilar.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>Bottom</value>
+	</data>
+	<data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+		<value>100, 16</value>
+	</data>
+	<data name="&gt;&gt;synonyms.Parent" xml:space="preserve">
+    <value>groupSynonyms</value>
+  </data>
+	<data name="panel4.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="&gt;&gt;splitter1.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+	<data name="panelSubtypes.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 0</value>
+	</data>
+	<data name="radioButtonIN.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="panelInOut.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>Bottom</value>
+	</data>
+	<data name="&gt;&gt;radioButtonIN.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+	<data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="&gt;&gt;groupSynonyms.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+	<data name="&gt;&gt;panel5.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+	<data name="buttonCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+		<value>Bottom</value>
+	</data>
+	<data name="&gt;&gt;panel3.Name" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+	<data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+	<data name="splitter1.Location" type="System.Drawing.Point, System.Drawing">
+		<value>247, 0</value>
+	</data>
+	<data name="&gt;&gt;panel5.Name" xml:space="preserve">
+    <value>panel5</value>
+  </data>
+	<data name="groupSynonyms.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>Bottom</value>
+	</data>
+	<data name="&gt;&gt;subtypes.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+	<data name="panelInOut.Visible" type="System.Boolean, mscorlib">
+		<value>False</value>
+	</data>
+	<data name="&gt;&gt;panelInOut.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+	<data name="groupSynonyms.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>Kesco.Win.FreeDialog, Win, Version=1.0.4212.31257, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+	<data name="&gt;&gt;panel3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<data name="cbSubtypes.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="&gt;&gt;types.Name" xml:space="preserve">
+    <value>types</value>
+  </data>
+	<data name="panel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>Fill</value>
+	</data>
+	<data name="&gt;&gt;splitter1.Name" xml:space="preserve">
+    <value>splitter1</value>
+  </data>
+	<data name="&gt;&gt;splitter1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+	<data name="synonyms.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>Fill</value>
+	</data>
+	<data name="&gt;&gt;radioButtonOut.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="panelSubtypes.Size" type="System.Drawing.Size, System.Drawing">
+		<value>288, 16</value>
+	</data>
+	<data name="types.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>Fill</value>
+	</data>
+	<data name="radioButtonIN.Text" xml:space="preserve">
+    <value>Incoming document</value>
+  </data>
+	<data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 0</value>
+	</data>
+	<data name="panel5.Size" type="System.Drawing.Size, System.Drawing">
+		<value>288, 351</value>
+	</data>
+	<data name="labelReturn.Size" type="System.Drawing.Size, System.Drawing">
+		<value>520, 16</value>
+	</data>
+	<data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
+		<value>75, 23</value>
+	</data>
+	<data name="&gt;&gt;splitter1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Splitter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="radioButtonOut.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="&gt;&gt;panel3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="panel5.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="synonyms.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="&gt;&gt;panelSubtypes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="panel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+		<value>Bottom</value>
+	</data>
+	<data name="panelPreviosSelect.TabIndex" type="System.Int32, mscorlib">
+		<value>2</value>
+	</data>
+	<data name="buttonOK.Location" type="System.Drawing.Point, System.Drawing">
+		<value>188, 13</value>
+	</data>
+	<data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
+    <value>buttonCancel</value>
+  </data>
+	<data name="&gt;&gt;panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;panelPreviosSelect.Name" xml:space="preserve">
+    <value>panelPreviosSelect</value>
+  </data>
+	<data name="&gt;&gt;panel2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<data name="&gt;&gt;labelReturn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="filter.Size" type="System.Drawing.Size, System.Drawing">
+		<value>184, 20</value>
+	</data>
+	<data name="panelInOut.Size" type="System.Drawing.Size, System.Drawing">
+		<value>288, 48</value>
+	</data>
+	<data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+		<value>538, 471</value>
+	</data>
+	<data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 40</value>
+	</data>
+	<data name="labelReturn.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 8</value>
+	</data>
+	<data name="cbSubtypes.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+		<value>Top, Left, Right</value>
+	</data>
+	<data name="panelPreviosSelect.Location" type="System.Drawing.Point, System.Drawing">
+		<value>0, 391</value>
+	</data>
+	<data name="&gt;&gt;panel2.Name" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+	<data name="groupBox1.Text" xml:space="preserve">
+    <value>Document types</value>
+  </data>
+	<data name="&gt;&gt;filter.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+	<data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+	<data name="&gt;&gt;labelReturn.Parent" xml:space="preserve">
+    <value>panelPreviosSelect</value>
+  </data>
+	<data name="&gt;&gt;panelSubtypes.Parent" xml:space="preserve">
+    <value>panel5</value>
+  </data>
+	<data name="splitter1.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="&gt;&gt;synonyms.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="&gt;&gt;panelInOut.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+	<data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
+		<value>5, 13</value>
+	</data>
+	<data name="buttonOK.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+	<data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+		<value>True</value>
+	</metadata>
+</root>

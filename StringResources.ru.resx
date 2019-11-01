@@ -1,0 +1,1201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Document" xml:space="preserve">
+    <value>Документ</value>
+  </data>
+  <data name="Num" xml:space="preserve">
+    <value>№</value>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value>от</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="Enviroment_Servers_Error1" xml:space="preserve">
+    <value>Нет информации о локальных архивах</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>изображение</value>
+  </data>
+  <data name="OImage" xml:space="preserve">
+    <value>изображения</value>
+  </data>
+  <data name="Select_SelectDocDialog_Message2" xml:space="preserve">
+    <value>электронную форму</value>
+  </data>
+  <data name="Select_SelectDocDialog_Message1" xml:space="preserve">
+    <value>Возможно данный документ уже занесен в архив. Прежде чем сохранять электронную форму как новый документ, убедитесь, что она не является электронной формой к одному из занесенных в архив.</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Показать</value>
+  </data>
+  <data name="Rights" xml:space="preserve">
+    <value>Права</value>
+  </data>
+  <data name="InArchiv" xml:space="preserve">
+    <value>В архиве</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>найден</value>
+  </data>
+  <data name="FindPlural" xml:space="preserve">
+    <value>найдено</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>на</value>
+  </data>
+  <data name="NoNumber" xml:space="preserve">
+    <value>[номер не указан]</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>[дата не указана]</value>
+  </data>
+  <data name="Select_SelectDocDialog_ChooseDocDialog_Load_Message1" xml:space="preserve">
+    <value>похожий документ</value>
+  </data>
+  <data name="Select_SelectDocDialog_ChooseDocDialog_Load_Message2" xml:space="preserve">
+    <value>похожих документа</value>
+  </data>
+  <data name="Select_SelectDocDialog_ChooseDocDialog_Load_Message3" xml:space="preserve">
+    <value>похожих документов</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>Код</value>
+  </data>
+  <data name="DocumentType" xml:space="preserve">
+    <value>Тип документа</value>
+  </data>
+  <data name="DocumentNumber" xml:space="preserve">
+    <value>Номер документа</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="AccessToEdit" xml:space="preserve">
+    <value>Доступ на изменение</value>
+  </data>
+  <data name="Available" xml:space="preserve">
+    <value>Доступен</value>
+  </data>
+  <data name="NotAvailable" xml:space="preserve">
+    <value>Не доступен</value>
+  </data>
+  <data name="HaveEForm" xml:space="preserve">
+    <value>имеет эл.форму</value>
+  </data>
+  <data name="Select_SelectDocDialog_buttonOK_Click_Message1" xml:space="preserve">
+    <value>Этот документ вам не доступен.</value>
+  </data>
+  <data name="Select_SelectDocDialog_buttonOK_Click_Message2" xml:space="preserve">
+    <value>Вы можете добавить новое изображение только к доступному вам документу, для всех остальных документов вы можете просмотреть список сотрудников, обладающих правами на этот документ (вызывается через контекстное меню).</value>
+  </data>
+  <data name="NotEnoughRights" xml:space="preserve">
+    <value>Недостаточно прав</value>
+  </data>
+  <data name="Select_SelectDocDialog_buttonOK_Click_Message3" xml:space="preserve">
+    <value>Этот документ уже имеет электронную форму.</value>
+  </data>
+  <data name="Select_SelectDocDialog_buttonOK_Click_Message4" xml:space="preserve">
+    <value>Вы можете добавить новую электронную форму только к доступному вам документу не имеющему электронной формы.</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Найти</value>
+  </data>
+  <data name="Choice" xml:space="preserve">
+    <value>Выбор</value>
+  </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>Создать новый</value>
+  </data>
+  <data name="Outgoing" xml:space="preserve">
+    <value>исходящий</value>
+  </data>
+  <data name="Incoming" xml:space="preserve">
+    <value>входящий</value>
+  </data>
+  <data name="Select_SelectTypeDialog_Message1" xml:space="preserve">
+    <value>документ типа</value>
+  </data>
+  <data name="Select_SelectTypeDialog_SelectType_Load_Error1" xml:space="preserve">
+    <value>Не инициализирован объект </value>
+  </data>
+  <data name="Similar" xml:space="preserve">
+    <value>Синонимы</value>
+  </data>
+  <data name="SpecifyTypes" xml:space="preserve">
+    <value>Похожие типы</value>
+  </data>
+  <data name="Select_SelectTypeDialog_types_DoubleClick_Message1" xml:space="preserve">
+    <value>Не выбрано направление движения документа</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Предупреждение</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_UpdateControls_Message1" xml:space="preserve">
+    <value>Изображение является основным</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_UpdateControls_Message2" xml:space="preserve">
+    <value>Изображение не является основным</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Message1" xml:space="preserve">
+    <value>Изображение с кодом</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Message2" xml:space="preserve">
+    <value>не найдено</value>
+  </data>
+  <data name="Archive" xml:space="preserve">
+    <value>Архив</value>
+  </data>
+  <data name="Place" xml:space="preserve">
+    <value>Место</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>Локальный</value>
+  </data>
+  <data name="External" xml:space="preserve">
+    <value>Внешний</value>
+  </data>
+  <data name="Sender" xml:space="preserve">
+    <value>Отправитель</value>
+  </data>
+  <data name="Receiver" xml:space="preserve">
+    <value>Получатель</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Контакт</value>
+  </data>
+  <data name="SendTime" xml:space="preserve">
+    <value>Время отправки</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Error1" xml:space="preserve">
+    <value>Не указан код документа</value>
+  </data>
+  <data name="Search_FrmSave_FrmSave_Load_Title1" xml:space="preserve">
+    <value>Сохранение набора параметров поиска</value>
+  </data>
+  <data name="Search_FrmSave_FrmSave_Load_Title2" xml:space="preserve">
+    <value>Загрузка набора параметров поиска</value>
+  </data>
+  <data name="Search_FrmSave_FrmSave_Load_Message1" xml:space="preserve">
+    <value>Название сохраняемого набора параметров поиска</value>
+  </data>
+  <data name="Search_FrmSave_FrmSave_Load_Message2" xml:space="preserve">
+    <value>Название загружаемого набора параметров поиска</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>Загрузить</value>
+  </data>
+  <data name="Search_FrmSave_FrmSave_Closing_Message1" xml:space="preserve">
+    <value>Необходимо выбрать сохраненный набор параметров</value>
+  </data>
+  <data name="Search_FrmSave_FrmSave_Closing_Message2" xml:space="preserve">
+    <value>Необходимо указать название сохраненного набора параметров</value>
+  </data>
+  <data name="Search_FrmSave_LoadXML_Message1" xml:space="preserve">
+    <value>Ошибка при загрузке набора параметров поиска</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Message3" xml:space="preserve">
+    <value>Поступило от</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Message4" xml:space="preserve">
+    <value>С номера</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Message5" xml:space="preserve">
+    <value>Получил факс</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Title1" xml:space="preserve">
+    <value>Добавление изображения</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Message6" xml:space="preserve">
+    <value>Не указано имя файла</value>
+  </data>
+  <data name="DocumentSearch" xml:space="preserve">
+    <value>Поиск документа</value>
+  </data>
+  <data name="SaveInquiry" xml:space="preserve">
+    <value>Сохранить запрос</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Сохранить как</value>
+  </data>
+  <data name="Search_OptionsDialog_LoadXML_Error1" xml:space="preserve">
+    <value>ХМL структура запроса не соответствует стандарту</value>
+  </data>
+  <data name="Search_OptionsDialog_SaveXML_Message1" xml:space="preserve">
+    <value>Другой запрос с таким именем уже существует.</value>
+  </data>
+  <data name="Overwrite" xml:space="preserve">
+    <value>Перезаписать?</value>
+  </data>
+  <data name="SavingInquiry" xml:space="preserve">
+    <value>Сохранение запроса</value>
+  </data>
+  <data name="Search_OptionsDialog_ValidateXML_Error1" xml:space="preserve">
+    <value>Удалить этот параметр из критериев поиска?</value>
+  </data>
+  <data name="Search_OptionsDialog_ValidateXML_Error2" xml:space="preserve">
+    <value>Не указан ни один параметр поиска.</value>
+  </data>
+  <data name="Search_OptionsDialog_ValidateXML_Error3" xml:space="preserve">
+    <value>Продолжить выбор параметров?</value>
+  </data>
+  <data name="Search_OptionsDialog_SaveDialogOld_Message1" xml:space="preserve">
+    <value>Название запроса</value>
+  </data>
+  <data name="ToSearch" xml:space="preserve">
+    <value>Искать</value>
+  </data>
+  <data name="Choose" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
+  <data name="Search_Dialogs_Employee_Message1" xml:space="preserve">
+    <value>сотрудник не выбран</value>
+  </data>
+  <data name="Search_Dialogs_SvyazannyiDokument_FillElement_Error1" xml:space="preserve">
+    <value>Необходимо выбрать документ.</value>
+  </data>
+  <data name="Search_Dialogs_SvyazannyiDokument_FillElement_Error2" xml:space="preserve">
+    <value>Необходимо указать искать 'вытекающие' или 'основания'.</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>и</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>или</value>
+  </data>
+  <data name="Search_Dialogs_КодДокумента_Error1" xml:space="preserve">
+    <value>Код документа указан неверно</value>
+  </data>
+  <data name="NotSelected" xml:space="preserve">
+    <value>[не выбран]</value>
+  </data>
+  <data name="Search_Dialogs_ТипДокумента_Message1" xml:space="preserve">
+    <value>Включая синонимы или похожие типы</value>
+  </data>
+  <data name="Search_Dialogs_ТипДокумента_Message2" xml:space="preserve">
+    <value>Включая уточнения типа</value>
+  </data>
+  <data name="OptionsDialogs_Base_Error1" xml:space="preserve">
+    <value>Необходимо указать опцию для изменения</value>
+  </data>
+  <data name="Image_ImageControl_Zoom_Error1" xml:space="preserve">
+    <value>Размер привышает максимально допустимый</value>
+  </data>
+  <data name="Image_ImageControl_Zoom_Error2" xml:space="preserve">
+    <value>Размер меньше минимально допустимого</value>
+  </data>
+  <data name="Image_ImageControl_FitTo_Error1" xml:space="preserve">
+    <value>Не верный параметр</value>
+  </data>
+  <data name="Image_ImageControl_FitTo_Error2" xml:space="preserve">
+    <value>Допустимые значения</value>
+  </data>
+  <data name="Image_ImageControl_PrintSelection_Error1" xml:space="preserve">
+    <value>Ошибка печати выделенного фрагмента</value>
+  </data>
+  <data name="Image_ImageControl_imgEdit_MouseDownEvent_Message1" xml:space="preserve">
+    <value>Свойства пометки</value>
+  </data>
+  <data name="Image_ImageControl_imgEdit_MouseDownEvent_Message2" xml:space="preserve">
+    <value>Удаление пометки</value>
+  </data>
+  <data name="Dialog_DocPrintDialog_Error1" xml:space="preserve">
+    <value>Непредусмотренна форма для печати данного документа</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Комментарий</value>
+  </data>
+  <data name="Dialog_DocPrintDialog_LoadPrinters_Error1" xml:space="preserve">
+    <value>Отсутствуют установленные принтеры!</value>
+  </data>
+  <data name="Dialog_DocPrintDialog_Print_Error1" xml:space="preserve">
+    <value>Не выбран принтер</value>
+  </data>
+  <data name="Dialog_PrintAllDialog_Title1" xml:space="preserve">
+    <value>Выберите настройки печати папки документов</value>
+  </data>
+  <data name="PrinterOp_Status1" xml:space="preserve">
+    <value>Другое</value>
+  </data>
+  <data name="PrinterOp_Status2" xml:space="preserve">
+    <value>Неизвестно</value>
+  </data>
+  <data name="PrinterOp_Status3" xml:space="preserve">
+    <value>Готов</value>
+  </data>
+  <data name="PrinterOp_Status4" xml:space="preserve">
+    <value>Печатает</value>
+  </data>
+  <data name="PrinterOp_Status5" xml:space="preserve">
+    <value>Прогревается</value>
+  </data>
+  <data name="PrinterOp_Status6" xml:space="preserve">
+    <value>Печать остановлена</value>
+  </data>
+  <data name="PrinterOp_Status7" xml:space="preserve">
+    <value>Оффлайн</value>
+  </data>
+  <data name="PrinterOp_PrinterProperties_Error1" xml:space="preserve">
+    <value>Невозможно получить данные о принтере.</value>
+  </data>
+  <data name="PrinterOp_PrinterProperties_Error2" xml:space="preserve">
+    <value>Код ошибки</value>
+  </data>
+  <data name="PrinterOp_PrinterProperties_Error3" xml:space="preserve">
+    <value>Не удалось открыть принтер</value>
+  </data>
+  <data name="PrinterOp_PrinterProperties_SetOrientation_Error1" xml:space="preserve">
+    <value>Не удалось установить ориентацию страницы.</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>индекс</value>
+  </data>
+  <data name="Dialog_CheckedControlCollection_Error1" xml:space="preserve">
+    <value>выходит за границы (размер списка</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning1" xml:space="preserve">
+    <value>Вы не указали номер документа. Продолжить?</value>
+  </data>
+  <data name="InputError" xml:space="preserve">
+    <value>Ошибка ввода</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning2" xml:space="preserve">
+    <value>Указанный вами номер документа не содержит цифр. Продолжить?</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning3" xml:space="preserve">
+    <value>Вы не указали дату документа. Продолжить?</value>
+  </data>
+  <data name="RepeatInput" xml:space="preserve">
+    <value>Повторите ввод.</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning4" xml:space="preserve">
+    <value>Вы не указали ни одного</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning5" xml:space="preserve">
+    <value>Среди</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning6" xml:space="preserve">
+    <value>не указана ни одна компания Холдинга.</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning7" xml:space="preserve">
+    <value>При сохранении документа, не указывая среди</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning8" xml:space="preserve">
+    <value>компании Холдинга, он не будет доступен ни одному сотруднику, кроме вас.</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning9" xml:space="preserve">
+    <value>Вы уверены, что хотите сохранить документ без компании Холдинга.</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning10" xml:space="preserve">
+    <value>Вы указали только одно</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning11" xml:space="preserve">
+    <value>Для большинства документов требуется указать не менее двух</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning12" xml:space="preserve">
+    <value>Сохранить документ с одним</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>не найден.</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Error1" xml:space="preserve">
+    <value>Сохранение в архив невозможно.</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Error2" xml:space="preserve">
+    <value>Не скопировался файл</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Error3" xml:space="preserve">
+    <value>Документ не сохранен!</value>
+  </data>
+  <data name="DocumentID" xml:space="preserve">
+    <value>Код документа</value>
+  </data>
+  <data name="ImageID" xml:space="preserve">
+    <value>Код изображения</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Error4" xml:space="preserve">
+    <value>Документ сохранен, но не удалось сохранить</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Error5" xml:space="preserve">
+    <value>уже сохранен в архив</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Сотрудник</value>
+  </data>
+  <data name="InWork" xml:space="preserve">
+    <value>В работе</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="MailingListEditDialog_buttonSave_Click_Error1" xml:space="preserve">
+    <value>Вы должны указать название списка рассылки.</value>
+  </data>
+  <data name="MailingListEditDialog_buttonSave_Click_Error2" xml:space="preserve">
+    <value>Вы должны указать сотрудников, входящих в список рассылки.</value>
+  </data>
+  <data name="MailingList" xml:space="preserve">
+    <value>Список рассылки</value>
+  </data>
+  <data name="ContactEdit" xml:space="preserve">
+    <value>Редактирование контакта</value>
+  </data>
+  <data name="Dialog_PersonContactDialog_buttonAdd_Click__Warning1" xml:space="preserve">
+    <value>Вы не можете добавить контакт лицу</value>
+  </data>
+  <data name="Dialog_PersonContactDialog_buttonAdd_Click_Warning2" xml:space="preserve">
+    <value>Обратитесь к ответственному за данное лицо или к секретарям.</value>
+  </data>
+  <data name="Dialog_SavePartDialog_Title1" xml:space="preserve">
+    <value>Удалить часть документа</value>
+  </data>
+  <data name="Dialog_SendFaxDialog_SendFax_Error1" xml:space="preserve">
+    <value>Ошибка при отправке. Обратитесь к администратору</value>
+  </data>
+  <data name="Dialog_SendFaxDialog_SendFax_Error2" xml:space="preserve">
+    <value>Не удается найти контакт</value>
+  </data>
+  <data name="Dialog_SendFaxDialog_SendFax_Error3" xml:space="preserve">
+    <value>Создание юридического лица</value>
+  </data>
+  <data name="Dialog_SendFaxDialog_SendFax_Error4" xml:space="preserve">
+    <value>Создание физического лица</value>
+  </data>
+  <data name="Dialog_SendMessageDialog_SendMessageDialog_Load_Title1" xml:space="preserve">
+    <value>по документу</value>
+  </data>
+  <data name="Dialog_SendMessageDialog_SendMessageDialog_Load_Title2" xml:space="preserve">
+    <value>по {0} документам</value>
+  </data>
+  <data name="Dialog_SendMessageDialog_Send_Message1" xml:space="preserve">
+    <value>Вы не указали текст ни одного сообщения!</value>
+  </data>
+  <data name="Dialog_SendMessageDialog_Send_Message2" xml:space="preserve">
+    <value>Введите текст и повторите отправку.</value>
+  </data>
+  <data name="Dialog_SendMessageDialog_Send_Message3" xml:space="preserve">
+    <value>Вы не указали ни одного получателя общего сообщения!</value>
+  </data>
+  <data name="Dialog_SendMessageDialog_Send_Message4" xml:space="preserve">
+    <value>Укажите их и повторите отправку.</value>
+  </data>
+  <data name="Dialog_SendFaxDialog_buttonSend_Click_Error1" xml:space="preserve">
+    <value>Не указанна форма для отправки</value>
+  </data>
+  <data name="DocControl_image_NeedSave_Message1" xml:space="preserve">
+    <value>Сохранить изменения</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>страница</value>
+  </data>
+  <data name="Save1" xml:space="preserve">
+    <value>Сохранение</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Подтверждение</value>
+  </data>
+  <data name="MenuList_menuDel_Click_Message1" xml:space="preserve">
+    <value>Удалить связь документов</value>
+  </data>
+  <data name="MainDocuments" xml:space="preserve">
+    <value>Документы-основания</value>
+  </data>
+  <data name="Field" xml:space="preserve">
+    <value>поле</value>
+  </data>
+  <data name="SubsequentDocuments" xml:space="preserve">
+    <value>Документы вытекающие</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>нет</value>
+  </data>
+  <data name="OnSum" xml:space="preserve">
+    <value>на сумму</value>
+  </data>
+  <data name="Rouble" xml:space="preserve">
+    <value>р.</value>
+  </data>
+  <data name="Control_TransactionControl_linkLabel_LinkClicked_Message1" xml:space="preserve">
+    <value>Изменение финоперации</value>
+  </data>
+  <data name="Control_TransactionControl_Message1" xml:space="preserve">
+    <value>Создание финоперации</value>
+  </data>
+  <data name="IncomingFax" xml:space="preserve">
+    <value>Входящий факс</value>
+  </data>
+  <data name="Received" xml:space="preserve">
+    <value>получен</value>
+  </data>
+  <data name="SentFax" xml:space="preserve">
+    <value>Отправлен факс</value>
+  </data>
+  <data name="ScanedDocument" xml:space="preserve">
+    <value>Сканированный документ</value>
+  </data>
+  <data name="ScanDocument" xml:space="preserve">
+    <value>Сканирован документ</value>
+  </data>
+  <data name="DocumentsNotFound" xml:space="preserve">
+    <value>Документы не найдены.</value>
+  </data>
+  <data name="DocBlock_SelectDialog_DialogEvent_Message1" xml:space="preserve">
+    <value>Желаете изменить критерии поиска и повторить запрос?</value>
+  </data>
+  <data name="NothingFound" xml:space="preserve">
+    <value>Ничего не найдено</value>
+  </data>
+  <data name="CreatedDocument" xml:space="preserve">
+    <value>Создаваемый документ</value>
+  </data>
+  <data name="DocTypeBlock_OnLoad_Error1" xml:space="preserve">
+    <value>Невозможно получить данные о типах документов.</value>
+  </data>
+  <data name="DocTypeBlock_OnLoad_Error2" xml:space="preserve">
+    <value>Не инициализирован объект данных</value>
+  </data>
+  <data name="PersonBlock_LoadUsedPersons_Error1" xml:space="preserve">
+    <value>Невозможно получить данные о лицах.</value>
+  </data>
+  <data name="FindAll" xml:space="preserve">
+    <value>Найти все</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="Whom" xml:space="preserve">
+    <value>Кому</value>
+  </data>
+  <data name="NoContact" xml:space="preserve">
+    <value>Отправить без создания контакта</value>
+  </data>
+  <data name="CreateContact" xml:space="preserve">
+    <value>Создать контакт</value>
+  </data>
+  <data name="Blocks_PersonSearchBlock_Find_Message1" xml:space="preserve">
+    <value>Создать юридическое лицо</value>
+  </data>
+  <data name="Blocks_PersonSearchBlock_Find_Message2" xml:space="preserve">
+    <value>Создать физическое лицо</value>
+  </data>
+  <data name="DocControl_SavePart_AddDBDocDialog_DialogEvent_Message1" xml:space="preserve">
+    <value>Сохранена часть документа</value>
+  </data>
+  <data name="PrintSettings" xml:space="preserve">
+    <value>Настройки печати</value>
+  </data>
+  <data name="EForm" xml:space="preserve">
+    <value>Эл.форма</value>
+  </data>
+  <data name="OEForm" xml:space="preserve">
+    <value>эл.формы</value>
+  </data>
+  <data name="DocControl_Page_Error1" xml:space="preserve">
+    <value>Ошибка сохранения файла</value>
+  </data>
+  <data name="FileNotSaved" xml:space="preserve">
+    <value>Файл не сохранен</value>
+  </data>
+  <data name="ImageProperties" xml:space="preserve">
+    <value>Свойства изображения</value>
+  </data>
+  <data name="SetBefore" xml:space="preserve">
+    <value>Добавить страницу со сканера перед текущей</value>
+  </data>
+  <data name="SetAfter" xml:space="preserve">
+    <value>Добавить страницу со сканера после текущей</value>
+  </data>
+  <data name="DocControl_variantList_MouseUp_Message1" xml:space="preserve">
+    <value>Сделать основным изображением</value>
+  </data>
+  <data name="DocControl_variantList_MouseUp_Message2" xml:space="preserve">
+    <value>Удалить изображение документа</value>
+  </data>
+  <data name="DocControl_variantList_MouseUp_Message3" xml:space="preserve">
+    <value>Сохранить в виде нового документа</value>
+  </data>
+  <data name="DeleteEForm" xml:space="preserve">
+    <value>Удалить эл. форму</value>
+  </data>
+  <data name="DocumentD" xml:space="preserve">
+    <value>документа</value>
+  </data>
+  <data name="DocControl_variantList_DelClick_Message1" xml:space="preserve">
+    <value>Вы собираетесь удалить </value>
+  </data>
+  <data name="DocControl_variantList_DelDocItem_Click_Message2" xml:space="preserve">
+    <value>из архива.</value>
+  </data>
+  <data name="DocControl_variantList_DelDocItem_Click_Message3" xml:space="preserve">
+    <value>Изображение будет удалено окончательно, без возможности восстановления.</value>
+  </data>
+  <data name="DocControl_variantList_DelDocItem_Click_Message4" xml:space="preserve">
+    <value>Вы действительно хотите удалить этот изображение из архива?</value>
+  </data>
+  <data name="DocControl_variantList_DelEForm_Click_Message1" xml:space="preserve">
+    <value>эл. форму документа</value>
+  </data>
+  <data name="DocControl_variantList_DelEForm_Click_Message2" xml:space="preserve">
+    <value>Данные, указанные в ней, будет утеряны.</value>
+  </data>
+  <data name="DocControl_variantList_DelEForm_Click_Message3" xml:space="preserve">
+    <value>Вы действительно хотите удалить эл. форму документа из архива?</value>
+  </data>
+  <data name="ImageSaved" xml:space="preserve">
+    <value>Сохранено изображение</value>
+  </data>
+  <data name="ToWindow" xml:space="preserve">
+    <value>по окну</value>
+  </data>
+  <data name="DocControl_zoomCombo_SelectedIndexChanged_Error1" xml:space="preserve">
+    <value>Максимальный масштаб</value>
+  </data>
+  <data name="ToHeight" xml:space="preserve">
+    <value>по высоте</value>
+  </data>
+  <data name="ToWidth" xml:space="preserve">
+    <value>по ширине</value>
+  </data>
+  <data name="Changes" xml:space="preserve">
+    <value>Изменения</value>
+  </data>
+  <data name="DocControl_ImageChanged_Message1" xml:space="preserve">
+    <value>Изображение было изменено.</value>
+  </data>
+  <data name="DocControl_ImageChanged_Message2" xml:space="preserve">
+    <value>Перейти к измененной версии?</value>
+  </data>
+  <data name="WithSpecifications" xml:space="preserve">
+    <value>(c уточнениями)</value>
+  </data>
+  <data name="Select_SelectDocUniversalDialog_Message1" xml:space="preserve">
+    <value>Выбранный документ совпадает с документом,</value>
+  </data>
+  <data name="Select_SelectDocUniversalDialog_Message2" xml:space="preserve">
+    <value>для которого идет поиск.</value>
+  </data>
+  <data name="Select_SelectDocUniversalDialog_Message3" xml:space="preserve">
+    <value>Выбранный документ не подходит под ограничения поиска.</value>
+  </data>
+  <data name="MenuList_menuDel_Click_Message2" xml:space="preserve">
+    <value>Связь можно удалить только из эл.формы</value>
+  </data>
+  <data name="DocControl_variantList_DelDocItem_Click_Message1" xml:space="preserve">
+    <value>изображение от</value>
+  </data>
+  <data name="DocControl_variantList_DelEForm_Click_Message4" xml:space="preserve">
+    <value>Вы действительно хотите удалить документ из архива?</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>От</value>
+  </data>
+  <data name="GotMessage" xml:space="preserve">
+    <value>Новое сообщение</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="MoveAndCopy" xml:space="preserve">
+    <value>Перемещение и копирование</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>Ответить</value>
+  </data>
+  <data name="ReplyAll" xml:space="preserve">
+    <value>Ответить всем</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>Переслать</value>
+  </data>
+  <data name="SendReceive" xml:space="preserve">
+    <value>Отправить/получить</value>
+  </data>
+  <data name="NoSelectedElements" xml:space="preserve">
+    <value>В данное время элементы не выделены.</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Печать</value>
+  </data>
+  <data name="CalDay" xml:space="preserve">
+    <value>Ежедневник</value>
+  </data>
+  <data name="CalWeek" xml:space="preserve">
+    <value>Еженедельник</value>
+  </data>
+  <data name="CalMonth" xml:space="preserve">
+    <value>Ежемесячник</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Error6" xml:space="preserve">
+    <value>Обновите изображение и попробуйте сохранить еще раз.</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Error7" xml:space="preserve">
+    <value>На изображение документа установлена подпись или штамп.</value>
+  </data>
+  <data name="AddRecepient" xml:space="preserve">
+    <value>Добавить получателя</value>
+  </data>
+  <data name="Control_MenuList_ToolTip" xml:space="preserve">
+    <value>Дата документа основания больше даты вытекающего документа</value>
+  </data>
+  <data name="Dialogs_LinkTypeDialog_ToolTip" xml:space="preserve">
+    <value>Дата документа основания не может быть больше даты вытекающего документа</value>
+  </data>
+  <data name="DocControl_variantList_DelEformClick_Error" xml:space="preserve">
+    <value>Эл. форма подписана. Удаление невозможно.</value>
+  </data>
+  <data name="DocControl_variantList_DelEformClick_ErrorTitle" xml:space="preserve">
+    <value>Ошибка удаление эл. формы</value>
+  </data>
+  <data name="DocControl_DelEformItem_DialogEvent_Message1" xml:space="preserve">
+    <value>Все изображения данного документа были напечатаны. При удалении эл. формы будет удален документ!
+Продолжить?</value>
+  </data>
+  <data name="DocControl_DelEformItem_DialogEvent_Message2" xml:space="preserve">
+    <value>У данной эл. формы имеются напечатаные изображения, которые будут удалены.
+Продолжить?</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>Автор</value>
+  </data>
+  <data name="DeleteConfirmation" xml:space="preserve">
+    <value>Подтверждение удаления</value>
+  </data>
+  <data name="DeleteConfirmationEmployees" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить выбранного сотрудника?</value>
+  </data>
+  <data name="DeleteConfirmationMailingList" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить выбранный список рассылки?</value>
+  </data>
+  <data name="MailingListName" xml:space="preserve">
+    <value>Название списка рассылки</value>
+  </data>
+  <data name="DocControl_variantList_MouseUp_Message4" xml:space="preserve">
+    <value>Удалить печатную форму документа</value>
+  </data>
+  <data name="PrintedImageProperties" xml:space="preserve">
+    <value>Свойства печатной формы</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_UpdateControls_Message3" xml:space="preserve">
+    <value>Печатная форма является основной</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_UpdateControls_Message4" xml:space="preserve">
+    <value>Печатная форма не является основной</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_PropertiesDocImageDialog_Load_Message7" xml:space="preserve">
+    <value>Основная печатная форма</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="msgAs" xml:space="preserve">
+    <value>как</value>
+  </data>
+  <data name="msgFinishSign" xml:space="preserve">
+    <value>Вы подписываете электронную форму документа как "Выполнено-работа завершена". 
+
+Данная подпись не может быть удалена в дальнейшем.
+
+Вы уверенны, что работа по документу завершена, данные в эл. форме введены корректно и не потребуется их изменить?</value>
+  </data>
+  <data name="msgSendFinishMsg" xml:space="preserve">
+    <value>Отсылать сообщение о завершающей подписи</value>
+  </data>
+  <data name="msgSendCancelMsg" xml:space="preserve">
+    <value>Отсылать сообщение о аннулированной подписи</value>
+  </data>
+  <data name="msgCancelSign" xml:space="preserve">
+    <value>Вы подписываете изображение документа как "Аннулировано". 
+
+Данная подпись не может быть удалена в дальнейшем.
+
+Вы уверенны, что работа с изображением документа должна быть аннулирована?</value>
+  </data>
+  <data name="msgSign" xml:space="preserve">
+    <value>Подписать</value>
+  </data>
+  <data name="msgRemoveSignConfirm" xml:space="preserve">
+    <value>Вы удаляете подпись {0}.
+Это имеет смысл только для изменения {1}.
+{2}
+Продолжить?</value>
+  </data>
+  <data name="msgRemoveSignEmployeeConfirm" xml:space="preserve">
+    <value>Для восстановления подписи придется обратиться к указанному сотруднику.</value>
+  </data>
+  <data name="labFinalSign" xml:space="preserve">
+    <value>выполнено-работа завершена:</value>
+  </data>
+  <data name="labStamp" xml:space="preserve">
+    <value>штамп </value>
+  </data>
+  <data name="labCancelSign" xml:space="preserve">
+    <value>аннулировано:</value>
+  </data>
+  <data name="labSign" xml:space="preserve">
+    <value>подпись:</value>
+  </data>
+  <data name="btnDropDownTooltipText" xml:space="preserve">
+    <value>Показать все подписи</value>
+  </data>
+  <data name="DeleteStamp" xml:space="preserve">
+    <value>Удалить штамп(ы)</value>
+  </data>
+  <data name="labSigns" xml:space="preserve">
+    <value>подписи:</value>
+  </data>
+  <data name="DeleteTrans" xml:space="preserve">
+    <value>Это приведет к удалению финопераций по этому документу ({0} шт).
+Продолжить?
+    </value>
+  </data>
+  <data name="msgSend" xml:space="preserve">
+    <value>Отсылать сообщение</value>
+  </data>
+  <data name="Dialog_ColorCompressionDialog_ZoomIn_Text" xml:space="preserve">
+    <value>Увеличить</value>
+  </data>
+  <data name="Dialog_ColorCompressionDialog_ZoomOut_Text" xml:space="preserve">
+    <value>Уменьшить</value>
+  </data>
+  <data name="Dialog_ColorCompressionDialog_BlackWhiteRadio" xml:space="preserve">
+    <value>Черно-белый</value>
+  </data>
+  <data name="Dialog_ColorCompressionDialog_ColorRadio" xml:space="preserve">
+    <value>С повышенной точностью передачи цвета</value>
+  </data>
+  <data name="Dialog_ColorCompressionDialog_ApplyToAllBut" xml:space="preserve">
+    <value>Применить ко всем страницам</value>
+  </data>
+  <data name="Dialog_ColorCompressionDialog_PreMessage" xml:space="preserve">
+    <value>В сохраняемом документе присутствуют страницы с повышенной точностью передачи цвета.
+Отметить страницы для сохранения их с повышенной точностью передачи цвета?
+
+Внимание!!! При отказе ('Нет') все страницы будут сохранены в черно-белом формате.</value>
+  </data>
+  <data name="Dialog_AddDBDocDialog_buttonOK_Click_Warning13" xml:space="preserve">
+    <value>Не набрано название документа исправить?</value>
+  </data>
+  <data name="DocumentName" xml:space="preserve">
+    <value>Название документа</value>
+  </data>
+  <data name="Properties_PropertiesDocImageDialog_ImageType_Title" xml:space="preserve">
+    <value>Тип изображения: </value>
+  </data>
+  <data name="ImageShowControl_mi_Click_Message1" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить выделенные штампы?</value>
+  </data>
+  <data name="DocControl_PageMove_Error" xml:space="preserve">
+    <value>Изображение документа не может быть изменено, т.к. оно подписано.</value>
+  </data>
+  <data name="DocControl_PDF_Encrypted" xml:space="preserve">
+    <value>Документ защищен паролем. Введите пароль:</value>
+  </data>
+  <data name="DocControl_PDF_EnterPass" xml:space="preserve">
+    <value>Ввод пароля</value>
+  </data>
+  <data name="DocControl_PDF_FileBusy" xml:space="preserve">
+    <value>Сохранение в изменений в файле {0} невозможно, так как он используется другим процессом.</value>
+  </data>
+  <data name="DocControl_PDF_FileReadonly" xml:space="preserve">
+    <value>Файл {0} доступен только для чтения. Заменить?</value>
+  </data>
+  <data name="DocControl_PDF_SaveOriginQuery" xml:space="preserve">
+    <value>Внимание! Сохраненные страницы будут также удалены из оригинала!</value>
+  </data>
+  <data name="DocControl_DelPartQuery" xml:space="preserve">
+    <value>Удалить страницы с {0} по {1}?</value>
+  </data>
+  <data name="DocControl_DelPartQuery_1" xml:space="preserve">
+    <value>Удалить сохраняемые страницы из файла {0}?</value>
+  </data>
+  <data name="DocControl_FileDeleted" xml:space="preserve">
+    <value>Файл {0} был удален другим пользователем!</value>
+  </data>
+  <data name="DocControl_FileRenamed" xml:space="preserve">
+    <value>Файл {0} был переименован другим пользователем!</value>
+  </data>
+  <data name="DocControl_FileChanged" xml:space="preserve">
+    <value>Изображение было изменено другим пользователем.{0}После закрытия окна изображение будет перегружено.</value>
+  </data>
+  <data name="DocControl_DocNotSave" xml:space="preserve">
+    <value>Документ не будет сохранен.</value>
+  </data>
+  <data name="Select_SelectImageDialog_Message1" xml:space="preserve">
+    <value>У документа отсутсвуют изображения, к которым возможно добавление страниц!
+Сохранить изображение как новое изображение документа?</value>
+  </data>
+  <data name="ConflictItem" xml:space="preserve">
+    <value>Невозможено добавить пункт,
+так как он противоречит пункту:
+</value>
+  </data>
+  <data name="PersonIsNotValid" xml:space="preserve">
+    <value>не существует на дату документа</value>
+  </data>
+  <data name="SizeKB" xml:space="preserve">
+    <value>Размер КВ</value>
+  </data>
+  <data name="OnField" xml:space="preserve">
+    <value>по полю</value>
+  </data>
+  <data name="Dialogs_SendFaxDialog_ImpossibleForDoc" xml:space="preserve">
+    <value>Операция не применима к</value>
+  </data>
+  <data name="Dialogs_SendFaxDialog_FileAttachError" xml:space="preserve">
+    <value>Не удалось прикрепить документ</value>
+  </data>
+  <data name="NewWindowDefaultToolTip" xml:space="preserve">
+    <value>Открыть в окне (Ctrl+W)</value>
+  </data>
+  <data name="NewWindowFileNotFound" xml:space="preserve">
+    <value>Следующие файлы не найдены:</value>
+  </data>
+  <data name="NotSaved" xml:space="preserve">
+    <value>При сохранении изображения произошла ошибка.
+Изображение небыло сохранено
+Повторить сохранение изображения?</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>Размер файла</value>
+  </data>
+  <data name="Byte" xml:space="preserve">
+    <value>байт</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Страниц</value>
+  </data>
+  <data name="DocControl_ReadOnlyFile" xml:space="preserve">
+    <value>Файл недоступен для редактирования!</value>
+  </data>
+  <data name="DocControl_TmpFileWarning" xml:space="preserve">
+    <value>Вы завершаете работу c временной копией {0}!</value>
+  </data>
+  <data name="DocControl_TmpFileWarning0" xml:space="preserve">
+    <value>Все Ваши изменения будут утеряны.</value>
+  </data>
+  <data name="DocControl_TmpFileWarning1" xml:space="preserve">
+    <value>Открыть временную копию в отдельном окне?</value>
+  </data>
+  <data name="DocControl_TmpFileWarning2" xml:space="preserve">
+    <value>Продолжить работу с временной копией?</value>
+  </data>
+  <data name="SaveChangesDialog_Change" xml:space="preserve">
+    <value>Изменить </value>
+  </data>
+  <data name="SaveChangesDialog_Source" xml:space="preserve">
+    <value>исходный </value>
+  </data>
+  <data name="SaveChangesDialog_Changed" xml:space="preserve">
+    <value>изменённый </value>
+  </data>
+  <data name="SaveChangesDialog_SaveToArchive" xml:space="preserve">
+    <value>Сохранить в Архив </value>
+  </data>
+  <data name="SaveChangesDialog_Print" xml:space="preserve">
+    <value>Отправить на печать </value>
+  </data>
+  <data name="SaveChangesDialog_SendMail" xml:space="preserve">
+    <value>Отправить из офиса </value>
+  </data>
+  <data name="SaveChangesDialog_ChangesCopy" xml:space="preserve">
+    <value>изменённую копию </value>
+  </data>
+  <data name="SaveChangesDialog_DeleteInSource" xml:space="preserve">
+    <value>Удалить в исходном </value>
+  </data>
+  <data name="SaveChangesDialog_Doc1" xml:space="preserve">
+    <value>документе</value>
+  </data>
+  <data name="SaveChangesDialog_File1" xml:space="preserve">
+    <value>файле</value>
+  </data>
+  <data name="SaveChangesDialog_Doc2" xml:space="preserve">
+    <value>документа</value>
+  </data>
+  <data name="SaveChangesDialog_File2" xml:space="preserve">
+    <value>файла</value>
+  </data>
+  <data name="DocControl_CopyExists" xml:space="preserve">
+    <value>Изменения в {0} не предусмотрены - существует изменённая копия!</value>
+  </data>
+  <data name="DocControl_BadPDF" xml:space="preserve">
+    <value>Файл '{0}' повреждён и не может быть открыт программой Архив Документов.
+Воспользуйтесь другой программой, предназначенной для просмотра файлов типа PDF. 
+Если файл удалось просмотреть другой программой, пожалуйста, сообщите об этом в службу поддержки(т.5555)</value>
+  </data>
+  <data name="AnnulledImage" xml:space="preserve">
+    <value>Аннулировано </value>
+  </data>
+  <data name="MainForm.REDOAddImageToDoc" xml:space="preserve">
+    <value>Повторно добавить изображение</value>
+  </data>
+  <data name="MainForm.UNDOAddImageToDoc" xml:space="preserve">
+    <value>Отменить добавление изображения</value>
+  </data>
+  <data name="PropertiesDocImageDialog_SetDocImageArchive_Redo" xml:space="preserve">
+    <value>Повторно выполнить изменение хранилища оригинала(изображение)</value>
+  </data>
+  <data name="PropertiesDocImageDialog_SetDocImageArchive_Undo" xml:space="preserve">
+    <value>Отменить изменение хранилища оригинала(изображение)</value>
+  </data>
+  <data name="PropertiesDocImageDialog_SetMainImage_Redo" xml:space="preserve">
+    <value>Повторить установку основного изображения</value>
+  </data>
+  <data name="PropertiesDocImageDialog_SetMainImage_Undo" xml:space="preserve">
+    <value>Отмена установки основного изображения</value>
+  </data>
+  <data name="SignDocumentPanel_Sign_Redo" xml:space="preserve">
+    <value>Повторить подписание.</value>
+  </data>
+  <data name="SignDocumentPanel_Sign_Undo" xml:space="preserve">
+    <value>Отменить подписание.</value>
+  </data>
+  <data name="SignDocumentPanel_DeleteSign_Redo" xml:space="preserve">
+    <value>Повторить удаление подписи.</value>
+  </data>
+  <data name="SignDocumentPanel_DeleteSign_Undo" xml:space="preserve">
+    <value>Отменить удаление подписи.</value>
+  </data>
+  <data name="CheckTypeDialogCountry_MustHaveNotResident" xml:space="preserve">
+    <value>Среди лиц документа отсутствуют нерезиденты!</value>
+  </data>
+  <data name="CheckTypeDialogCountry_OnlyRussianCompany" xml:space="preserve">
+    <value>Среди лиц документа присутствуют нерезиденты!</value>
+  </data>
+  <data name="SetPrinterDefault_Question" xml:space="preserve">
+    <value>Вы действительно хотите установить выбранный принтер по умолчанию?</value>
+  </data>
+  <data name="DefaultPrinter" xml:space="preserve">
+    <value>Принтер по умолчанию</value>
+  </data>
+</root>

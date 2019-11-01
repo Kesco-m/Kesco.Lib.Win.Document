@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="bCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="bRefresh.Text" xml:space="preserve">
+    <value>&amp;Refresh</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Page orientation</value>
+  </data>
+  <data name="bookRButton.Text" xml:space="preserve">
+    <value>P&amp;ortrait</value>
+  </data>
+  <data name="albumRButton.Text" xml:space="preserve">
+    <value>L&amp;andscape</value>
+  </data>
+  <data name="autoRButton.Text" xml:space="preserve">
+    <value>A&amp;utomatic</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Zoom</value>
+  </data>
+  <data name="originalRButton.Text" xml:space="preserve">
+    <value>Original size</value>
+  </data>
+  <data name="fitRButton.Text" xml:space="preserve">
+    <value>Fi&amp;t to page</value>
+  </data>
+  <data name="labelL.Text" xml:space="preserve">
+    <value>left:</value>
+  </data>
+  <data name="labelR.Text" xml:space="preserve">
+    <value>right:</value>
+  </data>
+  <data name="labelB.Text" xml:space="preserve">
+    <value>bottom:</value>
+  </data>
+  <data name="labelT.Text" xml:space="preserve">
+    <value>top:</value>
+  </data>
+  <data name="groupBoxMargins.Text" xml:space="preserve">
+    <value>Margins:</value>
+  </data>
+  <data name="annotationCheck.Text" xml:space="preserve">
+    <value>Print notes</value>
+  </data>
+  <data name="showCheck.Text" xml:space="preserve">
+    <value>Always show this window before print</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Printers</value>
+  </data>
+  <data name="bProperties.Text" xml:space="preserve">
+    <value>Properties...</value>
+  </data>
+  <data name="duplexBox.Text" xml:space="preserve">
+    <value>&amp;Duplex</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Print document</value>
+  </data>
+  <data name="radioButtonAll.Text" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="radioButtonOnlyMain.Text" xml:space="preserve">
+    <value>Main only</value>
+  </data>
+  <data name="checkPrintImage.Text" xml:space="preserve">
+    <value>Print &amp;image</value>
+  </data>
+  <data name="groupBoxPrintPDF.Text" xml:space="preserve">
+    <value>Resolution for PDF print</value>
+  </data>
+  <data name="comboBoxPrintResolution.Items" xml:space="preserve">
+    <value>as printer</value>
+  </data>
+  <data name="comboBoxPrintResolution.Items1" xml:space="preserve">
+    <value>600 x 600 dpi</value>
+  </data>
+  <data name="comboBoxPrintResolution.Items2" xml:space="preserve">
+    <value>300 x 300 dpi</value>
+  </data>
+  <data name="comboBoxPrintResolution.Items3" xml:space="preserve">
+    <value>200 x 200 dpi</value>
+  </data>
+  <data name="checkBoxEform.Text" xml:space="preserve">
+    <value>Print &amp;e-Form</value>
+  </data>
+  <data name="labelEForm.Text" xml:space="preserve">
+    <value>Select type to print e-form</value>
+  </data>
+  <data name="imageListOrintation.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFpTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0xLjAuNTAw
+        MC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZT
+        eXN0ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMA
+        AAAsBwAAAk1TRnQBSQFMAgEBAwEAAQUBAAEEAQABIAEAASABAAT/AQUBEAj/AUIBTQF2BwABdgMAASgD
+        AAGAAwABQAMAAQEBAAEEBgABEBgAAYACAAGAAwACgAEAAYADAAGAAQABgAEAAoACAAPAAQADgAMAAf8C
+        AAH/AwAC/wEAAf8DAAH/AQAB/wEAAv8CAAP//wD/AP8A/wD/AP8A/wD/AAsADIgBgBMADIgBgB8AAYAf
+        AAGAEwAL/wHwAYATAAv/AfABgBMAC/8B8AGAEwAL/wHwAYATAAv/AfABgAEAEIgCAAv/AfABgBMAC/8B
+        8AGAEAABCAIAC/8B8AGAEwAL/wHwAYABAAEPDv8BCAIAC/8B8AGAEwAL/wHwAYABAAEPDv8BCAIAC/8B
+        8AGAEwAL/wHwAYABAAEPDv8BCAIABf8BAAF/BP8B8AGAEwAB/wMAAX8B/wHwBAABcAGAAQABDw7/AQgC
+        AAX/AQABfwT/AfABgBMAAv8BAAF/BP8CAAF/AfABgAEAAQ8B/wMAA/8EAAP/AQgCAAv/AfABgBMAAv8B
+        8AF/BP8BAAEHAf8B8AGAAQABDwL/AQAF/wIABP8BCAIAC/8B8AGAEwAC/wHwAQcD/wHwAQABBwH/AfAB
+        gAEAAQ8C/wHwBf8BAAEPBP8BCAIABf8BAAF/BP8B8AGAEwAD/wEHA/8B8AEAAX8B/wHwAYABAAEPAv8B
+        8AEPA/8B8AEAAQ8E/wEIAgAF/wEAAX8E/wHwAYATAAP/BgABfwH/AfABgAEAAQ8D/wEPA/8B8AEABf8B
+        CAIABf8BAAEHBP8B8AGAEwAD/wHwAX8C/wEAAQcC/wHwAYABAAEPA/8GAAX/AQgCAAX/AfABAAF/A/8B
+        8AGAEwAD/wHwAQcB/wHwAQABBwL/AfABgAEAAQ8D/wHwA/8BAAEPBf8BCAIABv8BAAEHA/8B8AGAEwAE
+        /wEHAf8B8AEAAX8C/wHwAYABAAEPA/8B8AEPAf8B8AEAAQ8F/wEIAgAG/wHwAQABfwL/AfABgBMABP8B
+        AAF/AgABfwL/AfABgAEAAQ8E/wEPAf8B8AEABv8BCAIAB/8BAAF/Av8B8AGAEwAE/wHwAX8BAAEHA/8B
+        8AGAAQABDwT/AQAB/wIABv8BCAIAB/8B8AEHAv8B8AGAEwAE/wHwAQcBAAEHA/8B8AGAAQABDwT/AfAB
+        /wEAAQ8G/wEIAgAD/wEHA/8B8AEHAv8B8AGAEwAF/wIAAX8D/wHwAYABAAEPBP8B8AEPAQABDwb/AQgC
+        AAP/AQABfwL/AfABDwL/AfABgBMABf8CAAF/A/8B8AGAAQABDwX/AgAE/wYAA/8B8AEHAv8BAAF/Av8B
+        8AGAEwAF/wHwAQcE/wHwAYABAAEPBf8CAAT/AQ8B/wHwAwAE/wMAAQcD/wHwAYATAAX/AfABBwT/AfAB
+        gAEAAQ8F/wHwAQ8E/wEPAf8EAAT/AfACAAF/A/8B8AGAEwAI/wHwAwABcAEAAQ8F/wHwAQ8E/wEPAfAE
+        AAj/AfADAAFwEwAI/wHwAX8B/wEHAgABDwv/AQ8FAAj/AfABfwH/AQcUAAj/AfABfwHwAXACAAEPC/8G
+        AAj/AfABfwHwAXAUAAj/AfABfwEHFQAI/wHwAX8BBxUACP8B8AJwFQAI/wHwAnAVAAj/AfABBxYACP8B
+        8AEHHwABcB8AAXAUAAFCAU0BPgcAAT4DAAEoAwABgAMAAUADAAEBAQABAQYAAQQWAAP//wD/AAMAAfAC
+        AAEHBP8B8AIAAQcEAAHgAgABBwT/AeACAAEHBAAB4AIAAQcE/wHgAgABBwQAAeACAAEHBP8B4AIAAQcE
+        AAHgAgABBwQAAeACAAEHBAAB4AIAAQcEAAHgAgABBwQAAeACAAEHBAAB4AIAAQcEAAHgAgABBwQAAeAC
+        AAEHBAAB4AIAAQcEAAHgAgABBwQAAeACAAEHBAAB4AIAAQcEAAHgAgABBwQAAeACAAEHBAAB4AIAAQcE
+        AAHgAgABBwQAAeACAAEHBAAB4AIAAQcEAAHgAgABBwQAAeACAAEHBAAB4AIAAQcEAAHgAgABBwQAAeAC
+        AAEHBAAB4AIAAQcEAAHgAgABBwQAAeACAAEHBAAB4AIAAQcEAAHgAgABBwQAAeACAAEHBAAB4AIAAQcE
+        AAHgAgABBwQAAeACAAEHBAAB4AIAAQcEAAHgAgABBwQAAeACAAEHBAAB4AIAAQcEAAHgAgABBwMAAQEB
+        4AIAAQcEAAHgAgABBwMAAQMB4AIAAQcEAAHgAgABBwMAAQcB4AIAAQcEAAHgAgABBwMAAQ8B4AIAAQcE
+        AAHgAgABDwMAAR8B4AIAAQ8EAAHgAgABHwMAAT8B4AIAAR8EAAHgAgABPwMAAX8B4AIAAT8EAAHgAgAB
+        fwT/AeACAAF/BAAB4AIABf8B4AIAAf8EAAHgAQABAQX/AeABAAEBAf8aAAs=
+</value>
+  </data>
+  <data name="groupBoxCopy.Text" xml:space="preserve">
+    <value>Copies</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Number of copies:</value>
+  </data>
+  <data name="groupBoxPrint.Text" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>to:</value>
+  </data>
+  <data name="rbSelectedPages.Text" xml:space="preserve">
+    <value>Pages from:</value>
+  </data>
+  <data name="rbAllPages.Text" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="bOK.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="checkBoxPrintBarCode.Text" xml:space="preserve">
+    <value>Print barcode</value>
+  </data>
+</root>

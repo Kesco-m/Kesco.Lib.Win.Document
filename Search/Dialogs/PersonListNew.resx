@@ -1,0 +1,1005 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+	<data name="pb.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 8</value>
+	</data>
+	<data name="pb.Size" type="System.Drawing.Size, System.Drawing">
+		<value>264, 280</value>
+	</data>
+	<assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+	<data name="pb.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="&gt;&gt;pb.Name" xml:space="preserve">
+    <value>pb</value>
+  </data>
+	<data name="&gt;&gt;pb.Type" xml:space="preserve">
+    <value>Kesco.Document.Blocks.PersonBlock, Document, Version=1.0.4366.34239, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+	<data name="&gt;&gt;pb.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<data name="&gt;&gt;pb.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+	<assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+	<data name="rbOR.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="rbOR.Location" type="System.Drawing.Point, System.Drawing">
+		<value>208, 104</value>
+	</data>
+	<data name="rbOR.Size" type="System.Drawing.Size, System.Drawing">
+		<value>48, 16</value>
+	</data>
+	<data name="rbOR.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="rbOR.Text" xml:space="preserve">
+    <value>OR</value>
+  </data>
+	<data name="&gt;&gt;rbOR.Name" xml:space="preserve">
+    <value>rbOR</value>
+  </data>
+	<data name="&gt;&gt;rbOR.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;rbOR.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<data name="&gt;&gt;rbOR.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+	<data name="rbAND.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="rbAND.Location" type="System.Drawing.Point, System.Drawing">
+		<value>208, 128</value>
+	</data>
+	<data name="rbAND.Size" type="System.Drawing.Size, System.Drawing">
+		<value>48, 16</value>
+	</data>
+	<data name="rbAND.TabIndex" type="System.Int32, mscorlib">
+		<value>2</value>
+	</data>
+	<data name="rbAND.Text" xml:space="preserve">
+    <value>AND</value>
+  </data>
+	<data name="&gt;&gt;rbAND.Name" xml:space="preserve">
+    <value>rbAND</value>
+  </data>
+	<data name="&gt;&gt;rbAND.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;rbAND.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<data name="&gt;&gt;rbAND.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+	<data name="chBoxPhysicalPersons.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="chBoxPhysicalPersons.Location" type="System.Drawing.Point, System.Drawing">
+		<value>32, 40</value>
+	</data>
+	<data name="chBoxPhysicalPersons.Size" type="System.Drawing.Size, System.Drawing">
+		<value>160, 16</value>
+	</data>
+	<data name="chBoxPhysicalPersons.TabIndex" type="System.Int32, mscorlib">
+		<value>3</value>
+	</data>
+	<data name="chBoxPhysicalPersons.Text" xml:space="preserve">
+    <value>Physical persons</value>
+  </data>
+	<data name="&gt;&gt;chBoxPhysicalPersons.Name" xml:space="preserve">
+    <value>chBoxPhysicalPersons</value>
+  </data>
+	<data name="&gt;&gt;chBoxPhysicalPersons.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;chBoxPhysicalPersons.Parent" xml:space="preserve">
+    <value>gbOrganizations</value>
+  </data>
+	<data name="&gt;&gt;chBoxPhysicalPersons.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="chBoxOrganization.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="chBoxOrganization.Location" type="System.Drawing.Point, System.Drawing">
+		<value>32, 16</value>
+	</data>
+	<data name="chBoxOrganization.Size" type="System.Drawing.Size, System.Drawing">
+		<value>96, 24</value>
+	</data>
+	<data name="chBoxOrganization.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="chBoxOrganization.Text" xml:space="preserve">
+    <value>Legal persons</value>
+  </data>
+	<data name="&gt;&gt;chBoxOrganization.Name" xml:space="preserve">
+    <value>chBoxOrganization</value>
+  </data>
+	<data name="&gt;&gt;chBoxOrganization.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;chBoxOrganization.Parent" xml:space="preserve">
+    <value>gbOrganizations</value>
+  </data>
+	<data name="&gt;&gt;chBoxOrganization.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+	<data name="chBoxOrganizationsEnable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="chBoxOrganizationsEnable.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 24</value>
+	</data>
+	<data name="chBoxOrganizationsEnable.Size" type="System.Drawing.Size, System.Drawing">
+		<value>16, 24</value>
+	</data>
+	<data name="chBoxOrganizationsEnable.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="&gt;&gt;chBoxOrganizationsEnable.Name" xml:space="preserve">
+    <value>chBoxOrganizationsEnable</value>
+  </data>
+	<data name="&gt;&gt;chBoxOrganizationsEnable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;chBoxOrganizationsEnable.Parent" xml:space="preserve">
+    <value>gbOrganizations</value>
+  </data>
+	<data name="&gt;&gt;chBoxOrganizationsEnable.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+	<data name="chBoxBank.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="chBoxBank.Location" type="System.Drawing.Point, System.Drawing">
+		<value>128, 16</value>
+	</data>
+	<data name="chBoxBank.Size" type="System.Drawing.Size, System.Drawing">
+		<value>64, 24</value>
+	</data>
+	<data name="chBoxBank.TabIndex" type="System.Int32, mscorlib">
+		<value>2</value>
+	</data>
+	<data name="chBoxBank.Text" xml:space="preserve">
+    <value>Banks</value>
+  </data>
+	<data name="&gt;&gt;chBoxBank.Name" xml:space="preserve">
+    <value>chBoxBank</value>
+  </data>
+	<data name="&gt;&gt;chBoxBank.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;chBoxBank.Parent" xml:space="preserve">
+    <value>gbOrganizations</value>
+  </data>
+	<data name="&gt;&gt;chBoxBank.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+	<data name="gbOrganizations.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 8</value>
+	</data>
+	<data name="gbOrganizations.Size" type="System.Drawing.Size, System.Drawing">
+		<value>240, 64</value>
+	</data>
+	<data name="gbOrganizations.TabIndex" type="System.Int32, mscorlib">
+		<value>1001</value>
+	</data>
+	<data name="gbOrganizations.Text" xml:space="preserve">
+    <value>Types of persons</value>
+  </data>
+	<data name="gbOrganizations.Visible" type="System.Boolean, mscorlib">
+		<value>False</value>
+	</data>
+	<data name="&gt;&gt;gbOrganizations.Name" xml:space="preserve">
+    <value>gbOrganizations</value>
+  </data>
+	<data name="&gt;&gt;gbOrganizations.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;gbOrganizations.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<data name="&gt;&gt;gbOrganizations.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+	<data name="chBoxPersonsCheck.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="chBoxPersonsCheck.Location" type="System.Drawing.Point, System.Drawing">
+		<value>32, 16</value>
+	</data>
+	<data name="chBoxPersonsCheck.Size" type="System.Drawing.Size, System.Drawing">
+		<value>144, 24</value>
+	</data>
+	<data name="chBoxPersonsCheck.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="chBoxPersonsCheck.Text" xml:space="preserve">
+    <value>Persons - checked up</value>
+  </data>
+	<data name="&gt;&gt;chBoxPersonsCheck.Name" xml:space="preserve">
+    <value>chBoxPersonsCheck</value>
+  </data>
+	<data name="&gt;&gt;chBoxPersonsCheck.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;chBoxPersonsCheck.Parent" xml:space="preserve">
+    <value>gbPersons</value>
+  </data>
+	<data name="&gt;&gt;chBoxPersonsCheck.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="chBoxPersonsUncheck.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="chBoxPersonsUncheck.Location" type="System.Drawing.Point, System.Drawing">
+		<value>32, 40</value>
+	</data>
+	<data name="chBoxPersonsUncheck.Size" type="System.Drawing.Size, System.Drawing">
+		<value>160, 16</value>
+	</data>
+	<data name="chBoxPersonsUncheck.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="chBoxPersonsUncheck.Text" xml:space="preserve">
+    <value>Persons - not checked up</value>
+  </data>
+	<data name="&gt;&gt;chBoxPersonsUncheck.Name" xml:space="preserve">
+    <value>chBoxPersonsUncheck</value>
+  </data>
+	<data name="&gt;&gt;chBoxPersonsUncheck.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;chBoxPersonsUncheck.Parent" xml:space="preserve">
+    <value>gbPersons</value>
+  </data>
+	<data name="&gt;&gt;chBoxPersonsUncheck.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+	<data name="chBoxPersonsEnable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="chBoxPersonsEnable.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 24</value>
+	</data>
+	<data name="chBoxPersonsEnable.Size" type="System.Drawing.Size, System.Drawing">
+		<value>16, 24</value>
+	</data>
+	<data name="chBoxPersonsEnable.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="&gt;&gt;chBoxPersonsEnable.Name" xml:space="preserve">
+    <value>chBoxPersonsEnable</value>
+  </data>
+	<data name="&gt;&gt;chBoxPersonsEnable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;chBoxPersonsEnable.Parent" xml:space="preserve">
+    <value>gbPersons</value>
+  </data>
+	<data name="&gt;&gt;chBoxPersonsEnable.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+	<data name="gbPersons.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 80</value>
+	</data>
+	<data name="gbPersons.Size" type="System.Drawing.Size, System.Drawing">
+		<value>240, 64</value>
+	</data>
+	<data name="gbPersons.TabIndex" type="System.Int32, mscorlib">
+		<value>1002</value>
+	</data>
+	<data name="gbPersons.Text" xml:space="preserve">
+    <value>Audited accounting</value>
+  </data>
+	<data name="gbPersons.Visible" type="System.Boolean, mscorlib">
+		<value>False</value>
+	</data>
+	<data name="&gt;&gt;gbPersons.Name" xml:space="preserve">
+    <value>gbPersons</value>
+  </data>
+	<data name="&gt;&gt;gbPersons.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;gbPersons.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<data name="&gt;&gt;gbPersons.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+	<data name="cbOrganizationalForm.ItemHeight" type="System.Int32, mscorlib">
+		<value>13</value>
+	</data>
+	<data name="cbOrganizationalForm.Location" type="System.Drawing.Point, System.Drawing">
+		<value>24, 24</value>
+	</data>
+	<data name="cbOrganizationalForm.Size" type="System.Drawing.Size, System.Drawing">
+		<value>208, 21</value>
+	</data>
+	<data name="cbOrganizationalForm.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="cbOrganizationalForm.Text" xml:space="preserve">
+    <value>&lt;not specified&gt;</value>
+  </data>
+	<data name="&gt;&gt;cbOrganizationalForm.Name" xml:space="preserve">
+    <value>cbOrganizationalForm</value>
+  </data>
+	<data name="&gt;&gt;cbOrganizationalForm.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;cbOrganizationalForm.Parent" xml:space="preserve">
+    <value>gbOrganizationForm</value>
+  </data>
+	<data name="&gt;&gt;cbOrganizationalForm.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="chBoxOrganizationalFormEnable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="chBoxOrganizationalFormEnable.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 24</value>
+	</data>
+	<data name="chBoxOrganizationalFormEnable.Size" type="System.Drawing.Size, System.Drawing">
+		<value>16, 24</value>
+	</data>
+	<data name="chBoxOrganizationalFormEnable.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="&gt;&gt;chBoxOrganizationalFormEnable.Name" xml:space="preserve">
+    <value>chBoxOrganizationalFormEnable</value>
+  </data>
+	<data name="&gt;&gt;chBoxOrganizationalFormEnable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;chBoxOrganizationalFormEnable.Parent" xml:space="preserve">
+    <value>gbOrganizationForm</value>
+  </data>
+	<data name="&gt;&gt;chBoxOrganizationalFormEnable.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+	<data name="gbOrganizationForm.Location" type="System.Drawing.Point, System.Drawing">
+		<value>256, 80</value>
+	</data>
+	<data name="gbOrganizationForm.Size" type="System.Drawing.Size, System.Drawing">
+		<value>240, 64</value>
+	</data>
+	<data name="gbOrganizationForm.TabIndex" type="System.Int32, mscorlib">
+		<value>1008</value>
+	</data>
+	<data name="gbOrganizationForm.Text" xml:space="preserve">
+    <value>Оrganizational - legal form:</value>
+  </data>
+	<data name="gbOrganizationForm.Visible" type="System.Boolean, mscorlib">
+		<value>False</value>
+	</data>
+	<data name="&gt;&gt;gbOrganizationForm.Name" xml:space="preserve">
+    <value>gbOrganizationForm</value>
+  </data>
+	<data name="&gt;&gt;gbOrganizationForm.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;gbOrganizationForm.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<data name="&gt;&gt;gbOrganizationForm.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+	<data name="lbSelectedEmploees.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 32</value>
+	</data>
+	<data name="lbSelectedEmploees.Size" type="System.Drawing.Size, System.Drawing">
+		<value>224, 30</value>
+	</data>
+	<data name="lbSelectedEmploees.TabIndex" type="System.Int32, mscorlib">
+		<value>2</value>
+	</data>
+	<data name="&gt;&gt;lbSelectedEmploees.Name" xml:space="preserve">
+    <value>lbSelectedEmploees</value>
+  </data>
+	<data name="&gt;&gt;lbSelectedEmploees.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;lbSelectedEmploees.Parent" xml:space="preserve">
+    <value>gbEmploees</value>
+  </data>
+	<data name="&gt;&gt;lbSelectedEmploees.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="bnSelectEmployee.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="bnSelectEmployee.Location" type="System.Drawing.Point, System.Drawing">
+		<value>168, 10</value>
+	</data>
+	<data name="bnSelectEmployee.Size" type="System.Drawing.Size, System.Drawing">
+		<value>22, 18</value>
+	</data>
+	<data name="bnSelectEmployee.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="bnSelectEmployee.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+	<data name="&gt;&gt;bnSelectEmployee.Name" xml:space="preserve">
+    <value>bnSelectEmployee</value>
+  </data>
+	<data name="&gt;&gt;bnSelectEmployee.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;bnSelectEmployee.Parent" xml:space="preserve">
+    <value>gbEmploees</value>
+  </data>
+	<data name="&gt;&gt;bnSelectEmployee.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+	<data name="chBoxEmployees.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="chBoxEmployees.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 8</value>
+	</data>
+	<data name="chBoxEmployees.Size" type="System.Drawing.Size, System.Drawing">
+		<value>168, 24</value>
+	</data>
+	<data name="chBoxEmployees.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="chBoxEmployees.Text" xml:space="preserve">
+    <value>employees</value>
+  </data>
+	<data name="&gt;&gt;chBoxEmployees.Name" xml:space="preserve">
+    <value>chBoxEmployees</value>
+  </data>
+	<data name="&gt;&gt;chBoxEmployees.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;chBoxEmployees.Parent" xml:space="preserve">
+    <value>gbEmploees</value>
+  </data>
+	<data name="&gt;&gt;chBoxEmployees.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+	<data name="gbEmploees.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 152</value>
+	</data>
+	<data name="gbEmploees.Size" type="System.Drawing.Size, System.Drawing">
+		<value>240, 64</value>
+	</data>
+	<data name="gbEmploees.TabIndex" type="System.Int32, mscorlib">
+		<value>1007</value>
+	</data>
+	<data name="gbEmploees.Visible" type="System.Boolean, mscorlib">
+		<value>False</value>
+	</data>
+	<data name="&gt;&gt;gbEmploees.Name" xml:space="preserve">
+    <value>gbEmploees</value>
+  </data>
+	<data name="&gt;&gt;gbEmploees.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;gbEmploees.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<data name="&gt;&gt;gbEmploees.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+	<data name="lbTypes.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 32</value>
+	</data>
+	<data name="lbTypes.Size" type="System.Drawing.Size, System.Drawing">
+		<value>224, 30</value>
+	</data>
+	<data name="lbTypes.TabIndex" type="System.Int32, mscorlib">
+		<value>3</value>
+	</data>
+	<data name="&gt;&gt;lbTypes.Name" xml:space="preserve">
+    <value>lbTypes</value>
+  </data>
+	<data name="&gt;&gt;lbTypes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;lbTypes.Parent" xml:space="preserve">
+    <value>gbTypes</value>
+  </data>
+	<data name="&gt;&gt;lbTypes.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="bnSelectTypes.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="bnSelectTypes.Location" type="System.Drawing.Point, System.Drawing">
+		<value>56, 10</value>
+	</data>
+	<data name="bnSelectTypes.Size" type="System.Drawing.Size, System.Drawing">
+		<value>22, 18</value>
+	</data>
+	<data name="bnSelectTypes.TabIndex" type="System.Int32, mscorlib">
+		<value>2</value>
+	</data>
+	<data name="bnSelectTypes.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+	<data name="&gt;&gt;bnSelectTypes.Name" xml:space="preserve">
+    <value>bnSelectTypes</value>
+  </data>
+	<data name="&gt;&gt;bnSelectTypes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;bnSelectTypes.Parent" xml:space="preserve">
+    <value>gbTypes</value>
+  </data>
+	<data name="&gt;&gt;bnSelectTypes.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+	<data name="chBoxSubtypes.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="chBoxSubtypes.Location" type="System.Drawing.Point, System.Drawing">
+		<value>80, 8</value>
+	</data>
+	<data name="chBoxSubtypes.Size" type="System.Drawing.Size, System.Drawing">
+		<value>120, 24</value>
+	</data>
+	<data name="chBoxSubtypes.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="chBoxSubtypes.Text" xml:space="preserve">
+    <value>Including subtypes</value>
+  </data>
+	<data name="&gt;&gt;chBoxSubtypes.Name" xml:space="preserve">
+    <value>chBoxSubtypes</value>
+  </data>
+	<data name="&gt;&gt;chBoxSubtypes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;chBoxSubtypes.Parent" xml:space="preserve">
+    <value>gbTypes</value>
+  </data>
+	<data name="&gt;&gt;chBoxSubtypes.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+	<data name="chBoxTypesEnable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="chBoxTypesEnable.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 8</value>
+	</data>
+	<data name="chBoxTypesEnable.Size" type="System.Drawing.Size, System.Drawing">
+		<value>56, 24</value>
+	</data>
+	<data name="chBoxTypesEnable.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="chBoxTypesEnable.Text" xml:space="preserve">
+    <value>Types</value>
+  </data>
+	<data name="&gt;&gt;chBoxTypesEnable.Name" xml:space="preserve">
+    <value>chBoxTypesEnable</value>
+  </data>
+	<data name="&gt;&gt;chBoxTypesEnable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;chBoxTypesEnable.Parent" xml:space="preserve">
+    <value>gbTypes</value>
+  </data>
+	<data name="&gt;&gt;chBoxTypesEnable.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+	<data name="gbTypes.Location" type="System.Drawing.Point, System.Drawing">
+		<value>256, 152</value>
+	</data>
+	<data name="gbTypes.Size" type="System.Drawing.Size, System.Drawing">
+		<value>240, 64</value>
+	</data>
+	<data name="gbTypes.TabIndex" type="System.Int32, mscorlib">
+		<value>1006</value>
+	</data>
+	<data name="gbTypes.Visible" type="System.Boolean, mscorlib">
+		<value>False</value>
+	</data>
+	<data name="&gt;&gt;gbTypes.Name" xml:space="preserve">
+    <value>gbTypes</value>
+  </data>
+	<data name="&gt;&gt;gbTypes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;gbTypes.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<data name="&gt;&gt;gbTypes.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+	<data name="chBoxCountryRegistrationEnable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="chBoxCountryRegistrationEnable.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 24</value>
+	</data>
+	<data name="chBoxCountryRegistrationEnable.Size" type="System.Drawing.Size, System.Drawing">
+		<value>16, 24</value>
+	</data>
+	<data name="chBoxCountryRegistrationEnable.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="&gt;&gt;chBoxCountryRegistrationEnable.Name" xml:space="preserve">
+    <value>chBoxCountryRegistrationEnable</value>
+  </data>
+	<data name="&gt;&gt;chBoxCountryRegistrationEnable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;chBoxCountryRegistrationEnable.Parent" xml:space="preserve">
+    <value>gBCountryRegistration</value>
+  </data>
+	<data name="&gt;&gt;chBoxCountryRegistrationEnable.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="tbCountry.Location" type="System.Drawing.Point, System.Drawing">
+		<value>24, 24</value>
+	</data>
+	<data name="tbCountry.Size" type="System.Drawing.Size, System.Drawing">
+		<value>184, 20</value>
+	</data>
+	<data name="tbCountry.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="&gt;&gt;tbCountry.Name" xml:space="preserve">
+    <value>tbCountry</value>
+  </data>
+	<data name="&gt;&gt;tbCountry.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;tbCountry.Parent" xml:space="preserve">
+    <value>gBCountryRegistration</value>
+  </data>
+	<data name="&gt;&gt;tbCountry.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+	<data name="bnSelectCountry.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="bnSelectCountry.Location" type="System.Drawing.Point, System.Drawing">
+		<value>208, 24</value>
+	</data>
+	<data name="bnSelectCountry.Size" type="System.Drawing.Size, System.Drawing">
+		<value>24, 22</value>
+	</data>
+	<data name="bnSelectCountry.TabIndex" type="System.Int32, mscorlib">
+		<value>2</value>
+	</data>
+	<data name="bnSelectCountry.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+	<data name="&gt;&gt;bnSelectCountry.Name" xml:space="preserve">
+    <value>bnSelectCountry</value>
+  </data>
+	<data name="&gt;&gt;bnSelectCountry.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;bnSelectCountry.Parent" xml:space="preserve">
+    <value>gBCountryRegistration</value>
+  </data>
+	<data name="&gt;&gt;bnSelectCountry.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+	<data name="gBCountryRegistration.Location" type="System.Drawing.Point, System.Drawing">
+		<value>256, 8</value>
+	</data>
+	<data name="gBCountryRegistration.Size" type="System.Drawing.Size, System.Drawing">
+		<value>240, 64</value>
+	</data>
+	<data name="gBCountryRegistration.TabIndex" type="System.Int32, mscorlib">
+		<value>1003</value>
+	</data>
+	<data name="gBCountryRegistration.Text" xml:space="preserve">
+    <value>Country of registration</value>
+  </data>
+	<data name="gBCountryRegistration.Visible" type="System.Boolean, mscorlib">
+		<value>False</value>
+	</data>
+	<data name="&gt;&gt;gBCountryRegistration.Name" xml:space="preserve">
+    <value>gBCountryRegistration</value>
+  </data>
+	<data name="&gt;&gt;gBCountryRegistration.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;gBCountryRegistration.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<data name="&gt;&gt;gBCountryRegistration.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+	<data name="chBoxIncludSubProject.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="chBoxIncludSubProject.Location" type="System.Drawing.Point, System.Drawing">
+		<value>128, 40</value>
+	</data>
+	<data name="chBoxIncludSubProject.Size" type="System.Drawing.Size, System.Drawing">
+		<value>104, 16</value>
+	</data>
+	<data name="chBoxIncludSubProject.TabIndex" type="System.Int32, mscorlib">
+		<value>5</value>
+	</data>
+	<data name="chBoxIncludSubProject.Text" xml:space="preserve">
+    <value>Including subproject</value>
+  </data>
+	<data name="&gt;&gt;chBoxIncludSubProject.Name" xml:space="preserve">
+    <value>chBoxIncludSubProject</value>
+  </data>
+	<data name="&gt;&gt;chBoxIncludSubProject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;chBoxIncludSubProject.Parent" xml:space="preserve">
+    <value>gbProject</value>
+  </data>
+	<data name="&gt;&gt;chBoxIncludSubProject.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+	<data name="chBoxAnyBusinessProject.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="chBoxAnyBusinessProject.Location" type="System.Drawing.Point, System.Drawing">
+		<value>32, 40</value>
+	</data>
+	<data name="chBoxAnyBusinessProject.Size" type="System.Drawing.Size, System.Drawing">
+		<value>80, 16</value>
+	</data>
+	<data name="chBoxAnyBusinessProject.TabIndex" type="System.Int32, mscorlib">
+		<value>4</value>
+	</data>
+	<data name="chBoxAnyBusinessProject.Text" xml:space="preserve">
+    <value>Any</value>
+  </data>
+	<data name="&gt;&gt;chBoxAnyBusinessProject.Name" xml:space="preserve">
+    <value>chBoxAnyBusinessProject</value>
+  </data>
+	<data name="&gt;&gt;chBoxAnyBusinessProject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;chBoxAnyBusinessProject.Parent" xml:space="preserve">
+    <value>gbProject</value>
+  </data>
+	<data name="&gt;&gt;chBoxAnyBusinessProject.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+	<data name="bnSelectBusinessProject.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="bnSelectBusinessProject.Location" type="System.Drawing.Point, System.Drawing">
+		<value>200, 16</value>
+	</data>
+	<data name="bnSelectBusinessProject.Size" type="System.Drawing.Size, System.Drawing">
+		<value>24, 22</value>
+	</data>
+	<data name="bnSelectBusinessProject.TabIndex" type="System.Int32, mscorlib">
+		<value>3</value>
+	</data>
+	<data name="bnSelectBusinessProject.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+	<data name="&gt;&gt;bnSelectBusinessProject.Name" xml:space="preserve">
+    <value>bnSelectBusinessProject</value>
+  </data>
+	<data name="&gt;&gt;bnSelectBusinessProject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;bnSelectBusinessProject.Parent" xml:space="preserve">
+    <value>gbProject</value>
+  </data>
+	<data name="&gt;&gt;bnSelectBusinessProject.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+	<data name="tbBusinessProject.Location" type="System.Drawing.Point, System.Drawing">
+		<value>32, 16</value>
+	</data>
+	<data name="tbBusinessProject.Size" type="System.Drawing.Size, System.Drawing">
+		<value>168, 20</value>
+	</data>
+	<data name="tbBusinessProject.TabIndex" type="System.Int32, mscorlib">
+		<value>1</value>
+	</data>
+	<data name="&gt;&gt;tbBusinessProject.Name" xml:space="preserve">
+    <value>tbBusinessProject</value>
+  </data>
+	<data name="&gt;&gt;tbBusinessProject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;tbBusinessProject.Parent" xml:space="preserve">
+    <value>gbProject</value>
+  </data>
+	<data name="&gt;&gt;tbBusinessProject.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+	<data name="chBoxBusinessProjectEnable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+		<value>NoControl</value>
+	</data>
+	<data name="chBoxBusinessProjectEnable.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 16</value>
+	</data>
+	<data name="chBoxBusinessProjectEnable.Size" type="System.Drawing.Size, System.Drawing">
+		<value>16, 24</value>
+	</data>
+	<data name="chBoxBusinessProjectEnable.TabIndex" type="System.Int32, mscorlib">
+		<value>0</value>
+	</data>
+	<data name="&gt;&gt;chBoxBusinessProjectEnable.Name" xml:space="preserve">
+    <value>chBoxBusinessProjectEnable</value>
+  </data>
+	<data name="&gt;&gt;chBoxBusinessProjectEnable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;chBoxBusinessProjectEnable.Parent" xml:space="preserve">
+    <value>gbProject</value>
+  </data>
+	<data name="&gt;&gt;chBoxBusinessProjectEnable.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+	<data name="gbProject.Location" type="System.Drawing.Point, System.Drawing">
+		<value>8, 224</value>
+	</data>
+	<data name="gbProject.Size" type="System.Drawing.Size, System.Drawing">
+		<value>240, 64</value>
+	</data>
+	<data name="gbProject.TabIndex" type="System.Int32, mscorlib">
+		<value>1009</value>
+	</data>
+	<data name="gbProject.Text" xml:space="preserve">
+    <value>Working with business project</value>
+  </data>
+	<data name="gbProject.Visible" type="System.Boolean, mscorlib">
+		<value>False</value>
+	</data>
+	<data name="&gt;&gt;gbProject.Name" xml:space="preserve">
+    <value>gbProject</value>
+  </data>
+	<data name="&gt;&gt;gbProject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+	<data name="&gt;&gt;gbProject.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+	<data name="&gt;&gt;gbProject.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+	<metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+		<value>True</value>
+	</metadata>
+	<data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
+		<value>5, 13</value>
+	</data>
+	<data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+		<value>282, 336</value>
+	</data>
+	<data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>PersonListNew</value>
+  </data>
+	<data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>Kesco.Document.Search.Dialogs.Base, Document, Version=1.0.4366.34239, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+</root>
