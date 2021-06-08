@@ -603,7 +603,7 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
 			}
 			catch(Exception ex)
 			{
-				OnErrorMessage(ex);
+				ErrorShower.OnShowError(this, ex.Message, Environment.StringResources.GetString("Error"));
 			}
 		}
 
@@ -622,13 +622,13 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
 					{
 						for(int i = 0; i < printImages.Count; i++)
 						{
-							printImages[i] = new Classes.PrintImageInfo { Image = printImages[i].Image, StampsItems = stampItems.FindAll(x => x.Page == startPage + i + 1).ToArray() };
+							printImages [i] = new Classes.PrintImageInfo { Image = printImages [i].Image, StampsItems = stampItems.FindAll(x => x.Page == startPage + i + 1).ToArray() };
 						}
 					}
 				}
 				PrintImage printImageInst = new PrintImage();
 
-				printImageInst.PrintPage(printImages.ToArray(), null, startPage, endPage, 1, PrintOrientation.Auto, true, copyCount, (new PrinterSettings()).PrinterName, null, null);
+				printImageInst.PrintPage((docID > 0 ? " #" + docID.ToString() : !string.IsNullOrWhiteSpace(fileName) ? " " + fileName : ""), printImages.ToArray(), null, startPage, endPage, 1, PrintOrientation.Auto, true, copyCount, (new PrinterSettings()).PrinterName, null, null);
 			}
 		}
 
@@ -674,7 +674,7 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
 			}
 			catch(Exception ex)
 			{
-				OnErrorMessage(new Exception("CreateSelectedImage error", ex));
+				ErrorShower.OnShowError(this, ex.Message, Environment.StringResources.GetString("Error"));
 			}
 			finally
 			{
@@ -770,7 +770,6 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
 					double cZ = (Zoom > PDFView.RenderLimit && PageView.FitType == -1 ? 1 : (Zoom / 100.0));
 					foreach(var stamp in PageView.StampItems)
 					{
-						// Старая логика DSP if (Page == 1 && stampItems != null && stampItems.Count == 1 && stampItems[0].TypeID == 101)
 						// Реализация старой логики
 						if(stamp.StmpItem.Page != Page)
 							continue;
@@ -1896,7 +1895,8 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
 					string fp = _filePass;
 					while(pdfReader == null || !pdfReader.IsOpenedWithFullPermissions)
 					{
-						if(pdfReader != null) pdfReader.Close();
+						if(pdfReader != null)
+							pdfReader.Close();
 
 						if(InputBox.Show(Environment.StringResources.GetString("DocControl_PDF_Encrypted"),
 								Environment.StringResources.GetString("DocControl_PDF_EnterPass"), ref _filePass) == DialogResult.Cancel)
@@ -1983,8 +1983,7 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
 												}
 												else
 												{
-
-                                                    Console.WriteLine("{0}: {1} image is null", DateTime.Now.ToString("HH:mm:ss fff"), xrefIndex);
+													Console.WriteLine("{0}: {1} image is null", DateTime.Now.ToString("HH:mm:ss fff"), xrefIndex);
 												}
 											}
 											catch(Exception e)
@@ -1998,7 +1997,7 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
 										imgPdfObj = null;
 									}
 									else
-                                        Console.WriteLine("{0}: Skipping subtype {1} with filter {2}", DateTime.Now.ToString("HH:mm:ss fff"), subType, tg.Get(PdfName.FILTER));
+										Console.WriteLine("{0}: Skipping subtype {1} with filter {2}", DateTime.Now.ToString("HH:mm:ss fff"), subType, tg.Get(PdfName.FILTER));
 								}
 							}
 						}
@@ -2013,19 +2012,18 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
 
 							var virtualRotation = _pageVirtualRotationDictionary.GetPageRotation(ImageID, numberPage - 1);
 
-							if(virtualRotation != null)
-								switch(virtualRotation)
-								{
-									case 90:
-										pi.CurrentRotate += 1;
-										break;
-									case 180:
-										pi.CurrentRotate += 2;
-										break;
-									case 270:
-										pi.CurrentRotate += 3;
-										break;
-								}
+							switch(virtualRotation)
+							{
+								case 90:
+									pi.CurrentRotate += 1;
+									break;
+								case 180:
+									pi.CurrentRotate += 2;
+									break;
+								case 270:
+									pi.CurrentRotate += 3;
+									break;
+							}
 
 							if(pi.CurrentRotate != 0 || virtualRotation > 0)
 							{
@@ -2742,25 +2740,38 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
 					case 0:
 						double cW = (isAlbum ? h : w);
 						double cH = (isAlbum ? w : h);
-
+						
 						double zw = PageView.Width / cW;
 						double zh = PageView.Height / cH;
 
-						z = (int)Math.Round(100.0 * Math.Min(zw, zh));
+						z = (int)(100.0 * Math.Min(zw, zh));
 
 						break;
 					case 1:
 						if(isAlbum)
-							z = (int)Math.Round(100.0 * (PageView.Width / h));
+							if(PageView.Width / h > PageView.Height / w)
+							z = (int)(100.0 * (PageView.Width - PageView.scrollVertical.Width - 1) / h);
+							else
+								z = (int)(100.0 * (PageView.Width) / h);
 						else
-							z = (int)Math.Round(100.0 * (PageView.Width / w));
-
+							if(PageView.Width / w > PageView.Height / h)
+							z = (int)(100.0 * (PageView.Width - PageView.scrollVertical.Width - 1) / w);
+						else
+							z = (int)(100.0 * PageView.Width / w);
 						break;
 					case 2:
 						if(isAlbum)
-							z = (int)Math.Round(100.0 * (PageView.Height / w));
+							if(PageView.Width / h < PageView.Height / w)
+								z = (int)(100.0 * (PageView.Height - PageView.scrollHorizontal.Height - 1)/ w);
 						else
-							z = (int)Math.Round(100.0 * (PageView.Height / h));
+								z = (int)(100.0 * PageView.Height / w);
+					
+
+							else
+							if(PageView.Width / w < PageView.Height / h)
+								z = (int)(100.0 * (PageView.Height - PageView.scrollHorizontal.Height - 1) / h);
+							else
+								z = (int)(100.0 * PageView.Height / h);
 
 						break;
 				}
@@ -2788,9 +2799,7 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
 					int wR, hR;
 					if(option == 1)
 					{
-						int adjustment = (page.Height > PageView.ClientSize.Height)
-											 ? SystemInformation.HorizontalScrollBarHeight + 2
-											 : 0;
+						int adjustment = (page.Height > PageView.ClientSize.Height) ? SystemInformation.HorizontalScrollBarHeight + 2 : 0;
 						if(adjustment > 0)
 							wR = PageView.Width - adjustment;
 						else if(page.Width > PageView.Width)
@@ -2801,9 +2810,7 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
 					}
 					else if(option == 2)
 					{
-						int adjustment = (page.Width > PageView.ClientSize.Width)
-											 ? SystemInformation.HorizontalScrollBarHeight + 2
-											 : 0;
+						int adjustment = (page.Width > PageView.ClientSize.Width) ? SystemInformation.HorizontalScrollBarHeight + 2 : 0;
 						wR = page.Width;
 						if(adjustment > 0)
 							hR = PageView.Height - adjustment;
@@ -2902,8 +2909,8 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
 																   si.Y + (img.Height * si.Zoom * drez) / 200));
 											g.Transform = mx;
 										}
-										g.DrawImage(img, si.X, si.Y, (img.Width * si.Zoom) / 100,
-													(img.Height * si.Zoom * drez) / 100);
+										g.DrawImage(img, (float)si.X, (float)si.Y, (float)img.Width * si.Zoom / 100,
+													(float)img.Height * si.Zoom * drez / 100);
 										if(!si.Rotate.Equals(0))
 											g.ResetTransform();
 									}
@@ -2967,16 +2974,9 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
 			}
 			catch(Exception ex)
 			{
-				OnErrorMessage(new Exception("CreateSelectedImage error", ex));
+				ErrorShower.OnShowError(this, ex.Message, Environment.StringResources.GetString("Error"));
 			}
 			return null;
-		}
-
-		protected ImageControl.ImageControl.ErrorMessageHandler errorMessageHandler;
-		protected void OnErrorMessage(Exception ex)
-		{
-			if(errorMessageHandler != null)
-				errorMessageHandler(ex);
 		}
 
 		/// <summary>

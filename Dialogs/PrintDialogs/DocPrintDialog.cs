@@ -962,7 +962,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 					{
 						var printImageInst = new Classes.PrintImage();
 						printImageInst.EndPrint += printImageInst_EndPrint;
-						printImageInst.PrintPage(images.ToArray(), null, force ? 1 : StartPage,
+						printImageInst.PrintPage(DocID > 0 ? " #" + DocID.ToString() : String.IsNullOrWhiteSpace(FileName) ? "" : (" " + FileName), images.ToArray(), null, force ? 1 : StartPage,
 												 force ? images.Count : EndPage, (int)ScaleMode,
 												 (ImageControl.PrintOrientation)(int)Orientation,
 												 Annotations, CopiesCount, printerInfo.Name, printerInfo.DriverName,
@@ -1020,7 +1020,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 								fileName = curServer.Path + "\\" + Environment.GetFileNameFromID(ImageID) + (pdfMode ? ".pdf" : ".tif");
 								if(!File.Exists(fileName))
 									continue;
-								err = false;
+								err = false;                  
 								if(endPage < 1)
 								{
 									if(pdfMode)
@@ -1301,7 +1301,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 				newWindowDocumentButton.Set(DocID);
 			else
 				newWindowDocumentButton.Set(FileName, doc.Text);
-            bProperties.Location = new Point(363, 262);
+            bProperties.Location = new Point(this.printers.Right- bProperties.Size.Width, this.printers.Bottom + 8);
 		}
 
 		private void printImageInst_EndPrint(object sender, EventArgs e)

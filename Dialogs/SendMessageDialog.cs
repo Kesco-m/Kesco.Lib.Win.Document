@@ -30,14 +30,14 @@ namespace Kesco.Lib.Win.Document.Dialogs
 		private bool removeWork;
 
 		public delegate void SendDelegate(
-			int[] ids, string forAllMessage, ArrayList forAllRecipients, Hashtable personMessages);
+			int[] ids, string forAllMessage, SynchronizedCollection<int> forAllRecipients, Hashtable personMessages);
 
 		public delegate void MessageSendDelegate(bool delete, int[] ids);
 
 		public static event SendDelegate NeedSendWindow;
 		public static event MessageSendDelegate MessageSend;
 
-		public static void OnNeedSendWindow(int[] ids, string forAllMessage, ArrayList forAllRecipients, Hashtable personMessages)
+		public static void OnNeedSendWindow(int[] ids, string forAllMessage, SynchronizedCollection<int> forAllRecipients, Hashtable personMessages)
 		{
 			if(NeedSendWindow != null)
 				NeedSendWindow(ids, forAllMessage, forAllRecipients, personMessages);
@@ -63,7 +63,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 		private DateTime addDate = DateTime.Today;
 		private int empID;
 		private bool personMessage;
-		private ArrayList allMessageEmployee = new ArrayList();
+		private SynchronizedCollection<int> allMessageEmployee = new SynchronizedCollection<int>();
 		private Hashtable personSenders = new Hashtable(new myEqualityComparer());
 
 		private IContainer components;
@@ -177,7 +177,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 			}
 		}
 
-		public ArrayList AllUsers
+		public SynchronizedCollection<int> AllUsers
 		{
 			get { return allMessageEmployee; }
 			set
@@ -486,9 +486,9 @@ namespace Kesco.Lib.Win.Document.Dialogs
 			resources.ApplyResources(this.employeeBlock, "employeeBlock");
 			this.employeeBlock.BackColor = System.Drawing.SystemColors.Control;
 			this.employeeBlock.ButtonSide = Kesco.Lib.Win.Document.Blocks.EmployeeBlock.ButtonSideEnum.Left;
+			this.employeeBlock.FullText = "";
 			this.employeeBlock.Name = "employeeBlock";
 			this.employeeBlock.ParamStr = "clid=3&UserAccountDisabled=0&return=2";
-			this.employeeBlock.EmployeeSelected += this.mailingListBlock_EmployeeSelected;
 			// 
 			// buttonCancel
 			// 
@@ -507,6 +507,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 			this.lvMailingList.FullRowSelect = true;
 			this.lvMailingList.GridLines = true;
 			this.lvMailingList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+			this.lvMailingList.HideSelection = false;
 			resources.ApplyResources(this.lvMailingList, "lvMailingList");
 			this.lvMailingList.MultiSelect = false;
 			this.lvMailingList.Name = "lvMailingList";
@@ -711,15 +712,17 @@ namespace Kesco.Lib.Win.Document.Dialogs
 					item.SubItems.Add(maileng.Author);
 					item.Tag = maileng;
 
-					height = item.Font.Height + 1;
+					
 
 					lvMailingList.Items.Add(item);
 				}
+				if(mls.Count > 0)
+					height = lvMailingList.GetItemRect(0).Height;
+				lvMailingList.Columns[0].Width = lvMailingList.ClientSize.Width / 2 - 2;
+				lvMailingList.Columns[1].Width = lvMailingList.ClientSize.Width / 2 - 2;
 
-				lvMailingList.Columns[0].Width = lvMailingList.ClientSize.Width / 2;
-				lvMailingList.Columns[1].Width = lvMailingList.ClientSize.Width / 2;
-
-				lvMailingList.ClientSize = new Size(lvMailingList.ClientSize.Width, mls.Count * height + 2);
+				lvMailingList.Height = mls.Count * (height + 1) + 5;
+				//lvMailingList.ClientSize = new Size(lvMailingList.ClientSize.Width + 15, mls.Count * height + 4);
 
 				if(lvMailingList.Bottom + 1 > ClientSize.Height)
 				{
@@ -727,7 +730,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 					lvMailingList.Columns[1].Width -= 15;
 				}
 
-				buttonBrowseList.Enabled = mls.Count != 0;
+				buttonBrowseList.Enabled = lvMailingList.Items.Count > 0;//mls.Count != 0;
 
 				lvMailingList.SortByColumn(Environment.UserSettings.SortMailingListByAuthor ? 1 : 0, SortOrder.Ascending);
 			}
@@ -1192,7 +1195,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 
 		#endregion
 
-		private static void Send(int[] ids, string idstr, string forAllMessage, ArrayList forAllRecipients,
+		private static bool Send(int[] ids, string idstr, string forAllMessage, SynchronizedCollection<int> forAllRecipients,
 								 Hashtable personMessages)
 		{
 			bool badMSend = false;
@@ -1262,9 +1265,14 @@ namespace Kesco.Lib.Win.Document.Dialogs
 
 			if(badMSend || personMessages.Count > 0)
 			{
-				OnNeedSendWindow(ids, ((badMSend) ? forAllMessage : null), ((badMSend) ? forAllRecipients : null),
+				int[] alres = new int[forAllRecipients.Count];
+				forAllRecipients.CopyTo(alres, 0);
+				
+				OnNeedSendWindow(ids, ((badMSend) ? forAllMessage : null), ((badMSend) ? new SynchronizedCollection<int> (new object(), alres) : null),
 								 personMessages);
+				return false;
 			}
+			return true;
 		}
 
 		private bool CheckCanSend()
@@ -1290,25 +1298,27 @@ namespace Kesco.Lib.Win.Document.Dialogs
 			return true;
 		}
 
-		private void Send()
+		private bool Send()
 		{
 			Visible = false;
 			sendBlock = true;
+			bool ret = false;
 			try
 			{
 				if(CheckCanSend())
 				{
                     Console.WriteLine("{0}: send started. Thread: {1}", DateTime.Now.ToString("HH:mm:ss fff"), Thread.CurrentThread.GetHashCode());
 					string allMsg = textBox_forAll.Text.Trim();
-					Send(DocIDs, docIDstr, (string)allMsg.Clone(), (ArrayList)allMessageEmployee.Clone(),
-						 (Hashtable)personSenders.Clone());
+					ret = Send(DocIDs, docIDstr, (string)allMsg.Clone(), allMessageEmployee, (Hashtable)personSenders.Clone());
 					Hide();
+					if(ret)
 					OnMessageSend(removeWork, DocIDs);
 				}
 			}
-			catch
+			catch(Exception ex)
 			{
 				Visible = true;
+				ret =false;
 			}
 			finally
 			{
@@ -1316,6 +1326,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 					EndWithParent(DialogResult.OK);
 				sendBlock = false;
 			}
+			return ret;
 		}
 
 		private void buttonSend_Click(object sender, EventArgs e)
@@ -1411,9 +1422,9 @@ namespace Kesco.Lib.Win.Document.Dialogs
 		{
 			if(sendBlock)
 				return;
-			if(CheckCanSend())
+			removeWork = true;
+			if(Send())
 			{
-				removeWork = true;
 				if(DocIDs.Length == 1)
 				{
 					if(empID > 0)
@@ -1428,7 +1439,6 @@ namespace Kesco.Lib.Win.Document.Dialogs
 					else
 						Environment.WorkDocData.RemoveDocFromWork(DocIDs, Environment.CurEmp.ID);
 				}
-				Send();
 			}
 		}
 
@@ -1483,8 +1493,10 @@ namespace Kesco.Lib.Win.Document.Dialogs
 
 		private void CheckEmployees()
 		{
-			foreach(int id in allMessageEmployee)
+			int[] empIDs = allMessageEmployee.ToArray();
+			for(int i = 0; i < empIDs.Length; i++)
 			{
+				int id = empIDs[i];
 				Recipient recip = recipList.Find(id);
 				if(recip == null)
 					recipList.Add(new Employee(id, Environment.EmpData), true, personMessage);

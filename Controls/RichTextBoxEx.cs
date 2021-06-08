@@ -224,12 +224,12 @@ namespace Kesco.Lib.Win.Document.Controls
 				throw new ArgumentOutOfRangeException("position");
 
 			SelectionStart = position;
-			SelectedRtf = string.Format("{{\\rtf1\\ansi\\ansicpg1251 {0}\\v #{1}\\v0}}", text, hyperlink);
-			
-			Select(position, text.Length + hyperlink.Length + 1);
+			//SelectedRtf = string.Format("{{\\rtf1\\ansi\\ansicpg1251 {0}\\v #{1}\\v0}}", text, hyperlink);
+			SelectedText = text + ",   ";
+			Select(position, text.Length + 1);//hyperlink.Length + 1);
 			//this.SelectionFont = new Font(SelectionFont, FontStyle.Underline);
 			SetSelectionLink(true);
-			this.Select(position + text.Length + hyperlink.Length + 1, 0);
+			this.Select(position + text.Length + 1, 0);//hyperlink.Length + 1, 0);
 			//this.SelectionFont = new Font(SelectionFont, 0);
 			SetSelectionLink(false);
 		}

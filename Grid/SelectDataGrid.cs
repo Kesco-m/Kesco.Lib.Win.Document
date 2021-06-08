@@ -33,7 +33,7 @@ namespace Kesco.Lib.Win.Document.Grid
 
 		void SelectDataGrid_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
 		{
-				if(e.StateChanged == DataGridViewElementStates.Selected && Rows.Count > 0 && e.Row.Index > -1 && e.Row.Selected && e.Row.Index == CurrentRowIndex && KeyObject == null)
+			if(e.StateChanged == DataGridViewElementStates.Selected && Rows.Count > 0 && e.Row.Index > -1 && e.Row.Selected && e.Row.Index == CurrentRowIndex && KeyObject == null)
 				OnSelectionChanged(EventArgs.Empty);
 		}
 
@@ -383,9 +383,9 @@ namespace Kesco.Lib.Win.Document.Grid
 					Rows[row].Selected = true;
 					Console.WriteLine("{0}: Select row {1} keyObject {2}", DateTime.Now.ToString("HH:mm:ss fff"), row, KeyObject);
 					DisplayCurrentRow();
-					OnCurrentCellChanged(null);
+                    OnCurrentCellChanged(null);
 
-					return true;
+                    return true;
 				}
 			}
 			catch(Exception ex)

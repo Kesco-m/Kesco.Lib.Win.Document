@@ -308,13 +308,14 @@ namespace Kesco.Lib.Win.Document.Dialogs
             this.webBrowser.IsWebBrowserContextMenuEnabled = false;
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.SelfNavigate = false;
+			this.webBrowser.NeedEvent = true;
             this.webBrowser.WebBrowserShortcutsEnabled = false;
-            this.webBrowser.DocumentCompleted +=
-                new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser_DocumentCompleted);
-            // 
-            // panelImg
-            // 
-            resources.ApplyResources(this.panelImg, "panelImg");
+            this.webBrowser.DocumentCompleted +=new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser_DocumentCompleted);
+			this.webBrowser.PrintCompleted += Browser_PrintCompleted;
+			// 
+			// panelImg
+			// 
+			resources.ApplyResources(this.panelImg, "panelImg");
             this.panelImg.Controls.Add(this.pdfEdit);
             this.panelImg.Controls.Add(this.imgEdit);
             this.panelImg.Name = "panelImg";
@@ -424,18 +425,14 @@ namespace Kesco.Lib.Win.Document.Dialogs
 			}
 			if(printImage && !cancel)
 			{
-                Console.WriteLine("{0}: printed ID: {1}", DateTime.Now.ToString("HH:mm:ss fff"), docID);
+				Console.WriteLine("{0}: printed ID: {1}", DateTime.Now.ToString("HH:mm:ss fff"), docID);
 				if(mainOnly)
 				{
 					object obj = Environment.DocData.GetField(Environment.DocData.MainImageIDField, docID);
 					if(obj != null && obj is int && !cancel)
 					{
 						int mainImageID = (int)obj;
-						bool isPDF =
-							"pdf".Equals(
-								Environment.DocImageData.GetField(Environment.DocImageData.ImageTypeField, mainImageID).
-									ToString(), StringComparison.CurrentCultureIgnoreCase);
-
+						bool isPDF = "pdf".Equals(Environment.DocImageData.GetField(Environment.DocImageData.ImageTypeField, mainImageID).ToString(), StringComparison.CurrentCultureIgnoreCase);
 						PrintImage(docID, mainImageID, isPDF);
 					}
 				}
@@ -449,9 +446,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 							var imgId = (int)dr[Environment.DocImageData.IDField];
 							if(imgId > 0 && !cancel)
 							{
-								bool isPDF = "pdf".Equals(dr[Environment.DocImageData.ImageTypeField].ToString(),
-														  StringComparison.CurrentCultureIgnoreCase);
-
+								bool isPDF = "pdf".Equals(dr[Environment.DocImageData.ImageTypeField].ToString(), StringComparison.CurrentCultureIgnoreCase);
 								PrintImage(docID, imgId, isPDF);
 							}
 						}
@@ -481,8 +476,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 						{
 							foreach(PrinterObjectClass t in list)
 							{
-								show =
-									dt.Rows.Cast<DataRow>().Any(x => x[Environment.PrintData.IDField].Equals(t.TypeID));
+								show = !dt.Rows.Cast<DataRow>().Any(x => x[Environment.PrintData.IDField].Equals(t.TypeID));
 								if(show)
 									break;
 							}
@@ -583,10 +577,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
         {
             try
             {
-                using (
-                    var dialog = new DocPrintDialog(docID, imageID, fileName, startPage, endPage, countPage,
-                                                    Environment.Settings.Folders.Add("Print"), docName, copiesCount,
-                                                    _isPDF))
+                using (var dialog = new DocPrintDialog(docID, imageID, fileName, startPage, endPage, countPage, Environment.Settings.Folders.Add("Print"), docName, copiesCount, _isPDF))
                 {
                     dialog.Print();
                 }
@@ -606,86 +597,82 @@ namespace Kesco.Lib.Win.Document.Dialogs
 
         private AutoResetEvent syncPrintEForm = new AutoResetEvent(true);
 
-        private void StartSwitchPrintEform()
-        {
-            int docID = values[row - 1];
-            if (poindex < printerObject.Count)
-            {
-                poindex++;
-                PrinterObjectClass po = printerObject[poindex - 1];
-                GC.Collect();
-                syncPrintEForm.WaitOne(30000, false);
-                Console.WriteLine("{0}: printing form {1}", DateTime.Now.ToString("HH:mm:ss fff"), po.TypeID);
-                if (InvokeRequired)
-                    Invoke(new Data.Action<int, string, int, int, short, short>(SwitchPrintEform),
-                           new object[] {po.PrintType, po.URL, docID, po.TypeID, po.PaperSize, copiescount});
-                else
-                    SwitchPrintEform(po.PrintType, po.URL, docID, po.TypeID, po.PaperSize, copiescount);
-            }
-            else
-            {
-                if (timer == null)
-                    timer = new System.Timers.Timer(200) {AutoReset = false};
-                else
-                {
-                    timer.Elapsed -= timer_Elapsed;
-                    timer.Interval = 200;
-                }
-                timer.Elapsed += timer_Elapsed;
-                timer.Start();
-            }
-        }
+		private void StartSwitchPrintEform()
+		{
+			int docID = values[row - 1];
+			if(poindex < printerObject.Count)
+			{
+				poindex++;
+				PrinterObjectClass po = printerObject[poindex - 1];
+				GC.Collect();
+				syncPrintEForm.WaitOne(30000, false);
+				Console.WriteLine("{0}: printing form {1}", DateTime.Now.ToString("HH:mm:ss fff"), po.TypeID);
+				if(InvokeRequired)
+					Invoke(new Data.Action<int, string, int, int, short, short>(SwitchPrintEform), new object[] { po.PrintType, po.URL, docID, po.TypeID, po.PaperSize, copiescount });
+				else
+					SwitchPrintEform(po.PrintType, po.URL, docID, po.TypeID, po.PaperSize, copiescount);
+			}
+			else
+			{
+				if(timer == null)
+					timer = new System.Timers.Timer(200) { AutoReset = false };
+				else
+				{
+					timer.Elapsed -= timer_Elapsed;
+					timer.Interval = 200;
+				}
+				timer.Elapsed += timer_Elapsed;
+				timer.Start();
+			}
+		}
 
-        private void SwitchPrintEform(int printTypeID, string url, int docID, int printID, short paperSize,
-                                      short copiesCount)
-        {
-            switch (printTypeID)
-            {
-                case 0:
-                    StartPrintEFormWithOrientation(printTypeID, url, docID, printID, paperSize);
-                    break;
-                case 2:
-                case 3:
-                    if (InvokeRequired)
-                        Invoke(new Action<string, int, short>(StartPrintEForm),
-                               new object[]
-                                   {DocControl.PrintUrl(url, docID, printID, true), printTypeID, paperSize});
-                    else
-                        StartPrintEForm(DocControl.PrintUrl(url, docID, printID, true), printTypeID, paperSize);
-                    break;
-                case 1:
-                    if (url.StartsWith("http"))
-                    {
-                        StartPrintEFormWithOrientation(printTypeID, url, docID, printID, paperSize);
-                    }
-                    else
-                    {
-                        try
-                        {
-                            panelReport.Visible = true;
-                            labelNum.Text = docID.ToString();
-                            Console.WriteLine("{0}: Report print start", DateTime.Now.ToString("HH:mm:ss fff"));
-                            Environment.Report.EndPrint += Report_EndPrint;
-                            if (
-                                !Environment.Report.PrintReport(DocPrintDialog.Printer, url, docID, printID,
-                                                                paperSize, copiescount))
-                            {
-                                Environment.Report.EndPrint -= Report_EndPrint;
-                                block = false;
-                                panelReport.Visible = false;
-                                StartSwitchPrintEform();
-                            }
-                            Console.WriteLine("{0}: Report print end", DateTime.Now.ToString("HH:mm:ss fff"));
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                            Data.Env.WriteToLog(ex);
-                        }
-                    }
-                    break;
-            }
-        }
+		private void SwitchPrintEform(int printTypeID, string url, int docID, int printID, short paperSize, short copiesCount)
+		{
+			switch(printTypeID)
+			{
+				case 0:
+					StartPrintEFormWithOrientation(printTypeID, url, docID, printID, paperSize);
+					break;
+				case 2:
+				case 3:
+					if(InvokeRequired)
+						Invoke(new Action<string, int, short>(StartPrintEForm), new object[] { DocControl.PrintUrl(url, docID, printID, true), printTypeID, paperSize });
+					else
+						StartPrintEForm(DocControl.PrintUrl(url, docID, printID, true), printTypeID, paperSize);
+					break;
+				case 1:
+					if(url.StartsWith("http"))
+					{
+						StartPrintEFormWithOrientation(printTypeID, url, docID, printID, paperSize);
+					}
+					else
+					{
+						try
+						{
+							panelReport.Visible = true;
+							labelNum.Text = docID.ToString();
+							Console.WriteLine("{0}: Report print start", DateTime.Now.ToString("HH:mm:ss fff"));
+							Environment.Report.EndPrint += Report_EndPrint;
+							if(
+								!Environment.Report.PrintReport(DocPrintDialog.Printer, url, docID, printID,
+																paperSize, copiescount))
+							{
+								Environment.Report.EndPrint -= Report_EndPrint;
+								block = false;
+								panelReport.Visible = false;
+								StartSwitchPrintEform();
+							}
+							Console.WriteLine("{0}: Report print end", DateTime.Now.ToString("HH:mm:ss fff"));
+						}
+						catch(Exception ex)
+						{
+							Console.WriteLine(ex.Message);
+							Data.Env.WriteToLog(ex);
+						}
+					}
+					break;
+			}
+		}
 
         private void StartPrintEFormWithOrientation(int printTypeID, string url, int docID, int printID, short paperSize)
         {
@@ -727,28 +714,29 @@ namespace Kesco.Lib.Win.Document.Dialogs
             webBrowser.Navigate(url);
         }
 
-        private void RestoreBrowser()
-        {
-            // 
-            // webBrowser
-            // 
-            var resources =
-                new ComponentResourceManager(typeof (PrintAllDialog));
-            webBrowser = new Kesco.Lib.Win.Web.ExtendedBrowserControl();
-            panelBrowser.SuspendLayout();
-            SuspendLayout();
-            webBrowser.AllowWebBrowserDrop = false;
-            resources.ApplyResources(webBrowser, "webBrowser");
-            webBrowser.EnableInternalReloader = false;
-            webBrowser.IsWebBrowserContextMenuEnabled = false;
-            webBrowser.Name = "webBrowser";
-            webBrowser.SelfNavigate = false;
-            webBrowser.WebBrowserShortcutsEnabled = false;
-            webBrowser.DocumentCompleted += webBrowser_DocumentCompleted;
-            panelBrowser.Controls.Add(webBrowser);
-            panelBrowser.ResumeLayout(false);
-            ResumeLayout(false);
-        }
+		private void RestoreBrowser()
+		{
+			// 
+			// webBrowser
+			// 
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(PrintAllDialog));
+			webBrowser = new Kesco.Lib.Win.Web.ExtendedBrowserControl();
+			panelBrowser.SuspendLayout();
+			SuspendLayout();
+			webBrowser.AllowWebBrowserDrop = false;
+			resources.ApplyResources(webBrowser, "webBrowser");
+			webBrowser.EnableInternalReloader = false;
+			webBrowser.IsWebBrowserContextMenuEnabled = false;
+			webBrowser.Name = "webBrowser";
+			webBrowser.SelfNavigate = false;
+			webBrowser.NeedEvent = true;
+			webBrowser.WebBrowserShortcutsEnabled = false;
+			webBrowser.DocumentCompleted += webBrowser_DocumentCompleted;
+			webBrowser.PrintCompleted += Browser_PrintCompleted;
+			panelBrowser.Controls.Add(webBrowser);
+			panelBrowser.ResumeLayout(false);
+			ResumeLayout(false);
+		}
 
         private void Report_EndPrint(object sender, PrintEventArgs e)
         {
@@ -837,38 +825,43 @@ namespace Kesco.Lib.Win.Document.Dialogs
 			if(browser.Tag is Classes.Tag)
             {
 				var tag = (Classes.Tag)browser.Tag;
-                browser.Print(DocPrintDialog.Printer,
-                              Environment.ShowHelpString + "printtemplate" + ((tag.TypeID == 3) ? "landscape" : "") +
-                              ".html" + ((copiescount > 1) ? ("?numcopies=" + copiescount.ToString()) : ""));
+                browser.Print(DocPrintDialog.Printer, Environment.ShowHelpString + "printtemplate" + ((tag.TypeID == 3) ? "landscape" : "") +  ".html" + ((copiescount > 1) ? ("?numcopies=" + copiescount.ToString()) : ""));
                 syncPrintEForm.Set();
-                if (browser.Version.Major < 7)
-                {
-                    if (browser == webBrowser)
-                    {
-                        panelBrowser.Controls.Remove(webBrowser);
-                        webBrowser = null;
-                    }
-                    browser.DocumentCompleted -= webBrowser_DocumentCompleted;
-                    browser.Dispose();
-                }
-            }
+				if(browser.Version.Major < 7)
+				{
+					if(browser == webBrowser)
+					{
+						panelBrowser.Controls.Remove(webBrowser);
+						webBrowser = null;
+					}
+					browser.DocumentCompleted -= webBrowser_DocumentCompleted;
+					browser.PrintCompleted -= Browser_PrintCompleted;
+					browser.Dispose();
+				}
+			}
             else
             {
                 browser.Print(DocPrintDialog.Printer, Environment.ShowHelpString + "printtemplate.html");
+				
                 syncPrintEForm.Set();
-                if (browser.Version.Major < 7)
-                {
-                    if (browser == webBrowser)
-                    {
-                        panelBrowser.Controls.Remove(webBrowser);
-                        webBrowser = null;
-                    }
-                    browser.DocumentCompleted -= webBrowser_DocumentCompleted;
-                    browser.Dispose();
-                }
-            }
-            block = false;
-            StartSwitchPrintEform();
+				if(browser.Version.Major < 7)
+				{
+					if(browser == webBrowser)
+					{
+						panelBrowser.Controls.Remove(webBrowser);
+						webBrowser = null;
+					}
+					browser.DocumentCompleted -= webBrowser_DocumentCompleted;
+					browser.PrintCompleted -= Browser_PrintCompleted;
+					browser.Dispose();
+				}
+			}
         }
-    }
+
+		private void Browser_PrintCompleted(object sender, EventArgs e)
+		{
+			block = false;
+			StartSwitchPrintEform();
+		}
+	}
 }

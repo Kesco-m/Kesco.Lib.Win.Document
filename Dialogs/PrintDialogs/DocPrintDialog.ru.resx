@@ -112,19 +112,16 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="bCancel.Text" xml:space="preserve">
     <value>Отмена</value>
   </data>
   <data name="bRefresh.Text" xml:space="preserve">
     <value>Обновить</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Ориентация страницы</value>
   </data>
   <data name="bookRButton.Text" xml:space="preserve">
     <value>Книжная</value>
@@ -135,8 +132,8 @@
   <data name="autoRButton.Text" xml:space="preserve">
     <value>Автоматическая</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Масштаб</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Ориентация страницы</value>
   </data>
   <data name="originalRButton.Text" xml:space="preserve">
     <value>Исходный размер</value>
@@ -174,9 +171,6 @@
   <data name="duplexBox.Text" xml:space="preserve">
     <value>Двухсторонняя печать</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Печать документа</value>
-  </data>
   <data name="radioButtonAll.Text" xml:space="preserve">
     <value>Все</value>
   </data>
@@ -186,11 +180,20 @@
   <data name="checkPrintImage.Text" xml:space="preserve">
     <value>Печатать изображения:</value>
   </data>
-  <data name="groupBoxPrintPDF.Text" xml:space="preserve">
-    <value>Разрешение для печати PDF</value>
+  <data name="checkBoxEform.Text" xml:space="preserve">
+    <value>Печатать эл. формы</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Печать документа</value>
   </data>
   <data name="comboBoxPrintResolution.Items" xml:space="preserve">
     <value>Разрешение принтера</value>
+  </data>
+  <data name="groupBoxPrintPDF.Text" xml:space="preserve">
+    <value>Разрешение для печати PDF</value>
+  </data>>
+  <data name="checkBoxPrintBarCode.Text" xml:space="preserve">
+    <value>Печатать штрихкод</value>
   </data>
   <data name="comboBoxPrintResolution.Items1" xml:space="preserve">
     <value>600 x 600 dpi</value>
@@ -200,59 +203,11 @@
   </data>
   <data name="comboBoxPrintResolution.Items3" xml:space="preserve">
     <value>200 x 200 dpi</value>
-  </data>
-  <data name="checkBoxEform.Text" xml:space="preserve">
-    <value>Печатать эл. формы</value>
-  </data>
-  <data name="labelEForm.Text" xml:space="preserve">
+  </data>  <data name="labelEForm.Text" xml:space="preserve">
     <value>Выберите вид для печати эл. формы</value>
-  </data>
-  <data name="imageListOrintation.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFpTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0xLjAuNTAw
-        MC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZT
-        eXN0ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMA
-        AAAsBwAAAk1TRnQBSQFMAgEBAwEAAQUBAAEEAQABIAEAASABAAT/AQUBEAj/AUIBTQF2BwABdgMAASgD
-        AAGAAwABQAMAAQEBAAEEBgABEBgAAYACAAGAAwACgAEAAYADAAGAAQABgAEAAoACAAPAAQADgAMAAf8C
-        AAH/AwAC/wEAAf8DAAH/AQAB/wEAAv8CAAP//wD/AP8A/wD/AP8A/wD/AAsADIgBgBMADIgBgB8AAYAf
-        AAGAEwAL/wHwAYATAAv/AfABgBMAC/8B8AGAEwAL/wHwAYATAAv/AfABgAEAEIgCAAv/AfABgBMAC/8B
-        8AGAEAABCAIAC/8B8AGAEwAL/wHwAYABAAEPDv8BCAIAC/8B8AGAEwAL/wHwAYABAAEPDv8BCAIAC/8B
-        8AGAEwAL/wHwAYABAAEPDv8BCAIABf8BAAF/BP8B8AGAEwAB/wMAAX8B/wHwBAABcAGAAQABDw7/AQgC
-        AAX/AQABfwT/AfABgBMAAv8BAAF/BP8CAAF/AfABgAEAAQ8B/wMAA/8EAAP/AQgCAAv/AfABgBMAAv8B
-        8AF/BP8BAAEHAf8B8AGAAQABDwL/AQAF/wIABP8BCAIAC/8B8AGAEwAC/wHwAQcD/wHwAQABBwH/AfAB
-        gAEAAQ8C/wHwBf8BAAEPBP8BCAIABf8BAAF/BP8B8AGAEwAD/wEHA/8B8AEAAX8B/wHwAYABAAEPAv8B
-        8AEPA/8B8AEAAQ8E/wEIAgAF/wEAAX8E/wHwAYATAAP/BgABfwH/AfABgAEAAQ8D/wEPA/8B8AEABf8B
-        CAIABf8BAAEHBP8B8AGAEwAD/wHwAX8C/wEAAQcC/wHwAYABAAEPA/8GAAX/AQgCAAX/AfABAAF/A/8B
-        8AGAEwAD/wHwAQcB/wHwAQABBwL/AfABgAEAAQ8D/wHwA/8BAAEPBf8BCAIABv8BAAEHA/8B8AGAEwAE
-        /wEHAf8B8AEAAX8C/wHwAYABAAEPA/8B8AEPAf8B8AEAAQ8F/wEIAgAG/wHwAQABfwL/AfABgBMABP8B
-        AAF/AgABfwL/AfABgAEAAQ8E/wEPAf8B8AEABv8BCAIAB/8BAAF/Av8B8AGAEwAE/wHwAX8BAAEHA/8B
-        8AGAAQABDwT/AQAB/wIABv8BCAIAB/8B8AEHAv8B8AGAEwAE/wHwAQcBAAEHA/8B8AGAAQABDwT/AfAB
-        /wEAAQ8G/wEIAgAD/wEHA/8B8AEHAv8B8AGAEwAF/wIAAX8D/wHwAYABAAEPBP8B8AEPAQABDwb/AQgC
-        AAP/AQABfwL/AfABDwL/AfABgBMABf8CAAF/A/8B8AGAAQABDwX/AgAE/wYAA/8B8AEHAv8BAAF/Av8B
-        8AGAEwAF/wHwAQcE/wHwAYABAAEPBf8CAAT/AQ8B/wHwAwAE/wMAAQcD/wHwAYATAAX/AfABBwT/AfAB
-        gAEAAQ8F/wHwAQ8E/wEPAf8EAAT/AfACAAF/A/8B8AGAEwAI/wHwAwABcAEAAQ8F/wHwAQ8E/wEPAfAE
-        AAj/AfADAAFwEwAI/wHwAX8B/wEHAgABDwv/AQ8FAAj/AfABfwH/AQcUAAj/AfABfwHwAXACAAEPC/8G
-        AAj/AfABfwHwAXAUAAj/AfABfwEHFQAI/wHwAX8BBxUACP8B8AJwFQAI/wHwAnAVAAj/AfABBxYACP8B
-        8AEHHwABcB8AAXAUAAFCAU0BPgcAAT4DAAEoAwABgAMAAUADAAEBAQABAQYAAQQWAAP//wD/AAMAAfAC
-        AAEHBP8B8AIAAQcEAAHgAgABBwT/AeACAAEHBAAB4AIAAQcE/wHgAgABBwQAAeACAAEHBP8B4AIAAQcE
-        AAHgAgABBwQAAeACAAEHBAAB4AIAAQcEAAHgAgABBwQAAeACAAEHBAAB4AIAAQcEAAHgAgABBwQAAeAC
-        AAEHBAAB4AIAAQcEAAHgAgABBwQAAeACAAEHBAAB4AIAAQcEAAHgAgABBwQAAeACAAEHBAAB4AIAAQcE
-        AAHgAgABBwQAAeACAAEHBAAB4AIAAQcEAAHgAgABBwQAAeACAAEHBAAB4AIAAQcEAAHgAgABBwQAAeAC
-        AAEHBAAB4AIAAQcEAAHgAgABBwQAAeACAAEHBAAB4AIAAQcEAAHgAgABBwQAAeACAAEHBAAB4AIAAQcE
-        AAHgAgABBwQAAeACAAEHBAAB4AIAAQcEAAHgAgABBwQAAeACAAEHBAAB4AIAAQcEAAHgAgABBwMAAQEB
-        4AIAAQcEAAHgAgABBwMAAQMB4AIAAQcEAAHgAgABBwMAAQcB4AIAAQcEAAHgAgABBwMAAQ8B4AIAAQcE
-        AAHgAgABDwMAAR8B4AIAAQ8EAAHgAgABHwMAAT8B4AIAAR8EAAHgAgABPwMAAX8B4AIAAT8EAAHgAgAB
-        fwT/AeACAAF/BAAB4AIABf8B4AIAAf8EAAHgAQABAQX/AeABAAEBAf8aAAs=
-</value>
-  </data>
-  <data name="groupBoxCopy.Text" xml:space="preserve">
-    <value>Копии</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Число копий:</value>
-  </data>
-  <data name="groupBoxPrint.Text" xml:space="preserve">
-    <value>Печать</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>по:</value>
@@ -263,13 +218,10 @@
   <data name="rbAllPages.Text" xml:space="preserve">
     <value>Все</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
+  <data name="groupBoxPrint.Text" xml:space="preserve">
     <value>Печать</value>
   </data>
-  <data name="bOK.Text" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="checkBoxPrintBarCode.Text" xml:space="preserve">
-    <value>Печатать штрихкод</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Печать</value>
   </data>
 </root>

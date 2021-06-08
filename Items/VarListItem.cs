@@ -22,6 +22,11 @@ namespace Kesco.Lib.Win.Document.Items
         public string ImageType { get; set; }
 
         #endregion
+
+		public bool IsPDF()
+		{
+			return ImageType.Equals("pdf", StringComparison.OrdinalIgnoreCase);
+		}
     }
 
     /// <summary>

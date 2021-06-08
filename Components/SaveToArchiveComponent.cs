@@ -58,9 +58,9 @@ namespace Kesco.Lib.Win.Document.Components
 				}
 			}
 
-			if(Environment.DocToSave.Contains(oldFileName))
+			if(Environment.DocToSave.ContainsKey(oldFileName))
 			{
-				Dialogs.AddDBDocDialog dialog = Environment.DocToSave[oldFileName] as Dialogs.AddDBDocDialog;
+				Form dialog = Environment.DocToSave[oldFileName] as Form;
 				if(dialog != null)
 				{
 					dialog.BringToFront();
@@ -71,7 +71,7 @@ namespace Kesco.Lib.Win.Document.Components
 			{
 				if(File.Exists(oldFileName))
 				{
-					Environment.DocToSave.Add(oldFileName, null);
+					Environment.DocToSave.TryAdd(oldFileName, null);
 					Form findForm = docControl.FindForm();
 					if(findForm != null && findForm.InvokeRequired)
 					{
@@ -81,7 +81,7 @@ namespace Kesco.Lib.Win.Document.Components
 																RetrieveScanDate(), IsFax(), ID, docControl.CurDocString,//GetStringToSave(),
 																IsFax(), IsScaner(), oldFileName, saveFaxInfo, null,
 																IsPdf, docControl.PageCount);
-								Environment.DocToSave[oldFileName] = dialog;
+								Environment.DocToSave.TryUpdate(oldFileName, dialog, null);
 
 								if(tf == null || tf.CurAct == Environment.ActionBefore.Save)
 								{
@@ -103,7 +103,7 @@ namespace Kesco.Lib.Win.Document.Components
 											   IsFax(), IsScaner(),
 											   oldFileName, saveFaxInfo, null, IsPdf,
 											   docControl.PageCount);
-						Environment.DocToSave[oldFileName] = dialog;
+						Environment.DocToSave.TryUpdate(oldFileName, dialog, null);
 
 						if(tf == null || tf.CurAct == Environment.ActionBefore.Save)
 						{
@@ -141,12 +141,11 @@ namespace Kesco.Lib.Win.Document.Components
 			Dialogs.AddDBDocDialog dialog = e.Dialog as Dialogs.AddDBDocDialog;
 			if(dialog == null)
 				return;
-
+			Form form;
 			Document.Objects.TmpFile tf = null;
 			if(!string.IsNullOrEmpty(dialog.OldFileName))
 			{
-				if(Environment.DocToSave.Contains(dialog.OldFileName))
-					Environment.DocToSave.Remove(dialog.OldFileName);
+				Environment.DocToSave.TryRemove(dialog.OldFileName, out form);
 
 				tf = Environment.GetTmpFileByValue(dialog.OldFileName);
 			}

@@ -1011,13 +1011,12 @@ namespace Kesco.Lib.Win.Document.Dialogs
 							File.Copy(fileName, newFileName);
 							while(!File.Exists(newFileName))
 								throw new Exception(Environment.StringResources.GetString("Dialog_AddDBDocDialog_buttonOK_Click_Error2") + " " + name);
-                            Console.WriteLine("{0}: File to save: {1}", DateTime.Now.ToString("HH:mm:ss fff"), newFileName);
-							retValue = !isPDF ? Environment.DocImageData.DocImageInsert(server.ID, name, ref imageID, ref docID, typeID, docName, docDate, numberStr, description.Text.TrimStart().TrimEnd(), protect, createDate, archiveID, checkMain.Checked, pagesCount) : Environment.DocImageData.DocImageInsert(server.ID, name, ref imageID, ref docID, typeID, docName, docDate, numberStr, description.Text.TrimStart().TrimEnd(), protect, createDate, archiveID, checkMain.Checked, 0, "PDF", pagesCount);
+							Console.WriteLine("{0}: File to save: {1}", DateTime.Now.ToString("HH:mm:ss fff"), newFileName);
+							retValue = Environment.DocImageData.DocImageInsert(server.ID, name, ref imageID, ref docID, typeID, docName, docDate, numberStr, description.Text.TrimStart().TrimEnd(), protect, createDate, archiveID, checkMain.Checked, 0, isPDF ? "PDF" : "TIF", pagesCount);
 						}
 						else
 						{
-							retValue = !isPDF ? Environment.DocImageData.DocImageInsert(ref imageID, ref docID, typeID, docName, docDate, numberStr, description.Text.TrimStart().TrimEnd(), protect, createDate, archiveID, checkMain.Checked, pagesCount) :
-                                         Environment.DocImageData.DocImageInsert(0, "", ref imageID, ref docID, typeID, docName, docDate, numberStr, description.Text.TrimStart().TrimEnd(), protect, createDate, archiveID, checkMain.Checked, 0, "PDF", pagesCount);
+							retValue = Environment.DocImageData.DocImageInsert(ref imageID, ref docID, typeID, docName, docDate, numberStr, description.Text.TrimStart().TrimEnd(), protect, createDate, archiveID, checkMain.Checked, isPDF ? "PDF" : "TIF", pagesCount);
 						}
 
 						if(!retValue || imageID == 0 || docID == 0)

@@ -5,7 +5,6 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
-//using System.Net.Mail;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -28,7 +27,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 		#region Variables
 
 		private string fileName;
-		private SynchronizedCollection<Components.ProcessingDocs> docs;
+		private SynchronizedCollection<Components.ImageToSend> docs;
 		private SynchronizedCollection<int> processingFiles;
 		private int docImageID;
 		private int faxID;
@@ -177,28 +176,28 @@ namespace Kesco.Lib.Win.Document.Dialogs
 
 		public SendFaxDialog(int[] curDocsIDs, object[] mainImageIDs)
 		{
-			docs = new SynchronizedCollection<Components.ProcessingDocs>();
+			docs = new SynchronizedCollection<Components.ImageToSend>();
 
 			for(int i = 0; i < curDocsIDs.Length; i++)
-				docs.Add(new Components.ProcessingDocs(curDocsIDs[i], mainImageIDs[i]));
+				docs.Add(new Components.ImageToSend(curDocsIDs[i], mainImageIDs[i]));
 
 			BunchOfDocsLoaded(true);
 		}
 
 		public SendFaxDialog(object[] curFileNames, string[] curDocStrings)
 		{
-			docs = new SynchronizedCollection<Components.ProcessingDocs>();
+			docs = new SynchronizedCollection<Components.ImageToSend>();
 			for(int i = 0; i < curFileNames.Length; i++)
-				docs.Add(new Components.ProcessingDocs(curDocStrings[i], (string)curFileNames[i]));
+				docs.Add(new Components.ImageToSend((string)curFileNames[i]) { FileNameToSend = curDocStrings[i]});
 
 			BunchOfDocsLoaded(false);
 		}
 
 		public SendFaxDialog(object[] curFileNames, string[] curDocStrings, object[] curFaxesIDs)
 		{
-			docs = new SynchronizedCollection<Components.ProcessingDocs>();
+			docs = new SynchronizedCollection<Components.ImageToSend>();
 			for(int i = 0; i < curFileNames.Length && i < curFaxesIDs.Length; i++)
-				docs.Add(new Components.ProcessingDocs(curDocStrings[i], (string)curFileNames[i], curFaxesIDs[i]));
+				docs.Add(new Components.ImageToSend((string)curFileNames[i], curFaxesIDs[i]) { FileNameToSend = curDocStrings[i]});
 
 			BunchOfDocsLoaded(false);
 		}
@@ -998,7 +997,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 					{
 						EWSMail.CreateItemResponseType crit = esb.CreateItem(cit);
 						if(crit == null || crit.ResponseMessages.Items.Length == 0 || crit.ResponseMessages.Items[0].ResponseClass != EWSMail.ResponseClassType.Success)
-							throw new System.Exception("Can't save message");
+							throw new System.Exception("Can't save message/n" + ((crit == null)?"no response":"responce length " + crit.ResponseMessages.Items.Length.ToString()) + "\n" + Environment.FullExchangeServerEwsUrl);
 						EWSMail.ItemIdType iid = ((EWSMail.ItemInfoResponseMessageType)(((crit)).ResponseMessages.Items[0])).Items.Items[0].ItemId;
 						EWSMail.CreateAttachmentResponseType cart = esb.CreateAttachment
 						(
@@ -1200,10 +1199,11 @@ namespace Kesco.Lib.Win.Document.Dialogs
 						{
 							mail.Add(new KeyValuePair<string, string>(cont.PersonName, dr[Environment.FaxRecipientData.ContactField].ToString()));
 
-							int[] docImageIDsArray = new int[docs.Count];
+							List<int> docImageIDs = new List<int>();
 							for(int j = 0; j < docs.Count; j++)
-								docImageIDsArray[j] = docs[j].docImageID;
-							Environment.LogEmailData.LogEmail(docImageIDsArray, cont.PersonName, dr[Environment.FaxRecipientData.ContactField].ToString());
+								docImageIDs.Add(docs[j].ImageID);
+							if(docImageIDs.Count >0)
+								Environment.LogEmailData.LogEmail(docImageIDs.ToArray(), cont.PersonName, dr[Environment.FaxRecipientData.ContactField].ToString());
 						}
 					}
 					else
@@ -1217,10 +1217,11 @@ namespace Kesco.Lib.Win.Document.Dialogs
 						{
 							mail.Add(new KeyValuePair<string, string>(contact[0].ToString(), contact[1].ToString()));
 
-							int[] docImageIDsArray = new int[docs.Count];
+							List<int> docImageIDs = new List<int>();
 							for(int j = 0; j < docs.Count; j++)
-								docImageIDsArray[j] = docs[j].docImageID;
-							Environment.LogEmailData.LogEmail(docImageIDsArray, contact[0].ToString(), contact[1].ToString());
+								docImageIDs.Add(docs[j].ImageID);
+							if(docImageIDs.Count >0)
+								Environment.LogEmailData.LogEmail(docImageIDs.ToArray(), contact[0].ToString(), contact[1].ToString());
 						}
 					}
 				}
@@ -1774,11 +1775,11 @@ namespace Kesco.Lib.Win.Document.Dialogs
 			for(int i = docs.Count - 1; i > -1; --i)
 				if(docs[i].Error)
 				{
-					errorDocs.Append("\n" + docs[i].docString);
+					errorDocs.Append("\n" + docs[i].FileNameToSend);
 					docs.RemoveAt(i);
 				}
 				else
-					description += " " + docs[i].docString;
+					description += " " + docs[i].FileNameToSend;
 
 			if(docs.Count == 0)
 			{
@@ -1787,7 +1788,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 			}
 			else if(docs.Count == 1)
 			{
-				(new SendFaxDialog(docs[0].sourceFileName, docs[0].docString, docs[0].docID, docs[0].docImageID, Environment.IsPdf(docs[0].sourceFileName))).Show();
+				(new SendFaxDialog(docs[0].SourceFileName, docs[0].FileNameToSend, docs[0].DocID, docs[0].ImageID, Environment.IsPdf(docs[0].SourceFileName))).Show();
 				Close();
 			}
 			else
@@ -1818,10 +1819,10 @@ namespace Kesco.Lib.Win.Document.Dialogs
 
 				for(int i = 0; i < docs.Count; i++)
 				{
-					if(docs[i].docID > 0)
-						newWindowDocumentButton.LoopSet(docs[i].docID, docs[i].docString);
+					if(docs[i].DocID > 0)
+						newWindowDocumentButton.LoopSet(docs[i].DocID, docs[i].FileNameToSend);
 					else
-						newWindowDocumentButton.LoopSet(docs[i].sourceFileName, docs[i].docString);
+						newWindowDocumentButton.LoopSet(docs[i].SourceFileName, docs[i].FileNameToSend);
 				}
 				newWindowDocumentButton.Verify();
 
@@ -1856,7 +1857,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 
 			for(int i = docs.Count - 1; i > -1; --i)
 			{
-				int code = docs[i].sourceFileName.GetHashCode() + i;
+				int code = docs[i].SourceFileName.GetHashCode() + i;
 				Slave.DoWork(SendBunchOfDocs, new object[] { i, pdfRadio.Checked, radioButtonMainFormat.Checked, startPage, endPage, checkBoxWithNotes.Checked, radioButtonColor.Checked, checkBoxToImage.Checked, code });
 				processingFiles.Add(code);
 			}
@@ -1868,8 +1869,8 @@ namespace Kesco.Lib.Win.Document.Dialogs
 		{
 			System.Windows.Forms.Application.DoEvents();
 
-			int _imgID = docs[(int)((object[])e.Argument)[0]].docImageID;
-			string _fileName = docs[(int)((object[])e.Argument)[0]].sourceFileName;
+			int _imgID = docs[(int)((object[])e.Argument)[0]].ImageID;
+			string _fileName = docs[(int)((object[])e.Argument)[0]].SourceFileName;
 			bool _isPdfFormat = (bool)((object[])e.Argument)[1];
 			bool _isOriginal = (bool)((object[])e.Argument)[2];
 			int _startPage = (int)((object[])e.Argument)[3];
@@ -1979,7 +1980,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 			finally
 			{
 				processingFiles.Remove(_code);
-				docs[(int)((object[])e.Argument)[0]].sendFileName = _newFileName;
+				docs[(int)((object[])e.Argument)[0]].SendFileName = _newFileName;
 			}
 		}
 
@@ -2029,12 +2030,12 @@ namespace Kesco.Lib.Win.Document.Dialogs
 						bool tryUglyName = false;
 						try
 						{
-							string exte = Path.GetExtension(docs[i].sendFileName);
-							string sendDocFileName = Path.Combine(Path.GetTempPath(), docs[i].docString + exte);
+							string exte = Path.GetExtension(docs[i].SendFileName);
+							string sendDocFileName = Path.Combine(Path.GetTempPath(), docs[i].FileNameToSend + exte);
 							if(File.Exists(sendDocFileName))
 								File.Delete(sendDocFileName);
-							File.Move(docs[i].sendFileName, sendDocFileName);
-							item.Attachments.Add(sendDocFileName, 1, 1, docs[i].docString + exte);
+							File.Move(docs[i].SendFileName, sendDocFileName);
+							item.Attachments.Add(sendDocFileName, 1, 1, docs[i].FileNameToSend + exte);
 							Slave.DeleteFile(sendDocFileName);
 						}
 						catch
@@ -2046,12 +2047,12 @@ namespace Kesco.Lib.Win.Document.Dialogs
 							try
 							{
 								tryUglyName = false;
-								string exte = Path.GetExtension(docs[i].sendFileName);
+								string exte = Path.GetExtension(docs[i].SendFileName);
 								string sendDocFileName = Path.Combine(Path.GetTempPath(), "Document(" + i.ToString() + ")" + exte);
 								if(File.Exists(sendDocFileName))
 									File.Delete(sendDocFileName);
-								File.Move(docs[i].sendFileName, sendDocFileName);
-								item.Attachments.Add(sendDocFileName, 1, 1, docs[i].docString + exte);
+								File.Move(docs[i].SendFileName, sendDocFileName);
+								item.Attachments.Add(sendDocFileName, 1, 1, docs[i].FileNameToSend + exte);
 								Slave.DeleteFile(sendDocFileName);
 							}
 							catch
@@ -2062,12 +2063,12 @@ namespace Kesco.Lib.Win.Document.Dialogs
 						if(tryUglyName)
 							try
 							{
-								item.Attachments.Add(docs[i].sendFileName, 1, 1, docs[i].sendFileName);
+								item.Attachments.Add(docs[i].SendFileName, 1, 1, docs[i].SendFileName);
 							}
 							catch(System.Exception ex)
 							{
 								Data.Env.WriteToLog(ex);
-								MessageForm.Show(Environment.StringResources.GetString("Dialogs_SendFaxDialog_FileAttachError") + "\n" + docs[i].docString);
+								MessageForm.Show(Environment.StringResources.GetString("Dialogs_SendFaxDialog_FileAttachError") + "\n" + docs[i].FileNameToSend);
 							}
 
 					}
@@ -2190,7 +2191,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 						try
 						{
 							byte[ ] binaryData;
-							using(FileStream inFile = new FileStream(docs[i].sendFileName, FileMode.Open, FileAccess.Read))
+							using(FileStream inFile = new FileStream(docs[i].SendFileName, FileMode.Open, FileAccess.Read))
 							{
 								if(size > -1)
 									size += inFile.Length;
@@ -2201,8 +2202,8 @@ namespace Kesco.Lib.Win.Document.Dialogs
 									{
 										for(int k = docs.Count - 1; k > -1; --k)
 										{
-											Slave.DeleteFile(docs[k].sendFileName);
-											docs[k].sendFileName = null;
+											Slave.DeleteFile(docs[k].SendFileName);
+											docs[k].SendFileName = null;
 										}
 										inFile.Close();
 										Cursor = Cursors.Default;
@@ -2219,18 +2220,18 @@ namespace Kesco.Lib.Win.Document.Dialogs
 							}
 							EWSMail.FileAttachmentType fat = new EWSMail.FileAttachmentType();
 							fat.Content = binaryData;
-							if(Path.GetExtension(docs[i].sendFileName).ToLower().Equals(".pdf"))
+							if(Path.GetExtension(docs[i].SendFileName).ToLower().Equals(".pdf"))
 								fat.ContentType = "application/pdf";
 							else
 								fat.ContentType = "image/tiff";
-							fat.Name = docs[i].docString + Path.GetExtension(docs[i].sendFileName);
+							fat.Name = docs[i].FileNameToSend + Path.GetExtension(docs[i].SendFileName);
 
 							attachments[i] = fat;
 						}
 						catch(System.Exception ex)
 						{
 							Data.Env.WriteToLog(ex);
-							Error.ErrorShower.OnShowError(this, Environment.StringResources.GetString("Dialogs_SendFaxDialog_FileAttachError") + "\n" + docs[i].docString, "");
+							Error.ErrorShower.OnShowError(this, Environment.StringResources.GetString("Dialogs_SendFaxDialog_FileAttachError") + "\n" + docs[i].FileNameToSend, "");
 						}
 					}
 
@@ -2277,8 +2278,8 @@ namespace Kesco.Lib.Win.Document.Dialogs
 					{
 						for(int k = docs.Count - 1; k > -1; --k)
 						{
-							Slave.DeleteFile(docs[k].sendFileName);
-							docs[k].sendFileName = null;
+							Slave.DeleteFile(docs[k].SendFileName);
+							docs[k].SendFileName = null;
 						}
 						if(!ex.Message.Contains(" Insufficient Storage"))
 						{
@@ -2298,7 +2299,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 			}
 			for(int i = docs.Count - 1; i > -1; --i)
 			{
-				Slave.DeleteFile(docs[i].sendFileName);
+				Slave.DeleteFile(docs[i].SendFileName);
 				docs.RemoveAt(i);
 			}
 
@@ -2329,8 +2330,8 @@ namespace Kesco.Lib.Win.Document.Dialogs
 
 			for(int i = docs.Count - 1; i > -1; --i)
 			{
-				int code = string.Concat(recipient, docs[i].sourceFileName).GetHashCode() + i;
-				Slave.DoWork(SendBunchOfFaxesDoWork, new object[ ] { docs[i].sourceFileName, docs[i].faxID, startPage, endPage, recipient, faxMail, descr, code });
+				int code = string.Concat(recipient, docs[i].SourceFileName).GetHashCode() + i;
+				Slave.DoWork(SendBunchOfFaxesDoWork, new object[ ] { docs[i].SourceFileName, docs[i].FaxID, startPage, endPage, recipient, faxMail, descr, code });
 				processingFiles.Add(code);
 			}
 

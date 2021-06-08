@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -18,7 +19,6 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using Kesco.Lib.Log;
-
 using Kesco.Lib.Win.Data.DALC.Buhgalteriya;
 using Kesco.Lib.Win.Data.DALC.Corporate;
 using Kesco.Lib.Win.Data.DALC.Directory;
@@ -35,7 +35,7 @@ namespace Kesco.Lib.Win.Document
 		private const string subscribeTable = "Документы.dbo.РегистрацияРассылки";
 
 		/// <summary>
-		///   Словарь co штампами.
+		/// Словарь co штампами.
 		/// </summary>
 		private static OrderedDictionary stampDictionary;
 
@@ -45,7 +45,7 @@ namespace Kesco.Lib.Win.Document
 		private static Bitmap imgDSP;
 
 		/// <summary>
-		///   переменные для класса
+		/// переменные для класса
 		/// </summary>
 		private static object[] archivPrinterParams; // параметры для повторного вызова печати документа
 		private static string archivPrinterPath;
@@ -108,8 +108,8 @@ namespace Kesco.Lib.Win.Document
 
 		private static bool personMessage = true;
 
-		private static Hashtable docToSave;
-		private static Hashtable docToSend;
+		private static ConcurrentDictionary<string, Form> docToSave;
+		private static ConcurrentDictionary<string, Form> docToSend;
 		private static Hashtable docToPrint;
 
 		private static DataTable iC;
@@ -735,11 +735,7 @@ namespace Kesco.Lib.Win.Document
 		/// <summary>
 		///   данные по подписке
 		/// </summary>
-		public static string SubscribeTable
-		{
-			get { return subscribeTable; }
-		}
-
+		public static string SubscribeTable => subscribeTable;
 		/// <summary>
 		///   код текущего сотрудника из базы инвентаризация
 		/// </summary>
@@ -770,11 +766,7 @@ namespace Kesco.Lib.Win.Document
 		/// <summary>
 		///   проверка наличия подключения к базе документов
 		/// </summary>
-		public static bool IsConnectedDocs
-		{
-			get { return isConnectedDocs; }
-		}
-
+		public static bool IsConnectedDocs => isConnectedDocs;
 		/// <summary>
 		///   проверка наличия подключения к базе бухгалтерии
 		/// </summary>
@@ -888,14 +880,14 @@ namespace Kesco.Lib.Win.Document
 			set { personMessage = value; }
 		}
 
-		public static Hashtable DocToSave
+		public static ConcurrentDictionary<string, Form> DocToSave
 		{
-			get { return docToSave ?? (docToSave = new Hashtable()); }
+			get { return docToSave ?? (docToSave = new ConcurrentDictionary<string, Form>()); }
 		}
 
-		public static Hashtable DocToSend
+		public static ConcurrentDictionary<string, Form> DocToSend
 		{
-			get { return docToSend ?? (docToSend = new Hashtable()); }
+			get { return docToSend ?? (docToSend = new ConcurrentDictionary<string, Form>()); }
 		}
 
 		public static Hashtable DocToPrint
@@ -1082,11 +1074,7 @@ namespace Kesco.Lib.Win.Document
 			set { mailNickname = value; }
 		}
 
-		public static string MailDomain
-		{
-			get {return mailDomain;}
-		}
-
+		public static string MailDomain => mailDomain;
 		/// <summary>
 		///   почтовое имя пользователя
 		/// </summary>
@@ -1689,21 +1677,13 @@ namespace Kesco.Lib.Win.Document
 		/// <summary>
 		///   Версия принтера UDC
 		/// </summary>
-		public static float PrinterVersion
-		{
-			get { return Checkers.TestPrinter.GetPrinterVersion(); }
-		}
-
-        /// <summary>
-        /// Версия принтера.
-        /// Этот метод безопасен для вызова из WndProc
-        /// </summary>
-        /// <returns></returns>
-        public static float PrinterVersionAsync
-        {
-            get { return Checkers.TestPrinter.GetPrinterVersionAsync(); }
-        }
-
+		public static float PrinterVersion => Checkers.TestPrinter.GetPrinterVersion();
+		/// <summary>
+		/// Версия принтера.
+		/// Этот метод безопасен для вызова из WndProc
+		/// </summary>
+		/// <returns></returns>
+		public static float PrinterVersionAsync => Checkers.TestPrinter.GetPrinterVersionAsync();
 		/// <summary>
 		///   Документ печатается с принтера UDC
 		/// </summary>

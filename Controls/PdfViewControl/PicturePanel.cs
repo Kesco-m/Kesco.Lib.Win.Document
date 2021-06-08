@@ -652,7 +652,7 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
         /// <summary>
         ///   Массив выделений для фигур
         /// </summary>
-        protected Rectangle[] selectedRectangles;
+        protected RectangleF[] selectedRectangles;
 
         /// <summary>
         ///   Координата последней позиции заметки
@@ -708,35 +708,6 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
                 parent.mi_Click(this, EventArgs.Empty);
         }
 
-        private Bitmap ConvertTo(PixelFormat format, Bitmap image)
-        {
-            Bitmap result = image;
-            if (format == PixelFormat.Format1bppIndexed && image.PixelFormat != PixelFormat.Format1bppIndexed)
-            {
-                result = Environment.LibTiff.ConvertToBitonal(image);
-                image = null;
-            }
-            else if (format == PixelFormat.Format8bppIndexed &&
-                     (image.PixelFormat != PixelFormat.Format8bppIndexed || !IsPalleteGrayscale(image.Palette)))
-            {
-				result = Environment.LibTiff.ConvertToGrayscale(image);
-            }
-            if (result == null)
-                result = image;
-            else
-            {
-                if (!result.Equals(image))
-                {
-                    if (image != null)
-                    {
-                        image.Dispose();
-                        image = null;
-                    }
-                }
-            }
-            return result;
-        }
-
         protected override void OnPaint(PaintEventArgs e)
         {
 #if AdvancedLogging
@@ -748,18 +719,16 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
             {
                 Bitmap bufferAnimatedImage = originalBitmap;
                 if (originalBitmap.PixelFormat != CurrentPixelFormat ||
-                    (CurrentPixelFormat == PixelFormat.Format8bppIndexed &&
-                     !IsPalleteGrayscale(originalBitmap.Palette)))
+                    (CurrentPixelFormat == PixelFormat.Format8bppIndexed && !Environment.LibTiff.IsPalleteGrayscale(originalBitmap.Palette)))
                 {
-                    Bitmap tempImage = ConvertTo(CurrentPixelFormat, bufferAnimatedImage.Clone() as Bitmap);
+                    Bitmap tempImage = Environment.LibTiff.ConvertTo(CurrentPixelFormat, bufferAnimatedImage.Clone() as Bitmap);
                     if (tempImage != null)
                         bufferAnimatedImage = tempImage;
                 }
 
                 if (cachedBitmap != null)
                     cachedBitmap.Dispose();
-				cachedBitmap = bufferAnimatedImage.Clone(new Rectangle(0, 0, originalBitmap.Width, originalBitmap.Height),
-                        PixelFormat.Format24bppRgb);
+				cachedBitmap = bufferAnimatedImage.Clone(new Rectangle(0, 0, originalBitmap.Width, originalBitmap.Height), PixelFormat.Format24bppRgb);
 
                 DrawStamps(false);
 
@@ -870,10 +839,10 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
 							si.Height = img.Height;
 						}
 						double cZ = (Zoom > PDFView.RenderLimit && parent.FitType == -1 ? PDFView.RenderLimit : Zoom);
-						var x = (int)Math.Round(si.StmpItem.X * cZ / 100);
-						var y = (int)Math.Round(si.StmpItem.Y * cZ / 100);
-						var w = (int)(si.Width * (cZ / 100) * si.StmpItem.Zoom / 100);
-						var h = (int)(si.Height * (cZ / 100) * si.StmpItem.Zoom / 100);
+						var x = (float)(si.StmpItem.X * cZ / 100);
+						var y = (float)Math.Round(si.StmpItem.Y * cZ / 100);
+						var w = (float)(si.Width * (cZ / 100) * si.StmpItem.Zoom / 100);
+						var h = (float)(si.Height * (cZ / 100) * si.StmpItem.Zoom / 100);
 
 						if(x + w > cachedBitmap.Width)
 							x = cachedBitmap.Width - w;
@@ -884,7 +853,7 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
 						if(!si.StmpItem.Rotate.Equals(0))
 						{
 							Matrix mx = new Matrix();
-							mx.RotateAt(si.StmpItem.Rotate, new PointF(x + w / 2, y + h / 2));
+							mx.RotateAt(si.StmpItem.Rotate, new PointF(x + w / 2f, y + h / 2f));
 							gr.Transform = mx;
 						}
 
@@ -894,7 +863,7 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
 							gr.DrawImage(img, x, y, w, h);
 
 						if(si.IsSelected)
-							DrawSelectedRectangle(gr, new Rectangle(x, y, w, h));
+							DrawSelectedRectangle(gr, new RectangleF(x, y, w, h));
 
 						if(!si.StmpItem.Rotate.Equals(0))
 							gr.ResetTransform();
@@ -963,30 +932,26 @@ namespace Kesco.Lib.Win.Document.Controls.PdfViewControl
             parent.IsRefreshBitmap = false;
         }
 
-        private bool IsPalleteGrayscale(ColorPalette colorPalette)
-        {
-            return (colorPalette.Flags & (int) PaletteFlags.GrayScale) == (int) PaletteFlags.GrayScale ||
-                   colorPalette.Entries.All(t => t.B == t.R && t.G == t.R && t.B == t.G);
-        }
+      
 
         /// <summary>
         ///   Рисование выделения для заметки
         /// </summary>
-        private void DrawSelectedRectangle(Graphics g, Rectangle rect)
+        private void DrawSelectedRectangle(Graphics g, RectangleF rect)
         {
             var w = (int) (WidthSelectedtRect*(Zoom > PDFView.RenderLimit ? PDFView.RenderLimit : Zoom)/100.0);
             w = w < 1 ? 1 : w;
             const int indent = WidthSelectedtRect >> 1;
-            selectedRectangles = new Rectangle[8]
+            selectedRectangles = new RectangleF[8]
                                      {
-                                         new Rectangle(rect.X - indent, rect.Y - indent, w, w),
-                                         new Rectangle(rect.X + (rect.Width >> 1) - indent, rect.Y - indent, w, w),
-                                         new Rectangle(rect.X + rect.Width - indent, rect.Y - indent, w, w),
-                                         new Rectangle(rect.X + rect.Width - indent, rect.Y + (rect.Height >> 1) - indent, w, w),
-                                         new Rectangle(rect.X + rect.Width - indent, rect.Y + rect.Height - indent, w, w),
-                                         new Rectangle(rect.X + (rect.Width >> 1) - indent, rect.Y + rect.Height - indent, w, w),
-                                         new Rectangle(rect.X - indent, rect.Y + rect.Height - indent, w, w),
-                                         new Rectangle(rect.X - indent, rect.Y + (rect.Height >> 1) - indent, w, w)
+                                         new RectangleF(rect.X - indent, rect.Y - indent, w, w),
+                                         new RectangleF(rect.X + (rect.Width /2) - indent, rect.Y - indent, w, w),
+                                         new RectangleF(rect.X + rect.Width - indent, rect.Y - indent, w, w),
+                                         new RectangleF(rect.X + rect.Width - indent, rect.Y + (rect.Height /2) - indent, w, w),
+                                         new RectangleF(rect.X + rect.Width - indent, rect.Y + rect.Height - indent, w, w),
+                                         new RectangleF(rect.X + (rect.Width /2) - indent, rect.Y + rect.Height - indent, w, w),
+                                         new RectangleF(rect.X - indent, rect.Y + rect.Height - indent, w, w),
+                                         new RectangleF(rect.X - indent, rect.Y + (rect.Height /2) - indent, w, w)
                                      };
             g.FillRectangle(Brushes.Black, selectedRectangles[0]);
             g.FillRectangle(Brushes.Black, selectedRectangles[1]);

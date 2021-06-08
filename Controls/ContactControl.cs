@@ -92,7 +92,7 @@ namespace Kesco.Lib.Win.Document.Controls
 				int str_pos = richTextBox1.Text.IndexOf(string.IsNullOrEmpty(richTextBox1.CurrentText) ? "" : richTextBox1.CurrentText);
 				richTextBox1.Text = richTextBox1.Text.Remove(str_pos, richTextBox1.CurrentText.Length);
 			}
-			richTextBox1.InsertLink(keyValuePair.Value, "http://www.com/" + keyValuePair.Key.ToString() + "#Edit");
+			richTextBox1.InsertLink(keyValuePair.Value, "http://www.com/" + keyValuePair.Key.ToString() + "#Edit", keyValuePair.Key);
 		}
 
 		void richTextBox1_MouseHover(object sender, System.EventArgs e)
@@ -126,7 +126,7 @@ namespace Kesco.Lib.Win.Document.Controls
 		{
 			int str_pos = richTextBox1.Text.IndexOf(richTextBox1.CurrentText);
 			richTextBox1.Text = richTextBox1.Text.Remove(str_pos, richTextBox1.CurrentText.Length);
-			richTextBox1.InsertLink(main.Value, "http://www.com/" + main.Key.ToString() + "#Edit");
+			richTextBox1.InsertLink(main.Value, "http://www.com/" + main.Key.ToString() + "#Edit", main.Key);
 		}
 
 		internal void AddContact(Tuple<int, string, string> tuple)
@@ -134,7 +134,7 @@ namespace Kesco.Lib.Win.Document.Controls
 			int str_pos = richTextBox1.Text.IndexOf(richTextBox1.CurrentText);
 			int len = richTextBox1.CurrentText.Length;
 			richTextBox1.Text = richTextBox1.Text.Remove(str_pos, len);
-			richTextBox1.InsertLink(tuple.Item2, "http://www.com/" + tuple.Item3 + "#Edit");
+			richTextBox1.InsertLink(tuple.Item2, "http://www.com/" + tuple.Item3 + "#Edit", tuple.Item3);
 		}
 
 		public bool IsEmail { get { return richTextBox1.IsEmail; } }

@@ -298,6 +298,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\CheckebleImageLinkLabel.resx">
+      <DependentUpon>CheckebleImageLinkLabel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\CheckDateDialog.en.resx">
       <DependentUpon>CheckDateDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -333,9 +336,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StringResources.ru.resx" />
     <None Include="app.config" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Web References\EWSMail\AddDelegateResponseMessageType.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
@@ -593,7 +593,8 @@
     <Compile Include="Components\DocumentComponent.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\ItemsToSendClass.cs" />
+    <Compile Include="Components\DocsToSendClass.cs" />
+    <Compile Include="Components\ImageToSend.cs" />
     <Compile Include="Components\SaveFaxComponent.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -632,6 +633,12 @@
     </Compile>
     <Compile Include="Controls\HoverLinkLabel.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\CheckebleImageLinkLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\CheckebleImageLinkLabel.Designer.cs">
+      <DependentUpon>CheckebleImageLinkLabel.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ImageShowControl.cs">
       <SubType>Component</SubType>
@@ -1450,6 +1457,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SendMessageDialog.ru.resx">
       <DependentUpon>SendMessageDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SendOutDialog.en.resx">
       <DependentUpon>SendOutDialog.cs</DependentUpon>
@@ -2327,6 +2335,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Delete10x10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DocMain.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

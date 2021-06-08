@@ -205,73 +205,61 @@ namespace Kesco.Lib.Win.Document.Select
                                 if (a1 != null)
                                     item.Text = a1.ToString();
                             }
-                            if (imgId == mainImageID)
-                            {
-                                if (archiveID != 0)
-                                {
-                                    if (printed > 0)
-                                    {
-                                        item.ImageIndex = (int) VariantType.MainImageOriginalPrinted;
-                                        item.Type = VariantType.MainImageOriginalPrinted;
-                                    }
-                                    else
-                                    {
-                                        item.ImageIndex = item.ImageType.Equals("TIF",
-                                                                                StringComparison.OrdinalIgnoreCase)
-                                                              ? (int) VariantType.MainImageOriginal
-                                                              : 20;
-                                        item.Type = VariantType.MainImageOriginal;
-                                    }
-                                }
-                                else
-                                {
-                                    if (printed > 0)
-                                    {
-                                        item.ImageIndex = (int) VariantType.MainImagePrinted;
-                                        item.Type = VariantType.MainImagePrinted;
-                                    }
-                                    else
-                                    {
-                                        item.ImageIndex = item.ImageType.Equals("TIF",
-                                                                                StringComparison.OrdinalIgnoreCase)
-                                                              ? (int) VariantType.MainImage
-                                                              : 18;
-                                        item.Type = VariantType.MainImage;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                if (archiveID != 0)
-                                {
-                                    if (printed > 0)
-                                    {
-                                        item.ImageIndex = (int) VariantType.ImageOriginalPrinted;
-                                        item.Type = VariantType.ImageOriginalPrinted;
-                                    }
-                                    else
-                                    {
-                                        item.ImageIndex = item.ImageType.Equals("TIF",
-                                                                                StringComparison.OrdinalIgnoreCase)
-                                                              ? (int) VariantType.ImageOriginal
-                                                              : 19;
-                                        item.Type = VariantType.ImageOriginal;
-                                    }
-                                }
-                                else
-                                {
-                                    if (printed > 0)
-                                    {
-                                        item.ImageIndex = (int) VariantType.ImagePrinted;
-                                        item.Type = VariantType.ImagePrinted;
-                                    }
-                                    else
-                                        item.ImageIndex = item.ImageType.Equals("TIF",
-                                                                                StringComparison.OrdinalIgnoreCase)
-                                                              ? (int) VariantType.Image
-                                                              : 17;
-                                }
-                            }
+							if(imgId == mainImageID)
+							{
+								if(archiveID != 0)
+								{
+									if(printed > 0)
+									{
+										item.ImageIndex = (int)VariantType.MainImageOriginalPrinted;
+										item.Type = VariantType.MainImageOriginalPrinted;
+									}
+									else
+									{
+										item.ImageIndex = item.IsPDF() ? 20 : (int)VariantType.MainImageOriginal;
+										item.Type = VariantType.MainImageOriginal;
+									}
+								}
+								else
+								{
+									if(printed > 0)
+									{
+										item.ImageIndex = (int)VariantType.MainImagePrinted;
+										item.Type = VariantType.MainImagePrinted;
+									}
+									else
+									{
+										item.ImageIndex = item.IsPDF() ? 18 : (int)VariantType.MainImage;
+										item.Type = VariantType.MainImage;
+									}
+								}
+							}
+							else
+							{
+								if(archiveID != 0)
+								{
+									if(printed > 0)
+									{
+										item.ImageIndex = (int)VariantType.ImageOriginalPrinted;
+										item.Type = VariantType.ImageOriginalPrinted;
+									}
+									else
+									{
+										item.ImageIndex = item.IsPDF() ? 19 : (int)VariantType.ImageOriginal;
+										item.Type = VariantType.ImageOriginal;
+									}
+								}
+								else
+								{
+									if(printed > 0)
+									{
+										item.ImageIndex = (int)VariantType.ImagePrinted;
+										item.Type = VariantType.ImagePrinted;
+									}
+									else
+										item.ImageIndex = item.IsPDF() ? 17 : (int)VariantType.Image;
+								}
+							}
                             listViewImages.Items.Add(item);
                             if (mainImageID == imgId)
                                 selecteditem = item;
@@ -312,7 +300,7 @@ namespace Kesco.Lib.Win.Document.Select
                     ImageID = item.ID;
                     docControl1.LoadComplete -= docControl1_LoadComplete;
                     docControl1.LoadComplete += docControl1_LoadComplete;
-                    docControl1.SetImage(ImageID, item.ImageType.Equals("PDF", StringComparison.OrdinalIgnoreCase));
+                    docControl1.SetImage(ImageID, item.IsPDF());
                 }
             }
             if (!docControl1.CompliteLoading)

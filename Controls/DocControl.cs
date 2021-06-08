@@ -716,7 +716,8 @@ namespace Kesco.Lib.Win.Document.Controls
             this.browser.ContextMenuStrip = this.contextMenuStripBrowser;
             resources.ApplyResources(this.browser, "browser");
             this.browser.EnableInternalReloader = true;
-            this.browser.IsWebBrowserContextMenuEnabled = false;
+			this.browser.IsWebBrowserContextMenuEnabled = false;
+			this.browser.PreviewKeyDown += new PreviewKeyDownEventHandler(browser_PreviewKeyDown);
             this.browser.Name = "browser";
             this.browser.SelfNavigate = false;
             this.browser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.browser_DocumentCompleted);
@@ -980,11 +981,6 @@ namespace Kesco.Lib.Win.Document.Controls
             ((System.ComponentModel.ISupportInitialize)(this.faxWatcher)).EndInit();
             this.ResumeLayout(false);
 
-		}
-
-		private void imagePDF_ZoomChanged(object sender, EventArgs e)
-		{
-			UpdateNavigation();
 		}
 
 		#endregion
@@ -1748,6 +1744,7 @@ namespace Kesco.Lib.Win.Document.Controls
 				image.ReloadStamps();
 			else if(imagePDF.ImageDisplayed)
 				imagePDF.ReloadStamps();
+
 		}
 
 		private void BrowserRefresh(bool force = false)
@@ -1804,7 +1801,6 @@ namespace Kesco.Lib.Win.Document.Controls
 					if((trim = idName.ToLower().IndexOf("&")) >= 0)
 						idName = idName.Substring(0, trim);
 
-
 					int id = Int32.Parse(idName);
 					if(Environment.DocDataData.IsDataPresent(id))
 					{
@@ -1843,6 +1839,16 @@ namespace Kesco.Lib.Win.Document.Controls
 			printBrowser.SelfNavigate = false;
 			Controls.Add(printBrowser);
 			ResumeLayout(false);
+		}
+
+		private void browser_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+		{
+			
+		}
+
+		private void imagePDF_ZoomChanged(object sender, EventArgs e)
+		{
+			UpdateNavigation();
 		}
 
 		#endregion
@@ -1931,8 +1937,8 @@ namespace Kesco.Lib.Win.Document.Controls
 
 
 		public int SendFax()
-        {
-            return SendFaxNew();
+		{
+			//return SendFaxNew();
 			if(!Environment.IsFaxSender(curDocID))
 				return curDocID;
 
@@ -1953,7 +1959,7 @@ namespace Kesco.Lib.Win.Document.Controls
 				imID = -1;
 			}
 
-			if(Environment.DocToSend.Contains(oldFileName))
+			if(Environment.DocToSend.ContainsKey(oldFileName))
 			{
 				var dialog = Environment.DocToSend[oldFileName] as Dialogs.SendFaxDialog;
 				if(dialog != null)
@@ -1969,7 +1975,7 @@ namespace Kesco.Lib.Win.Document.Controls
 					var dialog = new Dialogs.SendFaxDialog(oldFileName, CurDocString, docID, imID, IsPDFMode);
 					dialog.DialogEvent += SendFaxDialog_DialogEvent;
 					dialog.Show();
-					Environment.DocToSend.Add(oldFileName, dialog);
+					Environment.DocToSend.TryAdd(oldFileName, dialog);
 
 					if(tf == null || tf.CurAct == Environment.ActionBefore.SendFaxAndMail)
 					{
@@ -1989,9 +1995,9 @@ namespace Kesco.Lib.Win.Document.Controls
 
 			if(dialog == null || string.IsNullOrEmpty(dialog.FileName))
 				return;
-
-			if(Environment.DocToSend.Contains(dialog.FileName))
-				Environment.DocToSend.Remove(dialog.FileName);
+			Form f = null;
+			if(Environment.DocToSend.ContainsKey(dialog.FileName))
+				Environment.DocToSend.TryRemove(dialog.FileName, out f);
 			if(Document.Environment.TmpFilesContains(dialog.FileName))
 			{
 				Document.Objects.TmpFile tf = Environment.GetTmpFileByValue(dialog.FileName);
@@ -2008,17 +2014,19 @@ namespace Kesco.Lib.Win.Document.Controls
 			if(Environment.IsFaxSender(curDocID))
 			{
 				var dialog = new Dialogs.SendFaxDialog(fileName, CurDocString, curDocID, imgID, personID, phoneNumber);
+				dialog.DialogEvent += SendFaxDialog_DialogEvent;
 				dialog.Show();
 			}
 		}
 
 		public int SendFax(int faxID)
-        {
-            return SendFaxNew(faxID);
+		{
+			return SendFaxNew(faxID);
 			if(!Environment.IsFaxSender())
 				return 0;
 
 			var dialog = new Dialogs.SendFaxDialog(faxID, imgID);
+			dialog.DialogEvent += SendFaxDialog_DialogEvent;
 			dialog.Show();
 			return -1;
 		}
@@ -2069,6 +2077,7 @@ namespace Kesco.Lib.Win.Document.Controls
 		{
 			if(!CanSave)
 			{
+				OnNeedSave();
 				NeedChange.Save = true;
 				return;
 			}
@@ -2094,71 +2103,86 @@ namespace Kesco.Lib.Win.Document.Controls
 						bool userConfirmSave = false;
 
 						bool save = false;
+
 						Dialogs.SaveChangesDialog sch = null;
-						tf = Document.Environment.GetTmpFile(this.fileName);
+						Form form = null;
 						// возможно this.fileName - имя временного файла
+						if(Environment.DocToSave.TryGetValue(this.fileName, out form) && form != null)
+						{
+							form.BringToFront();
+							form.Activate();
+						}
+						else
+							Environment.DocToSave.TryAdd(this.fileName, null);
 						if(signDocumentPanel.IsSignInternal)
 						{
 							Lib.Win.MessageForm mf = new Lib.Win.MessageForm(Environment.StringResources.GetString("DocControl_image_NeedSave_Message1") + " (" +
 									this.CurDocString + ", " + Environment.StringResources.GetString("Page") + " " + this.Page.ToString() + ")?", Environment.StringResources.GetString("Save1"),
 									MessageBoxButtons.YesNo);
-							save = (mf.ShowDialog(this.FindForm()) == DialogResult.Yes);
+							if(!Environment.DocToSave.TryUpdate(this.fileName, mf, null))
+								return;
+							userConfirmSave = save = (mf.ShowDialog(this.FindForm()) == DialogResult.Yes);
 						}
 						else
 							if(tf != null) //Document.Environment.TmpFilesContains(this.fileName) && IsMain)
+						{
+							Lib.Win.MessageForm mf = new Lib.Win.MessageForm(Environment.StringResources.GetString("DocControl_image_NeedSave_Message1") + " (" +
+									tf.DocString + ", " + Environment.StringResources.GetString("Page") + " " + this.Page.ToString() + ")?", Environment.StringResources.GetString("Save1"),
+									MessageBoxButtons.YesNo);
+							if(!Environment.DocToSave.TryUpdate(this.fileName, mf, null))
+								return;
+							save = (mf.ShowDialog(this.FindForm()) == DialogResult.Yes);
+						}
+						else
+						{
+							if(isCanSaveVirtualRotation)
 							{
-								Lib.Win.MessageForm mf = new Lib.Win.MessageForm(Environment.StringResources.GetString("DocControl_image_NeedSave_Message1") + " (" +
-										tf.DocString + ", " + Environment.StringResources.GetString("Page") + " " + this.Page.ToString() + ")?", Environment.StringResources.GetString("Save1"),
-										MessageBoxButtons.YesNo);
-								save = (mf.ShowDialog(this.FindForm()) == DialogResult.Yes);
+								// Простой диалог да||нет
+								var mf = new MessageForm(Environment.StringResources.GetString("DocControl_image_NeedSave_Message1") + " (" +
+									CurDocString + ", " + Environment.StringResources.GetString("Page") + " " + Page + ")?", Environment.StringResources.GetString("Save1"), MessageBoxButtons.YesNo);
+								if(!Environment.DocToSave.TryUpdate(this.fileName, mf, null))
+									return;
+								userConfirmSave = save = (mf.ShowDialog(this.FindForm()) == DialogResult.Yes);
 							}
 							else
 							{
-								if(isCanSaveVirtualRotation)
-								{
-									// Простой диалог да||нет
-									var mf = new MessageForm(Environment.StringResources.GetString("DocControl_image_NeedSave_Message1") + " (" +
-										CurDocString + ", " + Environment.StringResources.GetString("Page") + " " + Page + ")?", Environment.StringResources.GetString("Save1"), MessageBoxButtons.YesNo);
-									userConfirmSave = save = (mf.ShowDialog(this.FindForm()) == DialogResult.Yes);
-								}
-								else
-								{
-									sch = new Dialogs.SaveChangesDialog(Path.GetFileName(this.fileName), IsReadonly, act, (docComponent.IsDocument() ? curDocID : -1), Environment.Settings.Folders.Add("SaveChanges"));
-									save = (sch.ShowDialog() == DialogResult.Yes);
-								}
+								sch = new Dialogs.SaveChangesDialog(Path.GetFileName(this.fileName), IsReadonly, act, (docComponent.IsDocument() ? curDocID : -1), Environment.Settings.Folders.Add("SaveChanges"));
+								if(!Environment.DocToSave.TryUpdate(this.fileName, sch, null))
+									return;
+								userConfirmSave = save = (sch.ShowDialog() == DialogResult.Yes);
 							}
+						}
+						Environment.DocToSave.TryRemove(this.fileName, out form);
+
 
 						if(save)
 						{
-							if(userConfirmSave || (sch != null && sch.Result == Dialogs.DelPartDialogResult.Yes) || signDocumentPanel.IsSignInternal)
+							if(userConfirmSave && isCanSaveVirtualRotation)
 							{
 
-								if(isCanSaveVirtualRotation)
+								if(image.ImageDisplayed)
+									image.SetVirtualRotation();
+								else
+									imagePDF.SetVirtualRotation();
+
+								if(signDocumentPanel.IsSignInternal)
 								{
-									if(image.ImageDisplayed)
-										image.SetVirtualRotation();
-									else
-										imagePDF.SetVirtualRotation();
-									
-									if(signDocumentPanel.IsSignInternal)
-									{
-										// Позиция штампа
-										SaveDocImage(true);
-									}
-
-
-                                    // Сохранение позиций штампов
-								    if (IsPDFMode)
-								        imagePDF.SaveStampsPositions();
-								    else
-								        image.SaveStampsPositions();
-
-								    NeedChange.Save = true;
-									return;
+									// Позиция штампа
+									SaveDocImage(true);
 								}
+
+
+								// Сохранение позиций штампов
+								if(IsPDFMode)
+									imagePDF.SaveStampsPositions();
+								else
+									image.SaveStampsPositions();
+
+								NeedChange.Save = true;
+								return;
 							}
 
-						    if(sch == null || sch.Result == Dialogs.DelPartDialogResult.Yes)
+							if(sch == null || sch.Result == Dialogs.DelPartDialogResult.Yes)
 							{
 								saving = true;
 								if(docComponent.IsDocument())
@@ -2188,7 +2212,7 @@ namespace Kesco.Lib.Win.Document.Controls
 							}
 							else
 							{
-								if(sch.Result == Dialogs.DelPartDialogResult.CreateCopy || sch.Result == Dialogs.DelPartDialogResult.ShowCopy)
+								if(sch != null && (sch.Result == Dialogs.DelPartDialogResult.CreateCopy || sch.Result == Dialogs.DelPartDialogResult.ShowCopy))
 								{
 									string real_fileName = Environment.GenerateFullFileName(Path.GetExtension(this.fileName).TrimStart('.'));
 									if(!SaveAs(real_fileName))
@@ -2267,7 +2291,7 @@ namespace Kesco.Lib.Win.Document.Controls
 				}
 			}
 
-            // Тк сохранение отменено, востанавиваю штампы
+			// Тк сохранение отменено, востанавиваю штампы
 			if(image.ImageID > 0 && image.ImageDisplayed)
 				image.ReloadStamps();
 			else if(imagePDF.ImageID > 0 && imagePDF.ImageDisplayed)
@@ -2607,11 +2631,15 @@ namespace Kesco.Lib.Win.Document.Controls
 					dialog.Close();
 			}
 
-			if(Environment.DocToSave.Contains(oldFileName))
+			if(Environment.DocToSave.ContainsKey(oldFileName))
 			{
-				Dialogs.AddDBDocDialog a_dialog = Environment.DocToSave[oldFileName] as Dialogs.AddDBDocDialog;
+				Form a_dialog = null;
+				Environment.DocToSave.TryRemove(oldFileName, out a_dialog);
+				a_dialog = a_dialog as Dialogs.AddDBDocDialog;
 				if(a_dialog != null)
+				{
 					a_dialog.Close();
+				}
 			}
 
 
@@ -2748,6 +2776,15 @@ namespace Kesco.Lib.Win.Document.Controls
 			if(dialog.DialogResult == DialogResult.OK)
 			{
 				string oldFileName = dialog.FileName;
+				if(string.IsNullOrWhiteSpace(oldFileName))
+					return;
+				Form dial = null;
+				if(Environment.DocToSave.TryGetValue(oldFileName, out dial))
+				{
+					if(dial != null && !dial.IsDisposed)
+						dial.Show();
+					return;
+				}
 				int minPage = dialog.MinPage;
 				int maxPage = dialog.MaxPage;
 				int imageID = dialog.ImageID;
@@ -2762,7 +2799,7 @@ namespace Kesco.Lib.Win.Document.Controls
 					saveDialog.DialogEvent += new Lib.Win.DialogEventHandler(SavePart_AddDBDocDialog_DialogEvent);
 					saveDialog.Show();
 
-					Environment.DocToSave.Add(oldFileName, saveDialog);
+					Environment.DocToSave.TryAdd(oldFileName, saveDialog);
 				}
 			}
 			else
@@ -2797,11 +2834,11 @@ namespace Kesco.Lib.Win.Document.Controls
 			var dialog = e.Dialog as Dialogs.AddDBDocDialog;
 			if(dialog == null)
 				return;
-
-			if(!string.IsNullOrEmpty(dialog.OldFileName))
+			Form form = null;
+			if(!string.IsNullOrWhiteSpace(dialog.OldFileName))
 			{
-				if(Environment.DocToSave.Contains(dialog.OldFileName))
-					Environment.DocToSave.Remove(dialog.OldFileName);
+				Environment.DocToSave.TryRemove(dialog.OldFileName, out form);
+				form = null;
 			}
 
 			TmpFile tf = Environment.GetTmpFileByKey(dialog.OldFileName);
@@ -2878,29 +2915,17 @@ namespace Kesco.Lib.Win.Document.Controls
 												else
 												{
 													if(oldFileName.Equals(fileName, StringComparison.CurrentCultureIgnoreCase))
-														imagePDF.DelPart(newFileName, dialog.MinPage, dialog.MaxPage,
-																		 !dialog.GotoDoc);
+														imagePDF.DelPart(newFileName, dialog.MinPage, dialog.MaxPage, !dialog.GotoDoc);
 													else
-														Environment.PDFHelper.DelPart(oldFileName, newFileName, dialog.MinPage,
-																					  dialog.MaxPage);
+														Environment.PDFHelper.DelPart(oldFileName, newFileName, dialog.MinPage, dialog.MaxPage);
 													count = imagePDF.GetFilePagesCount(newFileName);
 												}
 											}
 											if(count < 1)
 												throw new Exception("отсутсвуют стрнаницы в сохраняемом файле");
 											while(
-												!Environment.DocImageData.DocImageFileUpdate(dialog.Server.ID, name, docID,
-																							 oldImageID,
-																							 (imagePDF.ImageDisplayed
-																								  ? "PDF"
-																								  : "TIF"),
-																							 count) && !File.Exists(oldFileName) &&
-												File.Exists(newFileName))
-												if(
-													MessageBox.Show(Environment.StringResources.GetString("NotSaved"),
-																	Environment.StringResources.GetString("Confirmation"),
-																	MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error) ==
-													DialogResult.No)
+												!Environment.DocImageData.DocImageFileUpdate(dialog.Server.ID, name, docID, oldImageID, (imagePDF.ImageDisplayed ? "PDF" : "TIF"), count) && !File.Exists(oldFileName) && File.Exists(newFileName))
+												if(MessageBox.Show(Environment.StringResources.GetString("NotSaved"), Environment.StringResources.GetString("Confirmation"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error) == DialogResult.No)
 													break;
 											if(oldFileName.Equals(image.FileName, StringComparison.CurrentCultureIgnoreCase))
 												image.FileName = oldFileName;
@@ -2908,12 +2933,8 @@ namespace Kesco.Lib.Win.Document.Controls
 									}
 									catch(Exception ex)
 									{
-										ErrorShower.OnShowError(this, ex.Message,
-																Environment.StringResources.GetString("Error"));
-										Data.Env.WriteToLog(ex,
-													   "DocID = " + curDocID.ToString() + "\nNewFileName=" + newFileName +
-													   "\nImageID=" +
-													   imgID.ToString());
+										ErrorShower.OnShowError(this, ex.Message, Environment.StringResources.GetString("Error"));
+										Data.Env.WriteToLog(ex, String.Format("DocID = {0}\nNewFileName = {1}\nImageID = {2}", curDocID, newFileName, imgID));
 									}
 									Environment.LogEmailData.UpdateEmail(oldImageID, dialog.ImageID);
 								}
@@ -2990,16 +3011,13 @@ namespace Kesco.Lib.Win.Document.Controls
 							sendMail = dialog.SendMessage && !dialog.CreateSlaveEForm;
 							parentDocIDs = dialog.ParentDocIDs;
 							childDocIDs = dialog.ChildDocIDs;
-							sendString = Environment.StringResources.GetString("DocControl_SavePart_AddDBDocDialog_DialogEvent_Message1") +
-								" " + dialog.DocString;
+							sendString = Environment.StringResources.GetString("DocControl_SavePart_AddDBDocDialog_DialogEvent_Message1") + " " + dialog.DocString;
 							if(dialog.NeedOpenDoc && dialog.DocID > 0)
 								Environment.OnNewWindow(this, new Components.DocumentSavedEventArgs(dialog.DocID, dialog.ImageID));
 							Send(dialog.DocID);
 						}
 
-						OnDocChanged(this,
-									 new Components.DocumentSavedEventArgs(dialog.DocID, dialog.ImageID, work && dialog.GotoDoc,
-																work && dialog.CreateEForm, dialog.CreateSlaveEForm));
+						OnDocChanged(this,  new Components.DocumentSavedEventArgs(dialog.DocID, dialog.ImageID, work && dialog.GotoDoc, work && dialog.CreateEForm, dialog.CreateSlaveEForm));
 						OnPageChange(this, e);
 					}
 
@@ -3285,10 +3303,10 @@ namespace Kesco.Lib.Win.Document.Controls
 								}
 								dt.Dispose();
 							}
-						Action<List<PrinterObjectClass>, short> switchPrintEform = StartSwitchPrintEform;
+						Action<List<PrinterObjectClass>, int, short> switchPrintEform = StartSwitchPrintEform;
 
 						if(list != null)
-							switchPrintEform.BeginInvoke(list, countCopies, FinishSwitchPrintEform, switchPrintEform);
+							switchPrintEform.BeginInvoke(list, docID, countCopies, FinishSwitchPrintEform, switchPrintEform);
 					}
 					else
 					{
@@ -3341,11 +3359,11 @@ namespace Kesco.Lib.Win.Document.Controls
 										eFormSelection.Add(docTypeID, list);
 										try
 										{
-											Action<List<PrinterObjectClass>, short> switchPrintEform =
+											Action<List<PrinterObjectClass>, int, short> switchPrintEform =
 												StartSwitchPrintEform;
 
 											if(list != null)
-												switchPrintEform.BeginInvoke(list, countCopies, FinishSwitchPrintEform,
+												switchPrintEform.BeginInvoke(list, docID, countCopies, FinishSwitchPrintEform,
 																			 switchPrintEform);
 										}
 										catch(Exception ex)
@@ -3366,11 +3384,10 @@ namespace Kesco.Lib.Win.Document.Controls
 									List<PrinterObjectClass> list = dialog.PrinterObjectList;
 									eFormSelection.Add(docTypeID, list);
 
-									Action<List<PrinterObjectClass>, short> switchPrintEform = StartSwitchPrintEform;
+									Action<List<PrinterObjectClass>, int, short> switchPrintEform = StartSwitchPrintEform;
 
 									if(list != null)
-										switchPrintEform.BeginInvoke(list, countCopies, FinishSwitchPrintEform,
-																	 switchPrintEform);
+										switchPrintEform.BeginInvoke(list, docID, countCopies, FinishSwitchPrintEform, switchPrintEform);
 								}
 							}
 							catch(Exception ex)
@@ -3806,7 +3823,7 @@ namespace Kesco.Lib.Win.Document.Controls
 					{
 						if(image.Modified && CanSave && !docComponent.IsFax())
 						{
-							var mf = new MessageForm( Environment.StringResources.GetString("DocControl_image_NeedSave_Message1") + " (" +
+							var mf = new MessageForm(Environment.StringResources.GetString("DocControl_image_NeedSave_Message1") + " (" +
 									CurDocString + ", " + Environment.StringResources.GetString("Page") + " " +
 									image.Page.ToString() + ")?", Environment.StringResources.GetString("Save1"),
 									MessageBoxButtons.YesNo);
@@ -3828,6 +3845,8 @@ namespace Kesco.Lib.Win.Document.Controls
 								}
 							}
 						}
+						else
+							OnNeedSave();
 						image.Page = value;
 					}
 					else
@@ -3985,12 +4004,8 @@ namespace Kesco.Lib.Win.Document.Controls
 				string file = arg.ToString();
 				if(file != null && file != "" && File.Exists(file) && curDocID > 0)
 				{
-					var mf =
-						new MessageForm(
-							Environment.StringResources.GetString("DocControl_image_NeedSave_Message1") + " (" +
-							CurDocString + ", " + Environment.StringResources.GetString("Page") + " " +
-							Page.ToString() + ")?", Environment.StringResources.GetString("Save1"),
-							MessageBoxButtons.YesNo);
+					var mf = new MessageForm( Environment.StringResources.GetString("DocControl_image_NeedSave_Message1") + " (" + CurDocString + ", " + Environment.StringResources.GetString("Page") + " " +
+							Page.ToString() + ")?", Environment.StringResources.GetString("Save1"), MessageBoxButtons.YesNo);
 					if(mf.ShowDialog(FindForm()) == DialogResult.Yes)
 					{
 						DateTime creationTime = DateTime.Now;
@@ -3999,9 +4014,7 @@ namespace Kesco.Lib.Win.Document.Controls
 						if(MoveFile(file, ref creationTime, out fileName, out server))
 						{
 							int imgID = 0;
-							Environment.DocImageData.DocImageInsert(server.ID, fileName, ref imgID, ref curDocID, 0, "",
-																	DateTime.MinValue, "", "", false, creationTime, 0,
-																	true, PageCount);
+							Environment.DocImageData.DocImageInsert(server.ID, fileName, ref imgID, ref curDocID, 0, "", DateTime.MinValue, "", "", false, creationTime, 0, true, "TIF", PageCount);
 						}
 					}
 				}
@@ -4371,7 +4384,7 @@ namespace Kesco.Lib.Win.Document.Controls
 				compliteLoading = false;
 				imgID = item.ID;
 
-				if(item.ImageType.Equals("pdf", StringComparison.CurrentCultureIgnoreCase))
+				if(item.IsPDF())
 				{
 					if(image.Visible)
 					{
@@ -5405,8 +5418,7 @@ namespace Kesco.Lib.Win.Document.Controls
 								}
 								else
 								{
-									item.ImageIndex = (CanShowSplit()) ? 8 :
-										(item.ImageType.ToUpper() == "TIF" ? (int)VariantType.MainImageOriginal : 20);
+									item.ImageIndex = (CanShowSplit()) ? 8 : (item.IsPDF() ? 20 : (int)VariantType.MainImageOriginal);
 									item.Type = VariantType.MainImageOriginal;
 								}
 							}
@@ -5419,8 +5431,7 @@ namespace Kesco.Lib.Win.Document.Controls
 								}
 								else
 								{
-									item.ImageIndex = (CanShowSplit()) ? 14 :
-										(item.ImageType.ToUpper() == "TIF" ? (int)VariantType.MainImage : 18);
+									item.ImageIndex = (CanShowSplit()) ? 14 : (item.IsPDF() ? 18 : (int)VariantType.MainImage);
 									item.Type = VariantType.MainImage;
 								}
 							}
@@ -5436,7 +5447,7 @@ namespace Kesco.Lib.Win.Document.Controls
 								}
 								else
 								{
-									item.ImageIndex = (CanShowSplit()) ? 13 : (item.ImageType.ToUpper() == "TIF" ? (int)VariantType.ImageOriginal : 19);
+									item.ImageIndex = (CanShowSplit()) ? 13 : (item.IsPDF() ? 19 : (int)VariantType.ImageOriginal);
 									item.Type = VariantType.ImageOriginal;
 								}
 							}
@@ -5448,7 +5459,7 @@ namespace Kesco.Lib.Win.Document.Controls
 									item.Type = VariantType.ImagePrinted;
 								}
 								else
-									item.ImageIndex = (CanShowSplit()) ? 12 : (item.ImageType.ToUpper() == "TIF" ? (int)VariantType.Image : 17);
+									item.ImageIndex = (CanShowSplit()) ? 12 : (item.IsPDF() ? 17 : (int)VariantType.Image);
 							}
 						}
 						list.Add(item);
@@ -5864,11 +5875,10 @@ namespace Kesco.Lib.Win.Document.Controls
 			var dialog = e.Dialog as Dialogs.DocPrintDialog;
 			if(dialog != null && (dialog.DialogResult == DialogResult.OK && dialog.WebMode))
 			{
-				Action<List<PrinterObjectClass>, short> switchPrintEform = StartSwitchPrintEform;
+				Action<List<PrinterObjectClass>, int, short> switchPrintEform = StartSwitchPrintEform;
 
 				if(dialog.PrinterObjectsList != null)
-					switchPrintEform.BeginInvoke(dialog.PrinterObjectsList, dialog.CopiesCount, FinishSwitchPrintEform,
-												 switchPrintEform);
+					switchPrintEform.BeginInvoke(dialog.PrinterObjectsList, dialog.DocID, dialog.CopiesCount, FinishSwitchPrintEform, switchPrintEform);
 			}
 		}
 
@@ -5876,7 +5886,7 @@ namespace Kesco.Lib.Win.Document.Controls
 		{
 			try
 			{
-				var res = (Action<List<PrinterObjectClass>, short>)ar.AsyncState;
+				var res = (Action<List<PrinterObjectClass>, int, short>)ar.AsyncState;
 				res.EndInvoke(ar);
 			}
 			catch(Exception ex)
@@ -5885,7 +5895,7 @@ namespace Kesco.Lib.Win.Document.Controls
 			}
 		}
 
-		private void StartSwitchPrintEform(List<PrinterObjectClass> printerObject, short copiesCount)
+		private void StartSwitchPrintEform(List<PrinterObjectClass> printerObject, int printID, short copiesCount)
 		{
 			foreach(PrinterObjectClass po in printerObject)
 			{
@@ -5895,14 +5905,13 @@ namespace Kesco.Lib.Win.Document.Controls
 					syncPrintEForm.WaitOne(30000, false);
 				if(InvokeRequired)
 					Invoke(new Data.Action<int, string, int, int, short, short>(SwitchPrintEform),
-						   new object[] { po.PrintType, po.URL, curDocID, po.TypeID, po.PaperSize, copiesCount });
+						   new object[] { po.PrintType, po.URL, printID, po.TypeID, po.PaperSize, copiesCount });
 				else
-					SwitchPrintEform(po.PrintType, po.URL, curDocID, po.TypeID, po.PaperSize, copiesCount);
+					SwitchPrintEform(po.PrintType, po.URL, printID, po.TypeID, po.PaperSize, copiesCount);
 			}
 		}
 
-		private void SwitchPrintEform(int printTypeID, string url, int docID, int printID, short paperSize,
-									  short copiesCount)
+		private void SwitchPrintEform(int printTypeID, string url, int docID, int printID, short paperSize, short copiesCount)
 		{
 			switch(printTypeID)
 			{
@@ -5925,7 +5934,7 @@ namespace Kesco.Lib.Win.Document.Controls
 							Console.WriteLine("{0}: Report print start", DateTime.Now.ToString("HH:mm:ss fff"));
 							Environment.Report.PrintReport(Dialogs.DocPrintDialog.Printer, url, docID, printID,
 														   paperSize, copiesCount);
-                            Console.WriteLine("{0}: Report print end", DateTime.Now.ToString("HH:mm:ss fff"));
+							Console.WriteLine("{0}: Report print end", DateTime.Now.ToString("HH:mm:ss fff"));
 						}
 						catch(Exception ex)
 						{
@@ -5971,7 +5980,7 @@ namespace Kesco.Lib.Win.Document.Controls
 
 		private void StartPrintEForm(string url, int printTypeID, short paperSize, short copiesCount)
 		{
-            Console.WriteLine("{0}: print e-form started", DateTime.Now.ToString("HH:mm:ss fff"));
+			Console.WriteLine("{0}: print e-form started", DateTime.Now.ToString("HH:mm:ss fff"));
 			if(printBrowser == null)
 				RestoreBrowser();
 			try
@@ -5996,8 +6005,8 @@ namespace Kesco.Lib.Win.Document.Controls
 				if(printbrowser.Tag is Classes.Tag)
 				{
 					Classes.Tag tag = (Classes.Tag)printbrowser.Tag;
-					Console.WriteLine("{0}: print orintation {1}",DateTime.Now.ToString("HH:mm:ss fff"), tag.TypeID);
-					printbrowser.Print(Dialogs.DocPrintDialog.Printer,  Environment.ShowHelpString + "printtemplate" + ((tag.TypeID == 3) ? "landscape" : "") +
+					Console.WriteLine("{0}: print orintation {1}", DateTime.Now.ToString("HH:mm:ss fff"), tag.TypeID);
+					printbrowser.Print(Dialogs.DocPrintDialog.Printer, Environment.ShowHelpString + "printtemplate" + ((tag.TypeID == 3) ? "landscape" : "") +
 								  ".html" + ((tag.CopiesCount > 1) ? ("?numcopies=" + tag.CopiesCount.ToString()) : ""));
 					Application.DoEvents();
 					try
@@ -6007,7 +6016,7 @@ namespace Kesco.Lib.Win.Document.Controls
 							Controls.Remove(printbrowser);
 							if(printbrowser == printBrowser)
 								printBrowser = null;
-							printbrowser.DocumentCompleted -= printBrowser_DocumentCompleted;
+							//printbrowser.DocumentCompleted -= printBrowser_DocumentCompleted;
 							printbrowser.Dispose();
 							printbrowser = null;
 						}
@@ -6016,7 +6025,7 @@ namespace Kesco.Lib.Win.Document.Controls
 					{
 						Data.Env.WriteToLog(ex);
 					}
-                    Console.WriteLine("{0}: releace event", DateTime.Now.ToString("HH:mm:ss fff"));
+					Console.WriteLine("{0}: releace event", DateTime.Now.ToString("HH:mm:ss fff"));
 					try
 					{
 						if(syncPrintEForm != null)
@@ -6026,7 +6035,7 @@ namespace Kesco.Lib.Win.Document.Controls
 					{
 						Data.Env.WriteToLog(ex);
 					}
-                    Console.WriteLine("{0}: set event", DateTime.Now.ToString("HH:mm:ss fff"));
+					Console.WriteLine("{0}: set event", DateTime.Now.ToString("HH:mm:ss fff"));
 				}
 				else
 				{
@@ -6039,7 +6048,7 @@ namespace Kesco.Lib.Win.Document.Controls
 							Controls.Remove(printbrowser);
 							if(printbrowser == printBrowser)
 								printBrowser = null;
-							printbrowser.DocumentCompleted -= printBrowser_DocumentCompleted;
+							//printbrowser.DocumentCompleted -= printBrowser_DocumentCompleted;
 							printbrowser.Dispose();
 							printbrowser = null;
 						}
@@ -6421,19 +6430,13 @@ namespace Kesco.Lib.Win.Document.Controls
 						item.ImageIndex = !CanShowSplit() ? (int)VariantType.Image : 12;
 						break;
 					case VariantType.ImageOriginal:
-						item.ImageIndex = !CanShowSplit() ? (item.ImageType.ToUpper() == "TIF"
-													 ? (int)VariantType.ImageOriginal
-													 : 19)
-											  : (int)VariantType.Data;
+						item.ImageIndex = !CanShowSplit() ? (item.IsPDF() ? 19 : (int)VariantType.ImageOriginal) : (int)VariantType.Data;
 						break;
 					case VariantType.MainImage:
 						item.ImageIndex = !CanShowSplit() ? (int)VariantType.MainImage : 13;
 						break;
 					case VariantType.MainImageOriginal:
-						item.ImageIndex = !CanShowSplit()  ? (item.ImageType.ToUpper() == "TIF"
-													 ? (int)VariantType.MainImageOriginal
-													 : 20)
-											  : 14;
+						item.ImageIndex = !CanShowSplit() ? (item.IsPDF() ? 20 : (int)VariantType.MainImageOriginal) : 14;
 						break;
 					case VariantType.Data:
 						eform = item;
@@ -6443,10 +6446,7 @@ namespace Kesco.Lib.Win.Document.Controls
 			variantList.ResumeLayout();
 			if((!showWebPanel && (hasData || addEForm)) || !hasImage)
 			{
-				var item = new VariantListItem(
-					curDocID,
-					VariantType.Data,
-					Environment.StringResources.GetString("EForm")) { ImageIndex = (int)VariantType.Data };
+				var item = new VariantListItem(curDocID, VariantType.Data, Environment.StringResources.GetString("EForm")) { ImageIndex = (int)VariantType.Data };
 				variantList.Items.Add(item);
 			}
 			else if(eform != null)
@@ -6608,7 +6608,7 @@ namespace Kesco.Lib.Win.Document.Controls
 					ToolStripMenuItemCut.Visible = false;
 					ToolStripMenuItemCut.Enabled = false;
 					ToolStripMenuItemCopy.Visible = false;
-					ToolStripMenuItemCopy.Enabled = false;
+					ToolStripMenuItemCopy.Enabled = false; 
 					ToolStripMenuItemPaste.Visible = false;
 					ToolStripMenuItemPaste.Enabled = false;
 				}
@@ -6703,7 +6703,7 @@ namespace Kesco.Lib.Win.Document.Controls
 				imID = -1;
 			}
 
-			if(Environment.DocToSend.Contains(oldFileName))
+			if(Environment.DocToSend.ContainsKey(oldFileName))
 			{
 				var dialog = Environment.DocToSend[oldFileName] as Dialogs.SendOutDialog;
 				if(dialog != null)
@@ -6732,19 +6732,41 @@ namespace Kesco.Lib.Win.Document.Controls
 				
 			Dialogs.SendOutDialog dialog = new Dialogs.SendOutDialog();
 			dialog.FaxAdd(curDocID, this.ImageID, faxID);
+			dialog.DialogEvent += FaxOutDialog_DialogEvent;
 			dialog.Show();
+			Environment.DocToSend.TryAdd(fileName, dialog);
 			return -1;
 		}
 
-		internal void LoadImage(Components.ProcessingDocs processingDocs)
+		private void FaxOutDialog_DialogEvent(object source, DialogEventArgs e)
 		{
-			if(!string.IsNullOrEmpty(processingDocs.sendFileName))
-				LoadFile(processingDocs.sendFileName, 0);
+			var dialog = e.Dialog as Dialogs.SendOutDialog;
+
+			/*if(dialog == null || string.IsNullOrEmpty(dialog.FileName))
+				return;
+			Form f = null;
+			if(Environment.DocToSend.ContainsKey(dialog.FileName))
+				Environment.DocToSend.TryRemove(dialog.FileName, out f);
+			if(Document.Environment.TmpFilesContains(dialog.FileName))
+			{
+				Document.Objects.TmpFile tf = Environment.GetTmpFileByValue(dialog.FileName);
+				if(tf != null)
+				{
+					tf.CurAct = Environment.ActionBefore.None;
+					tf.LinkCnt--;
+				}
+			}*/
+		}
+
+		internal void LoadImage(Components.ImageToSend imgToSend)
+		{
+			if(!string.IsNullOrEmpty(imgToSend.SendFileName))
+				LoadFile(imgToSend.SendFileName, 0);
 			else
-				if(processingDocs.docImageID > 0)
-					LoadImage(processingDocs.docImageID, 0);
+				if(imgToSend.ImageID > 0)
+					LoadImage(imgToSend.ImageID, 0);
 				else
-					LoadFile(processingDocs.sourceFileName, 0);
+					LoadFile(imgToSend.SourceFileName, 0);
 		}
 
 		private bool externalSave = false;

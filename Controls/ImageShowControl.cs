@@ -34,8 +34,6 @@ namespace Kesco.Lib.Win.Document.Controls
 		/// </summary>
 		private bool shiftPushed = false;
 
-		private Point? oldDspPoint;
-
 		/// <summary>
 		/// начальный x мыши при драге картинки
 		/// </summary>
@@ -544,7 +542,7 @@ namespace Kesco.Lib.Win.Document.Controls
 
 															g.TextRenderingHint = tt.FontRenderingHint;
 															sf.Trimming = StringTrimming.Word;
-															using(Font f = new Font(tt.LfFont.FontFamily, tt.LfFont.SizeInPoints * g.DpiY / (float)ImageControl.TiffAnnotation.GetDevicePixel(), tt.LfFont.Style))
+															using(Font f = new Font(tt.LfFont.FontFamily, tt.LfFont.SizeInPoints, tt.LfFont.Style))
 																g.DrawString(tt.TextPrivateData.SzAnoText, f, new SolidBrush(tt.RgbColor1), newRect, sf);
 
 															g.ResetTransform();
@@ -599,7 +597,7 @@ namespace Kesco.Lib.Win.Document.Controls
 																	g.Transform = mx1;
 																	break;
 															}
-															g.DrawString(an.TextPrivateData.SzAnoText, new Font(an.LfFont.FontFamily, an.LfFont.SizeInPoints * g.DpiY / (float)ImageControl.TiffAnnotation.GetDevicePixel(), an.LfFont.Style), new SolidBrush(an.RgbColor2), newRect1, sf1);
+															g.DrawString(an.TextPrivateData.SzAnoText, new Font(an.LfFont.FontFamily, an.LfFont.SizeInPoints, an.LfFont.Style), new SolidBrush(an.RgbColor2), newRect1, sf1);
 															g.ResetTransform();
 															g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
 															break;
@@ -633,7 +631,7 @@ namespace Kesco.Lib.Win.Document.Controls
 								libTiff.SetImageToTiff(tifw, libTiff.ConvertToBitonal(bmp), leaveAnnotation && !burnAnnotation ? info.Annotation : null);
 							else
 								if(bmp.PixelFormat != pf)
-									libTiff.SetImageToTiff(tifw, ConvertTo(pf, bmp, false), leaveAnnotation && !burnAnnotation ? info.Annotation : null);
+									libTiff.SetImageToTiff(tifw, libTiff.ConvertTo(pf, bmp), leaveAnnotation && !burnAnnotation ? info.Annotation : null);
 								else
 									libTiff.SetImageToTiff(tifw, bmp, leaveAnnotation && !burnAnnotation ? info.Annotation : null);
 							libTiff.SavePage(tifw);

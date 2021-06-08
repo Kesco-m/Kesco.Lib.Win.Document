@@ -32,7 +32,6 @@ namespace Kesco.Lib.Win.Document.Search
 		private Options.Root r;
 		protected XmlDocument xml;
 		protected int id;
-		private int counterRefreshHtml;
 		private string _text;
 		private EnabledFeatures features;
 
@@ -409,8 +408,8 @@ namespace Kesco.Lib.Win.Document.Search
 				WindowsIdentity wi = WindowsIdentity.GetCurrent();
 				var p = new WindowsPrincipal(wi);
 				if(p.IsInRole("EURO\\Programists") || p.IsInRole("TEST\\Programists") ||
-					wi.Name.EndsWith("\\semen", true, null) || wi.Name.EndsWith("\\koval", true, null) ||
-					wi.Name.EndsWith("\\zhdanov", true, null) || wi.Name.EndsWith("\\kubay", true, null))
+					wi.Name.EndsWith("\\koval", true, null) ||
+					wi.Name.EndsWith("\\kubay", true, null))
 					panel1.ContextMenu = contextMenu1;
 			}
 			catch
@@ -478,7 +477,6 @@ namespace Kesco.Lib.Win.Document.Search
 
 		private void html_refresh()
 		{
-			counterRefreshHtml++;
 
 			optionsSettings.AddSettings(Data.DALC.Documents.Search.Options.GetHTML(xml));
 
@@ -550,6 +548,16 @@ namespace Kesco.Lib.Win.Document.Search
 							elOptions.RemoveChild(elOption);
 					}
 				}
+				var sepOptions = option.GetExtOptions();
+				if(sepOptions != null && sepOptions.Count > 0)
+				{
+					foreach(string str in sepOptions)
+					{
+						elOption = (XmlElement)xml.SelectSingleNode("Options/Option[@name='" + str + "']");
+						if(elOption != null)
+							elOption.SetAttribute("Separate", false.ToString());
+					}
+				}
 				html_refresh();
 				return;
 			}
@@ -585,6 +593,42 @@ namespace Kesco.Lib.Win.Document.Search
 							elOptions.AppendChild(subxml);
 						}
 					}
+				}
+				suboptions = option.GetExtOptions();
+				if(suboptions != null && suboptions.Count > 0)
+				{
+					foreach(string str in suboptions)
+					{
+						var subOption = (XmlElement)xml.SelectSingleNode("Options/Option[@name='" + str + "']");
+						if(subOption != null)
+							subOption.SetAttribute("Separate", true.ToString());
+					}
+				}
+				var sepOptions = option.GetSepOptions();
+				if(sepOptions!=null)
+				{
+					for(int i = 0; i< sepOptions.Count; i++)
+					{
+						var subOption = xml.CreateElement("Option");
+						subOption.SetAttribute("name", Option.GetMeta(sepOptions[i]).Name);
+						option = Option.CreateOption(elOption);
+						for(int j = 0; option.NegativeOption != null && j < option.NegativeOption.Length; j++)
+						{
+							XmlElement tOption = (XmlElement)xml.SelectSingleNode("Options/Option[@name=\"" + option.NegativeOption[j] + "\"]");
+							if(tOption != null)
+							{
+								Option confOption = Option.CreateOption(tOption);
+								MessageBox.Show(Environment.StringResources.GetString("ConflictItem") + Option.GetMeta(confOption.GetType()).Description);
+								e.NewValue = CheckState.Unchecked;
+								return;
+							}
+						}
+						XmlElement ttOption = (XmlElement)xml.SelectSingleNode("Options/Option[@name=\"" + Option.GetMeta(sepOptions[i]).Name + "\"]");
+						if(ttOption == null)
+							elOptions.AppendChild(subOption);
+					}
+					elOption.SetAttribute("Separate", true.ToString());
+					lv_refresh();
 				}
 				html_refresh();
 				EditNode(elOption, true);
@@ -844,6 +888,7 @@ namespace Kesco.Lib.Win.Document.Search
 				case "Message.Incoming.By":
 				case "Message.Outgoing.By":
 				case "Document.ChangedBy":
+				case "Выполнен":
 				case "Image.ChangedBy":
 				case "Image.Сохранил":
 				case "Image.ИзменилХранилище":

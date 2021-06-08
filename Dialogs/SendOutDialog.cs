@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.DirectoryServices;
 using System.Drawing;
@@ -13,10 +13,10 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using System.Xml;
+using iTextSharp.text.pdf;
 using Kesco.Lib.Win.Data.Temp.Objects;
 using Kesco.Lib.Win.Document.EWSMail;
-using iTextSharp.text.pdf;
-using System.Collections;
 
 namespace Kesco.Lib.Win.Document.Dialogs
 {
@@ -28,7 +28,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 		{
 			InitializeComponent();
 			this.docControl.ExternalSave = true;
-			this.toolStripButton2.Visible = false;
+			//this.toolStripButton2.Visible = false;
 			contacts = new List<KeyValuePair<int, DataRow>>();
 			splitContainer1.Panel2Collapsed = true;
 		}
@@ -48,6 +48,8 @@ namespace Kesco.Lib.Win.Document.Dialogs
 
 		Dictionary<string, string> mails;
 
+		Components.ImageToSend currentImageToSend = null;
+
 		public event EventHandler EditPush;
 
 		private void OnEditPush()
@@ -62,8 +64,6 @@ namespace Kesco.Lib.Win.Document.Dialogs
 				Data.Env.WriteToLog(ex);
 			}
 		}
-
-		private SynchronizedCollection<object[]> InternalObjects;
 
 		#endregion
 
@@ -161,7 +161,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 					if(infos != null && infos.Count > 0)
 					foreach( var con in flowLayoutPanel.Controls)
 					{
-						LinkLabel li = con as LinkLabel;
+						Controls.CheckebleImageLinkLabel li = con as Controls.CheckebleImageLinkLabel;
 						if(li != null && li.Tag.Equals(infos[0]))
 						{
 							linkLabel_LinkClicked(li, new LinkLabelLinkClickedEventArgs(null));
@@ -173,58 +173,149 @@ namespace Kesco.Lib.Win.Document.Dialogs
 			this.ResumeLayout();
 		}
 
-        private void linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (splitContainer1.Panel2Collapsed)
-                splitContainer1.Panel2Collapsed = false;
-			LinkLabel ll = (LinkLabel)sender;
-            linkLabel1.Text = ll.Text;
-			Components.ProcessingDocs a = ll.Tag as Components.ProcessingDocs ;
-
-			LoadImage(a);
-        }
-
-		private void LoadImage(Components.ProcessingDocs a)
+		private void linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
+			if(splitContainer1.Panel2Collapsed)
+				splitContainer1.Panel2Collapsed = false;
+			//((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+			//this.splitContainer1.Panel1.SuspendLayout();
+			//this.splitContainer1.Panel2.SuspendLayout();
+			//this.splitContainer1.SuspendLayout();
+			//tableLayoutPanelImage.SuspendLayout();
+			this.tableLayoutPanelImages.SuspendLayout();
+			for(int i = tableLayoutPanelImages.Controls.Count -1; i > -1; i-- )
+			{
+				var con = tableLayoutPanelImages.Controls[i];
+				tableLayoutPanelImages.Controls.RemoveAt(i);
+				con.Dispose();
+			}
+			Controls.CheckebleImageLinkLabel ll = (Controls.CheckebleImageLinkLabel )sender;
+			//linkLabel1.Text = ll.Text;
+			Components.ProcessingDocs a = ll.Tag as Components.ProcessingDocs;
+			Components.ImageToSend its = null;
+			int row = 0;
+			foreach(var cits in a.imageToSends)
+			{
+				if(!cits.Error)
+				{
+					var li = AddLabel(cits, a.docString, row++);
+					if(its == null && cits.CanBeSended)
+					{
+						its = cits;
+						li.LinkVisited = true;
+						li.CheckBoxVisible = a.imageToSends.Count > 1;
+					}
+				}
+			}
+			if(its != null)
+				LoadImage(its);
+			this.tableLayoutPanelImages.ResumeLayout(true);
+			//this.splitContainer1.Panel1.ResumeLayout(false);
+			//this.splitContainer1.Panel2.ResumeLayout(false);
+			//((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+			//this.splitContainer1.ResumeLayout(false);
+			//this.tableLayoutPanelImage.ResumeLayout(false);
+			this.PerformLayout();
+		}
+
+		private Controls.CheckebleImageLinkLabel AddLabel(Components.ImageToSend its, string text, int row)
+		{
+			Controls.CheckebleImageLinkLabel li = new Controls.CheckebleImageLinkLabel();
+			li.Tag = its;
+			li.Checked = its.CanBeSended;
+			li.CheckBoxVisible = true;
+			li.ImageHead = null;
+			li.AutoSize = true;
+			li.Dock = DockStyle.Fill;
+			li.LinkClicked += linkLabel1_LinkClicked;
+			li.ImageClose = (System.Drawing.Image)(global::Kesco.Lib.Win.Document.Properties.Resources.ResourceManager.GetObject("ImageRemove"));
+			if(li.ImageClose != null)
+				li.Click += new EventHandler(LinkImage_Click);
+			li.CheckedChanged += LinkImage_CheckedChanged;
+			tableLayoutPanelImages.Controls.Add(li,0,row);
+			li.Text = text;
+			return li;
+		}
+
+		private void LinkImage_CheckedChanged(object sender, EventArgs e)
+		{
+			Controls.CheckebleImageLinkLabel li = sender as Controls.CheckebleImageLinkLabel;
+			if(li == null)
+				return;
+			Components.ImageToSend its = li.Tag as Components.ImageToSend;
+			Components.ImageToSend cits = tabControlSettings.Tag as Components.ImageToSend;
+			Components.ProcessingDocs cpd = null;
+			int id = -1;
+			foreach(var pd in infos)
+			{
+				if(pd.imageToSends!= null && pd.imageToSends.Contains(its))
+				{
+					cpd = pd;
+					id = cpd.imageToSends.IndexOf(its);
+					break;
+				}
+			}
+			its.CanBeSended = li.Checked;
+			foreach(var con in flowLayoutPanel.Controls)
+			{
+				Controls.CheckebleImageLinkLabel ll = con as Controls.CheckebleImageLinkLabel;
+				if(ll != null && ll.Tag.Equals(cpd))
+				{
+					ll.Text = cpd.docString + ' ' + "(" + (cpd.GetFullSize() > 1024 ? cpd.GetFullSize() > 820000 ? (cpd.GetFullSize() / 1048576f).ToString("N2") + "MB" : (cpd.GetFullSize() / 1024f).ToString("N2") + "KB" : cpd.GetFullSize().ToString() + "B") + ")";
+					break;
+				}
+			}
+			if((its.DocID == cits.DocID && its.ImageID == cits.ImageID) || its.FileName == cits.FileName)
+				tabControlSettings.Tag = its;
+			if(cpd != null)
+				cpd.imageToSends[id] = its;
+		}
+
+		private void LoadImage(Components.ImageToSend a)
+		{
+			radioButtonMainFormat.Visible = false;
 			if(a != null)
 			{
-				bool isPDF = Environment.IsPdf(a.sourceFileName);
+				tabControlSettings.Tag = a;
+				bool isPDF = Environment.IsPdf(a.SourceFileName);
 				int pagecount = 0;
 				if(isPDF)
 				{
-					pdfRadio.Enabled = false;
+					pdfRadio.Enabled = true;
+					pdfRadio.Checked = true;
 					tifRadio.Enabled = true;
-					Environment.PDFHelper.Open(a.sourceFileName, null);
+					Environment.PDFHelper.Open(a.SourceFileName, null);
 					pagecount = Environment.PDFHelper.PageCount;
 					Environment.PDFHelper.Close();
 				}
 				else
 				{
-					tifRadio.Enabled = false;
+					tifRadio.Enabled = true;
 					pdfRadio.Enabled = true;
-					pagecount = Environment.LibTiff.GetCountPages(a.sourceFileName);
+					tifRadio.Checked = true;
+					pagecount = Environment.LibTiff.GetCountPages(a.SourceFileName);
 				}
 
 				textBoxEndPage.Maximum = pagecount;
 				textBoxStartPage.Maximum = pagecount;
 				textBoxEndPage.Value = pagecount;
-				switch(a.pagesType)
+				switch(a.PagesType)
 				{
 					case 1:
 						rbSelectedPages.Checked = true;
-						string[] ar = a.pages.Split('-');
+						string[] ar = a.Pages.Split('-');
 						textBoxStartPage.Value = decimal.Parse(ar[0]);
 						textBoxEndPage.Value = decimal.Parse(ar[1]);
 						break;
 					case 2:
 						rbSelectNum.Checked = true;
-						textBoxSelectNum.Text = a.pages;
+						textBoxSelectNum.Text = a.Pages;
 						break;
 					default:
 						rbAllPages.Checked = true;
 						break;
 				}
-				switch(a.formatType)
+				switch(a.FormatType)
 				{
 					case 1:
 						tifRadio.Checked = true;
@@ -232,24 +323,48 @@ namespace Kesco.Lib.Win.Document.Dialogs
 					case 2:
 						pdfRadio.Checked = true;
 						break;
-					default:
-						radioButtonMainFormat.Checked = true;
-						break;
+						//default:
+						//	radioButtonMainFormat.Checked = true;
+						//	break;
 				}
-				if(a.bw.HasValue)
+				if(a.BlackWight.HasValue)
 				{
-					radioButtonBlackWhite.Checked = a.bw.Value;
-					radioButtonColor.Checked = !a.bw.Value;
+					radioButtonBlackWhite.Checked = a.BlackWight.Value;
+					radioButtonColor.Checked = !a.BlackWight.Value;
 				}
-				linkLabel1.Tag = a;
+				else
+					radioButtonBlackWhite.Checked = radioButtonColor.Checked = false;
+				checkBoxSendNotes.Checked = a.SendNotes;
+				checkBoxBurnNotes.Checked = a.SendNotes && a.BurnNotes;
+				radioButtonBurnStamps.Checked = a.BurnStamps;
+				radioButtonSendStamps.Checked = !a.BurnStamps;
 				docControl.LoadImage(a);
+				docControl.SelectTool(0);
 			}
 		}
 
 		private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			if(linkLabel1.Tag != null)
-				Environment.OnNewWindow(this, new Components.DocumentSavedEventArgs(linkLabel1.Tag as string, linkLabel1.Text));
+			var con = sender as Controls.CheckebleImageLinkLabel;
+			if(con == null)
+				return;
+			Components.ImageToSend its = con.Tag as Components.ImageToSend;
+			if(its != null)
+			{
+				ClearSelectedImage();
+				LoadImage(its);
+				con.LinkVisited = true;
+			}
+		}
+
+		private void ClearSelectedImage()
+		{
+			foreach(var con in tableLayoutPanelImages.Controls)
+			{
+				var cll = con as Controls.CheckebleImageLinkLabel;
+				if(cll != null)
+					cll.LinkVisited = false;
+			}
 		}
 
 		void richTextBoxContact_SearchStart(object sender, System.EventArgs e)
@@ -290,61 +405,65 @@ namespace Kesco.Lib.Win.Document.Dialogs
 			if(pd.Error)
 				return false;
 
-			LinkLabel li = new LinkLabel();
+			Controls.CheckebleImageLinkLabel li = new Controls.CheckebleImageLinkLabel();
 			li.AutoSize = true;
-
-			li.Text = pd.docString + "(" + (pd.Size > 1024 ? pd.Size > 820000 ? (pd.Size / 1048576f).ToString("N2") + "MB" : (pd.Size / 1024f).ToString("N2") + "KB" : pd.Size.ToString() + "B") + ")";
+			li.CheckBoxVisible = false;
+			li.Text = pd.docString + "(" + (pd.GetFullSize() > 1024 ? pd.GetFullSize() > 820000 ? (pd.GetFullSize() / 1048576f).ToString("N2") + "MB" : (pd.GetFullSize() / 1024f).ToString("N2") + "KB" : pd.GetFullSize().ToString() + "B") + ")";
 			li.Tag = pd;
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SendOutDialog));
-			li.Image = (System.Drawing.Image)(resources.GetObject("ImageRemove"));
-			if(li.Image != null)
-			{
-				li.ImageAlign = ContentAlignment.TopRight;
+			if(pd.imageToSends.Count > 1)
+				li.ImageHead = foldersList.Images[0];
+			else
+				li.ImageHead = null;
+			li.ImageClose = (System.Drawing.Image)(global::Kesco.Lib.Win.Document.Properties.Resources.ResourceManager.GetObject("ImageRemove"));
+			if(li.ImageClose != null)
 				li.Click += new EventHandler(li_Click);
-				int wid = li.PreferredWidth;
-				li.AutoSize = false;
-				li.Width = wid + li.Image.Width;
-			}
 			flowLayoutPanel.Controls.Add(li);
 			li.LinkClicked += new LinkLabelLinkClickedEventHandler(linkLabel_LinkClicked);
 			return true;
 		}
 
-		void li_Click(object sender, EventArgs e)
+		private void LinkImage_Click(object sender, EventArgs e)
 		{
-			LinkLabel li = sender as LinkLabel;
-			MouseEventArgs ar = e as MouseEventArgs;
-			if(ar != null &&li != null && infos != null && infos.Count > 1)
+			Controls.CheckebleImageLinkLabel li = sender as Controls.CheckebleImageLinkLabel;
+			if(li != null)
 			{
-				if(ar.Location.X > li.Width - li.Image.Width - 8)
-				{
-					Components.ProcessingDocs pd = li.Tag as Components.ProcessingDocs;
-					flowLayoutPanel.Controls.Remove(li);
-					if(pd == null)
-						return;
-					if(!string.IsNullOrEmpty(pd.sendFileName) && File.Exists(pd.sendFileName))
-						File.Delete(pd.sendFileName);
-					int num = infos.IndexOf(pd);
-					if(num > -1)
-						infos.RemoveAt(num);
-					if(pd.Equals(linkLabel1.Tag))
-					{
-						linkLabel1.Tag = null;
-						splitContainer1.Panel2Collapsed = true;
-					}
-				}
+				Components.ImageToSend its = li.Tag as Components.ImageToSend;
+				tableLayoutPanelImages.Controls.Remove(li);
+				its.CanBeSended = false;
 			}
-			
 		}
 
-
+		void li_Click(object sender, EventArgs e)
+		{
+			Controls.CheckebleImageLinkLabel li = sender as Controls.CheckebleImageLinkLabel;
+			if(li != null && infos != null && infos.Count > 0)
+			{
+				Components.ProcessingDocs pd = li.Tag as Components.ProcessingDocs;
+				flowLayoutPanel.Controls.Remove(li);
+				li.Dispose();
+				if(pd == null)
+					return;
+				foreach(var its in pd.imageToSends)
+					if(!string.IsNullOrEmpty(its.SendFileName) && File.Exists(its.SendFileName))
+						File.Delete(its.SendFileName);
+				int num = infos.IndexOf(pd);
+				if(num > -1)
+					infos.RemoveAt(num);
+				if(!splitContainer1.Panel2Collapsed)
+					splitContainer1.Panel2Collapsed = true;
+			}
+		}
 
 		#endregion
 
 		private void Send()
 		{
 			if(infos == null || infos.Count < 1)
-				return;
+			{
+				var mf = new Win.MessageForm("Отправить письмо без вложений?", Environment.StringResources.GetString("Warning"), MessageBoxButtons.YesNo, MessageBoxDefaultButton.Button2);
+				if(mf.ShowDialog(this) == DialogResult.No)
+					return;
+			}
 			if((contacts == null || contacts.Count < 1) && (sendmail == null || sendmail.Count < 1))
 			{
 				if(richTextBoxContact.IsEmail)
@@ -354,23 +473,23 @@ namespace Kesco.Lib.Win.Document.Dialogs
 			bool usePdf = pdfRadio.Checked;
 			bool useTif = tifRadio.Checked;
 
-			string exte = Path.GetExtension(infos[0].sourceFileName).TrimStart('.');
+			string exte = "tif";//Path.GetExtension(infos[0].imageToSends[0].SourceFileName).TrimStart('.');
 			if(usePdf)
 				exte = "pdf";
-			if(useTif)
-				exte = "tif";
+			//if(useTif)
+			//	exte = "tif";
 
 			string newFileName = Path.Combine(Path.GetTempPath(), Environment.GenerateFileName(exte));
 			Console.WriteLine("new filename: " + newFileName);
 
 			Cursor = Cursors.WaitCursor;
 			// проверка на наличие файлов
-			File.Copy(infos[0].sourceFileName, newFileName);
+			//File.Copy(infos[0].sourceFileName, newFileName);
 
-			if(!File.Exists(newFileName))
-				return;
-			else
-				File.Delete(newFileName);
+			//if(!File.Exists(newFileName))
+			//	return;
+			//else
+			//	File.Delete(newFileName);
 			if(!string.IsNullOrEmpty(Environment.FullExchangeServerEwsUrl))
 			{
 
@@ -429,52 +548,67 @@ namespace Kesco.Lib.Win.Document.Dialogs
 				cit.Items.Items[0] = mt;
 
 				EWSMail.AttachmentType[ ] attachments = new EWSMail.AttachmentType[infos.Count];
-
+				if(infos != null)
 				for(int i = 0; i < infos.Count; i++)
 				{
-					if(!usePdf && !useTif)
-						exte = Path.GetExtension(infos[i].sourceFileName).TrimStart('.');
-					if(!string.IsNullOrEmpty(infos[i].sendFileName) && File.Exists(infos[i].sendFileName))
-					{	
-						File.Copy(infos[i].sendFileName, newFileName);
-					}
-					else
-						File.Copy(infos[i].sourceFileName, newFileName);
-									
-					string sendDocFileName = Path.Combine(Path.GetTempPath(), "Document" + i.ToString() + "." + exte);
-					try
+					foreach(var ino in infos[i].imageToSends)
 					{
-						if(File.Exists(sendDocFileName))
-							File.Delete(sendDocFileName);
+						if(!ino.CanBeSended)
+							continue;
+						usePdf = ino.FormatType == 2;
+						useTif = ino.FormatType == 1;
+						if(!usePdf && !useTif)
+							exte = Path.GetExtension(ino.SourceFileName).TrimStart('.');
+						else
+							if(useTif)
+							 exte = "tif";
+						if(usePdf)
+							exte = "pdf";
+						if(!string.IsNullOrEmpty(ino.SendFileName) && File.Exists(ino.SendFileName))
+						{
+							File.Copy(ino.SendFileName, newFileName);
+						}
+						else
+							File.Copy(ino.SourceFileName, newFileName);
 
-						File.Move(newFileName, sendDocFileName);
+						string sdfn = ino.FileNameToSend;
+						if(string.IsNullOrWhiteSpace(sdfn))
+							sdfn = "Document" + i.ToString() + "." + exte;
+						string sendDocFileName = Path.Combine(Path.GetTempPath(), sdfn);
+						try
+						{
+							if(File.Exists(sendDocFileName))
+								File.Delete(sendDocFileName);
+
+							File.Move(newFileName, sendDocFileName);
+						}
+						catch(System.Exception ex)
+						{
+							Data.Env.WriteToLog(ex);
+							Error.ErrorShower.OnShowError(this, ex.Message, "");
+						}
+						FileAttachmentType fat = new FileAttachmentType();
+						byte[] binaryData;
+						using(FileStream inFile = new FileStream(sendDocFileName, FileMode.Open, FileAccess.Read))
+						{
+							binaryData = new Byte[inFile.Length];
+							inFile.Read(binaryData, 0, (int)inFile.Length);
+							inFile.Close();
+						}
+						fat.Content = binaryData;
+						if(exte == "pdf")
+							fat.ContentType = "application/pdf";
+						else
+							fat.ContentType = "image/tiff";
+						fat.Name = Name = infos[i].docString + "." + exte;
+						attachments[i] = fat;
 					}
-					catch(System.Exception ex)
-					{
-						Data.Env.WriteToLog(ex);
-						Error.ErrorShower.OnShowError(this, ex.Message, "");
-					}
-					FileAttachmentType fat = new FileAttachmentType();
-					byte[ ] binaryData;
-					using(FileStream inFile = new FileStream(sendDocFileName, FileMode.Open, FileAccess.Read))
-					{
-						binaryData = new Byte[inFile.Length];
-						inFile.Read(binaryData, 0, (int)inFile.Length);
-						inFile.Close();
-					}
-					fat.Content = binaryData;
-					if(exte == "pdf")
-						fat.ContentType = "application/pdf";
-					else
-						fat.ContentType = "image/tiff";
-					fat.Name = Name = infos[i].docString + "." + exte;
-					attachments[i] = fat;
 				}
 				try
 				{
 					CreateItemResponseType crit = esb.CreateItem(cit);
 					if(crit == null || crit.ResponseMessages.Items.Length == 0 || crit.ResponseMessages.Items[0].ResponseClass != ResponseClassType.Success)
-						throw new System.Exception("Can't save message");
+						throw new System.Exception("Can't save message/n" + ((crit == null) ? "no response" : "responce length " + crit.ResponseMessages.Items.Length.ToString()) + "\n" + Environment.FullExchangeServerEwsUrl);
 					ItemIdType iid = ((ItemInfoResponseMessageType)(((crit)).ResponseMessages.Items[0])).Items.Items[0].ItemId;
 					CreateAttachmentResponseType cart = esb.CreateAttachment
 					(
@@ -524,17 +658,21 @@ namespace Kesco.Lib.Win.Document.Dialogs
 
 				}
 			}
-			foreach(Components.ProcessingDocs pd in infos.Where(x => x.docImageID > 0))
+			foreach(Components.ProcessingDocs pd in infos.Where(x => x.imageToSends!=null))
 			{
-				if(contacts != null && contacts.Count > 0)
-					Environment.LogEmailData.LogEmail(pd.docImageID, Environment.PersonData.GetPerson(contacts[0].Key), contacts[0].Value[Environment.FaxRecipientData.ContactField].ToString());
-				else if(richTextBoxContact.SearchText.Length > 0)
-					Environment.LogEmailData.LogEmail(pd.docImageID, "", richTextBoxContact.SearchText);
+				foreach(var ino in pd.imageToSends.Where(x => x.ImageID > 0))
+				{
+					if(contacts != null && contacts.Count > 0)
+						Environment.LogEmailData.LogEmail(ino.ImageID, Environment.PersonData.GetPerson(contacts[0].Key), contacts[0].Value[Environment.FaxRecipientData.ContactField].ToString());
+					else if(sendmail.Count > 0)
+						Environment.LogEmailData.LogEmail(ino.ImageID, sendmail[0].Item2, sendmail[0].Item3);
+				}
+				foreach(var ino in pd.imageToSends.Where(x => x.FaxID > 0))
+					Task.Factory.StartNew(() => { Environment.FaxOutData.MarkResend(ino.FaxID); });
+
+				foreach(var ino in pd.imageToSends.Where(x => x.SendFileName != null))
+					Slave.DeleteFile(ino.SendFileName);
 			}
-			foreach(Components.ProcessingDocs pd in infos.Where(x => x.faxID > 0))
-				Task.Factory.StartNew(() => { Environment.FaxOutData.MarkResend(pd.faxID); });
-			foreach(Components.ProcessingDocs pd in infos.Where(x => !string.IsNullOrEmpty(x.sendFileName)))
-				Slave.DeleteFile(pd.sendFileName);
 			Slave.DeleteFile(newFileName);
 		}
 
@@ -547,7 +685,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 				infos = new SynchronizedCollection<Components.ProcessingDocs>();
 				add = true;
 			}
-			if(infos.FirstOrDefault(x => x.sourceFileName == filename) == null)
+			if(infos.FirstOrDefault(x => x.imageToSends != null && x.imageToSends.FirstOrDefault(y => y.SourceFileName == filename) ==null) == null)
 			{
 				Components.ProcessingDocs docc = new Components.ProcessingDocs(curDocString, filename);
 				infos.Add(docc);
@@ -568,10 +706,10 @@ namespace Kesco.Lib.Win.Document.Dialogs
 				infos = new SynchronizedCollection<Components.ProcessingDocs>();
 				add = true;
 			}
-			if(!(imageID is int)  || infos.FirstOrDefault(x=> x.docImageID == (int)imageID) == null)
+			if(!(imageID is int)  || infos.FirstOrDefault(x=> x.docID == docID) == null)
 			{
 				Components.ProcessingDocs docc = new Components.ProcessingDocs(docID, imageID);
-				if(infos.FirstOrDefault(x => x.docImageID == docc.docImageID) == null && !docc.Error)
+				if(infos.FirstOrDefault(x => x.docID == docc.docID) == null && !docc.Error)
 				{
 					infos.Add(docc);
 					if(add)
@@ -588,7 +726,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 		{
 			if(infos == null)
 				infos = new SynchronizedCollection<Components.ProcessingDocs>();
-			if(infos.FirstOrDefault(x => x.faxID == faxID) == null)
+			if(infos.FirstOrDefault(x => x.docID == docID) == null)
 			{
 				Components.ProcessingDocs docc = new Components.ProcessingDocs(docID, imgID, faxID);
 				if(!docc.Error)
@@ -604,6 +742,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 
 		private void docControl_LoadComplete(object sender, EventArgs e)
 		{
+			docControl.ShowAnnotationGroup(System.Reflection.Missing.Value);
 			buttonApply.Visible = false;
 			//CleanTabSettings();
 		}
@@ -622,7 +761,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 
 		private void label1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			if((contacts == null || contacts.Count< 1) && (sendmail == null || sendmail.Count < 1))
+			//if((contacts == null || contacts.Count< 1) && (sendmail == null || sendmail.Count < 1))
 				FindPersonWeb();
 		}
 
@@ -776,44 +915,44 @@ namespace Kesco.Lib.Win.Document.Dialogs
 
 		private void SelectSenderDialogEmail_DialogEvent(object source, DialogEventArgs e)
 		{
-				try
+			try
+			{
+				Enabled = true;
+				Select.SelectSenderDialog dialog = e.Dialog as Select.SelectSenderDialog;
+				if(dialog != null)
 				{
-					Enabled = true;
-					Select.SelectSenderDialog dialog = e.Dialog as Select.SelectSenderDialog;
-					if(dialog != null)
+					switch(dialog.DialogResult)
 					{
-						switch(dialog.DialogResult)
-						{
-							case DialogResult.OK:
-								{
-									Web.ContactDialog ccDialog = new Web.ContactDialog(Environment.CreateContactString, "personContactCategor=4&personContactText=" + "" + "&docview=yes");
-									ccDialog.Owner = this;
-									ccDialog.DialogEvent += CreateContactDialog_DialogEvent;
-									ccDialog.Show();
-									Enabled = false;
-									send = false;
-									return;
-								}
-							default:
-								if(dialog.DialogResult != DialogResult.Yes)
-								{
-									send = false;
-									return;
-								}
-								break;
-						}
-						AddContact(2, dialog.SenderText, dialog.ContactString);
-						if(send)
-						{
-							send = false;
-							Send();
-						}
+						case DialogResult.OK:
+							{
+								Web.ContactDialog ccDialog = new Web.ContactDialog(Environment.CreateContactString, "personContactCategor=4&personContactText=" + "" + "&docview=yes");
+								ccDialog.Owner = this;
+								ccDialog.DialogEvent += CreateContactDialog_DialogEvent;
+								ccDialog.Show();
+								Enabled = false;
+								send = false;
+								return;
+							}
+						default:
+							if(dialog.DialogResult != DialogResult.Yes)
+							{
+								send = false;
+								return;
+							}
+							break;
+					}
+					AddContact(2, dialog.SenderText, dialog.ContactString);
+					if(send)
+					{
+						send = false;
+						Send();
 					}
 				}
-				catch(Exception ex)
-				{
-					Data.Env.WriteToLog(ex);
-				}
+			}
+			catch(Exception ex)
+			{
+				Data.Env.WriteToLog(ex);
+			}
 		}
 
 		private void SelectSenderDialogFax_DialogEvent(object source, DialogEventArgs e)
@@ -951,113 +1090,121 @@ namespace Kesco.Lib.Win.Document.Dialogs
 
 		private void formatRadio_CheckedChanged(object sender, EventArgs e)
 		{
-			Components.ProcessingDocs pd = linkLabel1.Tag as Components.ProcessingDocs;
-			if(!buttonApply.Visible)
-				buttonApply.Visible = pd.formatType != (pdfRadio.Checked?2:tifRadio.Checked?1:0);
+			Components.ImageToSend its = tabControlSettings.Tag as Components.ImageToSend;
+			if(its != null && !buttonApply.Visible)
+				buttonApply.Visible = its.FormatType != (pdfRadio.Checked?2:tifRadio.Checked?1:0);
 		}
 
 		private void rbSelectedPages_CheckedChanged(object sender, EventArgs e)
 		{
-			Components.ProcessingDocs pd = linkLabel1.Tag as Components.ProcessingDocs;
+			Components.ImageToSend its = tabControlSettings.Tag as Components.ImageToSend;
 			if(!buttonApply.Visible)
-				buttonApply.Visible = pd.pagesType != 1;
+				buttonApply.Visible = its.PagesType != 1;
 			textBoxStartPage.Enabled = textBoxEndPage.Enabled = rbSelectedPages.Checked;
 		}
 
 		private void rbAllPages_CheckedChanged(object sender, EventArgs e)
 		{
-			Components.ProcessingDocs pd = linkLabel1.Tag as Components.ProcessingDocs;
+			Components.ImageToSend its = tabControlSettings.Tag as Components.ImageToSend;
 			if(!buttonApply.Visible)
-				buttonApply.Visible = pd.pagesType != 0;
+				buttonApply.Visible = its.PagesType != 0;
 		}
 
 		private void rbSelectNum_CheckedChanged(object sender, EventArgs e)
 		{
-			Components.ProcessingDocs pd = linkLabel1.Tag as Components.ProcessingDocs;
+			Components.ImageToSend its = tabControlSettings.Tag as Components.ImageToSend;
 			if(!buttonApply.Visible)
-				buttonApply.Visible = pd.pagesType != 2;
+				buttonApply.Visible = its.PagesType != 2;
 			textBoxSelectNum.Enabled = rbSelectNum.Checked;
 		}
 
 		private void buttonApply_Click(object sender, EventArgs e)
 		{
-			Components.ProcessingDocs pd = linkLabel1.Tag as Components.ProcessingDocs;
-			if(pd == null)
+			Components.ImageToSend its = tabControlSettings.Tag as Components.ImageToSend;
+			if(its == null)
 				return;
 			send = true;
-			if(radioButtonMainFormat.Checked && rbAllPages.Checked)
+			int num = -1;
+			var doc = infos.FirstOrDefault(x => x.imageToSends != null && x.imageToSends.Contains(its));
+			if(doc != null)
+				 num = doc.imageToSends.IndexOf(its);
+			if(radioButtonMainFormat.Checked && rbAllPages.Checked && radioButtonColor.Checked && doc != null && !doc.imageToSends[num].HasStamp)
 			{
-				int num = infos.IndexOf(pd);
-				if(num > -1)
+				FileInfo fi = new FileInfo(its.SourceFileName);
+				doc.imageToSends[num].Size = fi.Length;
+				doc.imageToSends[num].Pages = "";
+				doc.imageToSends[num].PagesType = 0;
+				doc.imageToSends[num].FormatType = 0;
+				doc.imageToSends[num].BlackWight = null;
+				if(!string.IsNullOrEmpty(doc.imageToSends[num].SendFileName) && File.Exists(doc.imageToSends[num].SendFileName))
 				{
-					FileInfo fi = new FileInfo(pd.sourceFileName);
-					infos[num].Size = fi.Length;
-					infos[num].pages = "";
-					infos[num].pagesType = 0;
-					infos[num].formatType = 0;
-					infos[num].bw = null;
-					if(!string.IsNullOrEmpty(infos[num].sendFileName) && File.Exists(infos[num].sendFileName))
-					{
-						File.Delete(infos[num].sendFileName);
-						infos[num].sendFileName = null;
-					}
-					foreach(var con in flowLayoutPanel.Controls)
-					{
-						LinkLabel li = con as LinkLabel;
-						if(li != null && li.Tag.Equals(pd))
-						{
-							li.Text = pd.docString + "(" + (fi.Length > 1024 ? fi.Length > 820000 ? (fi.Length / 1048576f).ToString("N2") + "MB" : (fi.Length / 1024f).ToString("N2") + "KB" : fi.Length.ToString() + "B") + ")";
-							li.Tag = infos[num];
-							linkLabel_LinkClicked(li, new LinkLabelLinkClickedEventArgs(null));
-							break;
-						}
-					}
-
-					return;
+					File.Delete(doc.imageToSends[num].SendFileName);
+					doc.imageToSends[num].SendFileName = null;
 				}
-			}
-			
-			Components.ProcessingDocs info = infos.FirstOrDefault(x => x.sourceFileName == pd.sourceFileName || (pd.docImageID > 0 && x.docImageID == pd.docImageID));
-			if(info == null)
+				foreach(var cont in flowLayoutPanel.Controls)
+				{
+					///?
+					Controls.CheckebleImageLinkLabel li = cont as Controls.CheckebleImageLinkLabel;
+					if(li != null && li.Tag.Equals(its))
+					{
+						li.Text = doc.docString + "(" + (fi.Length > 1024 ? fi.Length > 820000 ? (fi.Length / 1048576f).ToString("N2") + "MB" : (fi.Length / 1024f).ToString("N2") + "KB" : fi.Length.ToString() + "B") + ")";
+						li.Tag = doc.imageToSends[num];
+						linkLabel_LinkClicked(li, new LinkLabelLinkClickedEventArgs(null));
+						break;
+					}
+				}
+
+				return;
+			}		
+			if(doc == null)
 			{
 				CleanTabSettings();
 				splitContainer1.Panel2Collapsed = true;
 				return;
 			}
-			info.pagesType = rbSelectedPages.Checked ? 1 : rbSelectNum.Checked ? 2 : 0;
-			info.pages ="";
+			doc.imageToSends[num].PagesType = rbSelectedPages.Checked ? 1 : rbSelectNum.Checked ? 2 : 0;
+			doc.imageToSends[num].Pages ="";
 			if(rbSelectedPages.Checked)
-			info.pages = string.Format("{0}-{1}", (int)textBoxStartPage.Value, (int)textBoxEndPage.Value);
+				doc.imageToSends[num].Pages = string.Format("{0}-{1}", (int)textBoxStartPage.Value, (int)textBoxEndPage.Value);
 			if( rbSelectNum.Checked)
-				info.pages = textBoxSelectNum.Text;
-			info.formatType = pdfRadio.Checked?2: tifRadio.Checked?1:0;
+				doc.imageToSends[num].Pages = textBoxSelectNum.Text;
+			doc.imageToSends[num].FormatType = pdfRadio.Checked?2: tifRadio.Checked?1:0;
 			if(radioButtonBlackWhite.Checked || radioButtonColor.Checked)
-			info.bw = radioButtonBlackWhite.Checked;
-			if(!string.IsNullOrEmpty(pd.sendFileName))
+				doc.imageToSends[num].BlackWight = radioButtonBlackWhite.Checked;
+			doc.imageToSends[num].SendNotes = checkBoxSendNotes.Checked;
+			doc.imageToSends[num].BurnNotes = checkBoxSendNotes.Checked && checkBoxBurnNotes.Checked;
+			doc.imageToSends[num].BurnStamps = radioButtonBurnStamps.Checked;
+			if(!string.IsNullOrEmpty(its.SendFileName))
 			{
-				File.Delete(pd.sendFileName);
-				pd.sendFileName = null;
+				File.Delete(its.SendFileName);
+				its.SendFileName = null;
 			}
 
-			Task task = Task<bool>.Factory.StartNew(new Func<object, bool>(MakeImage), (object)(new object[ ] { pd, (int)textBoxEndPage.Maximum}));
+			Task task = Task<bool>.Factory.StartNew(new Func<object, bool>(MakeImage), (object)(new object[ ] { its, (int)textBoxEndPage.Maximum}));
 			Task.Factory.ContinueWhenAny(new Task[] {task}, new Action<Task>(EndConvert));
 		}
+
+		private void buttonApplyAll_Click(object sender, EventArgs e)
+		{
+
+		}
+
 
 		public bool MakeImage(object obj)
 		{
 			List<int> pages = null;
 			object[ ] objs = obj as object[ ];
-			Components.ProcessingDocs pd = objs[0] as Components.ProcessingDocs;
+			Components.ImageToSend pd = objs[0] as Components.ImageToSend;
 			int count = (int)objs[1];
 			
 			int startPage = 0;
 			int endPage = 0;
-			bool isPDF = Environment.IsPdf(pd.sourceFileName);
-			if(pd.pagesType < 2)
+			bool isPDF = Environment.IsPdf(pd.SourceFileName);
+			if(pd.PagesType < 2)
 			{
-				if(pd.pagesType == 1)
+				if(pd.PagesType == 1)
 				{
-					string[] ar = pd.pages.Split('-');
+					string[] ar = pd.Pages.Split('-');
 					startPage = int.Parse(ar[0]);
 					endPage = int.Parse(ar[1]);
 				}
@@ -1065,7 +1212,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 					startPage = 1;
 				if(endPage < startPage)
 					endPage = startPage;
-				if(endPage > count || pd.pagesType == 0)
+				if(endPage > count || pd.PagesType == 0)
 					endPage = count;
 				if(endPage < startPage)
 					endPage = startPage;
@@ -1075,7 +1222,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 			}
 			else
 			{
-				string[ ] nums = pd.pages.Split(" ,;.".ToCharArray());
+				string[ ] nums = pd.Pages.Split(" ,;.".ToCharArray());
 				List<int> ints = new List<int>();
 				int lastGood = -1;
 				int val = -1;
@@ -1179,47 +1326,311 @@ namespace Kesco.Lib.Win.Document.Dialogs
 			if(pages.Count == 0)
 				return false;
 
-			if(pd.formatType == 2 || (pd.formatType == 0 && isPDF))
+			if(pd.FormatType == 2 || (pd.FormatType == 0 && isPDF))
 			{
-				if(!string.IsNullOrEmpty(pd.sendFileName))
-					File.Delete(pd.sendFileName);
+				if(!string.IsNullOrEmpty(pd.SendFileName))
+					File.Delete(pd.SendFileName);
 				else
-					pd.sendFileName = Path.Combine(Path.GetTempPath(), Path.GetTempFileName());
+					pd.SendFileName = Path.Combine(Path.GetTempPath(), Path.GetTempFileName());
 				if(isPDF)
 				{
-					Environment.PDFHelper.SavePart(pd.sourceFileName, pd.sendFileName, pages);
+					if(pd.HasStamp)
+					{ }
+					else
+					Environment.PDFHelper.SavePart(pd.SourceFileName, pd.SendFileName, pages);
 				}
 				else
 				{
-					TiffToPDF(pd.sourceFileName, pd.sendFileName, pages, (pd.bw.HasValue && pd.bw.Value ? null : pages), pd.docImageID);
+					TiffToPDF(pd.SourceFileName, pd.SendFileName, pages, (pd.BlackWight.HasValue && pd.BlackWight.Value ? null : pages), pd.ImageID);
 				}
 			}
-			else if(pd.formatType == 1 || !isPDF)
+			else if(pd.FormatType == 1 || !isPDF)
 			{
-				if(!string.IsNullOrEmpty(pd.sendFileName))
-					File.Delete(pd.sendFileName);
+				if(!string.IsNullOrEmpty(pd.SendFileName))
+					File.Delete(pd.SendFileName);
 				else
-					pd.sendFileName = Path.Combine(Path.GetTempPath(), Path.GetTempFileName());
+					pd.SendFileName = Path.Combine(Path.GetTempPath(), Path.GetTempFileName());
 				ushort[] ar = pages.Select(x => (ushort)(x - 1)).ToArray();
 				if(isPDF)
 				{
-					PDFToTiff(pd.sourceFileName, pd.sendFileName, pages, (pd.bw.HasValue && pd.bw.Value?null:pages), pd.docImageID);
+					PDFToTiff(pd.SourceFileName, pd.SendFileName, pages, (pd.BlackWight.HasValue && pd.BlackWight.Value ? null : pages), pd.ImageID, pd.BurnStamps);
 				}
 				else
-					Environment.LibTiff.ExtLT.TIFCopyFile(pd.sourceFileName, pd.sendFileName, ar, pd.bw.HasValue && pd.bw.Value? null:ar, 0);
+				{
+					if(!pd.HasStamp && (!pd.SendNotes || !pd.BurnNotes))
+					{
+						Environment.LibTiff.ExtLT.TIFCopyFile(pd.SourceFileName, pd.SendFileName, ar, pd.BlackWight.HasValue && pd.BlackWight.Value ? null : ar, 0, pd.SendNotes);
+						return false;
+					}
+					return MakeTiffImage(pd, ar);
+				}
 			}
 
 			return false;
 		}
 
-		private bool PDFToTiff(string input, string output, List< int> pages, List<int> colorPages, int imageID)
+		private bool MakeTiffImage(Components.ImageToSend its, ushort[] ar)
+		{
+			if(its.BurnNotes || its.BurnStamps)
+			{
+				IntPtr tifw = IntPtr.Zero;
+				ImageControl.TiffAnnotation tiffAnnotation = null;
+				List<StampItem> stampItems = (its.ImageID > 0) ? Environment.DocSignatureData.GetStamps(its.ImageID) : null;
+				try
+				{
+					if(string.IsNullOrEmpty(its.SendFileName))
+						its.SendFileName = Path.GetTempFileName();
+					File.Delete(its.SendFileName);
+					tifw = Environment.LibTiff.ExtLT.TIFOpenW(its.SendFileName, "w");
+					for(int n = 0; n < ar.Length; n++)
+					{
+						Tiff.PageInfo info = Environment.LibTiff.GetImageFromTiff(its.SourceFileName, ar[n]);
+						if(info != null)
+						{
+							System.Drawing.Imaging.PixelFormat pf;
+							Bitmap bmp = info.Image;
+							pf = bmp.PixelFormat;
+							if(bmp.HorizontalResolution > MaxSendResolution )
+								if(bmp.VerticalResolution > MaxSendResolution)
+									bmp.SetResolution(MaxSendResolution, MaxSendResolution);
+								else
+									bmp.SetResolution(MaxSendResolution, bmp.VerticalResolution);
+
+							if(bmp.VerticalResolution > MaxSendResolution)
+								bmp.SetResolution(bmp.HorizontalResolution, MaxSendResolution);
+							if(its.BurnNotes || stampItems != null && stampItems.Count > 0)
+							{
+
+								IEnumerable<Data.Temp.Objects.StampItem> pageStamps = null;
+								if(stampItems != null)
+									pageStamps = stampItems.Where(x => x.Page == ar[n]);
+
+								if(pageStamps != null && pageStamps.Any() || info.Annotation != null)
+								{
+									if(bmp.PixelFormat != System.Drawing.Imaging.PixelFormat.Format24bppRgb || bmp.PixelFormat != System.Drawing.Imaging.PixelFormat.Format32bppArgb)
+									{
+										Bitmap tm = new Bitmap(bmp);
+										tm.SetResolution(bmp.HorizontalResolution, bmp.VerticalResolution);
+										bmp = tm;
+									}
+									float drez = bmp.VerticalResolution / bmp.HorizontalResolution;
+									System.Drawing.Drawing2D.Matrix mx = null;
+									using(Graphics g = Graphics.FromImage(bmp))
+									{
+										if(its.BurnNotes && info.Annotation != null)
+										{
+											tiffAnnotation = new ImageControl.TiffAnnotation(this);
+											tiffAnnotation.Parse(info.Annotation);
+											ArrayList figuresList = tiffAnnotation.GetFigures(false);
+											foreach(object figure in figuresList)
+											{
+												ImageControl.TiffAnnotation.IBufferBitmap bb = figure as ImageControl.TiffAnnotation.IBufferBitmap;
+												if(bb != null)
+												{
+													switch(figure.GetType().Name)
+													{
+														case "ImageEmbedded":
+															ImageControl.TiffAnnotation.ImageEmbedded img = (ImageControl.TiffAnnotation.ImageEmbedded)figure;
+															g.DrawImage(img.Img, img.LrBounds.Location.X, img.LrBounds.Location.Y, img.LrBounds.Size.Width, img.LrBounds.Size.Height);
+															break;
+														case "StraightLine":
+															ImageControl.TiffAnnotation.StraightLine line = (ImageControl.TiffAnnotation.StraightLine)figure;
+															if(line.LinePoints == null)
+																continue;
+															g.DrawLine(new Pen(new SolidBrush(line.RgbColor1), Convert.ToSingle(line.ULineSize)), line.LinePoints[0], line.LinePoints[1]);
+															break;
+														case "FreehandLine":
+															ImageControl.TiffAnnotation.FreehandLine fline = (ImageControl.TiffAnnotation.FreehandLine)figure;
+															if(fline.LinePoints == null)
+																continue;
+															for(int i = 0; i < fline.LinePoints.Length; i += 2)
+															{
+																if(i != 0)
+																	g.DrawLine(new Pen(new SolidBrush(fline.RgbColor1), Convert.ToSingle(fline.ULineSize)), fline.LinePoints[i - 1], fline.LinePoints[i]);
+																g.DrawLine(new Pen(new SolidBrush(fline.RgbColor1), Convert.ToSingle(fline.ULineSize)), fline.LinePoints[i], fline.LinePoints[i + 1]);
+															}
+															break;
+														case "HollowRectangle":
+															{
+																ImageControl.TiffAnnotation.HollowRectangle rect = (ImageControl.TiffAnnotation.HollowRectangle)figure;
+																Bitmap bitmapUp = bb.GetBitmap(bmp, InterpolationMode.Bilinear);
+																g.DrawImage(bitmapUp, rect.LrBounds.X, rect.LrBounds.Y);
+															}
+															break;
+														case "FilledRectangle":
+															{
+																ImageControl.TiffAnnotation.FilledRectangle frect = (ImageControl.TiffAnnotation.FilledRectangle)figure;
+																Bitmap bitmapUp = bb.GetBitmap(bmp, InterpolationMode.Bilinear);
+																g.DrawImage(bitmapUp, frect.LrBounds.X, frect.LrBounds.Y);
+															}
+															break;
+														case "TypedText":
+															ImageControl.TiffAnnotation.TypedText tt = (ImageControl.TiffAnnotation.TypedText)figure;
+															StringFormat sf = new StringFormat();
+															mx = null;
+															Rectangle newRect = tt.LrBounds;
+															switch(tt.TextPrivateData.NCurrentOrientation)
+															{
+																case 900:
+																	mx = new System.Drawing.Drawing2D.Matrix();
+																	newRect = new Rectangle(tt.LrBounds.X, tt.LrBounds.Y + tt.LrBounds.Height, tt.LrBounds.Height, tt.LrBounds.Width);
+																	mx.RotateAt(270, new PointF(newRect.X, newRect.Y));
+																	g.Transform = mx;
+																	break;
+																case 1800:
+																	mx = new System.Drawing.Drawing2D.Matrix();
+																	newRect = tt.LrBounds;
+																	mx.RotateAt(180, new PointF(tt.LrBounds.Location.X + tt.LrBounds.Width / 2, tt.LrBounds.Location.Y + tt.LrBounds.Height / 2));
+																	g.Transform = mx;
+																	break;
+																case 2700:
+																	mx = new System.Drawing.Drawing2D.Matrix();
+																	newRect = new Rectangle(tt.LrBounds.X + tt.LrBounds.Width, tt.LrBounds.Y, tt.LrBounds.Height, tt.LrBounds.Width);
+																	mx.RotateAt(90, new PointF(newRect.X, newRect.Y));
+																	g.Transform = mx;
+
+																	break;
+
+															}
+
+															g.TextRenderingHint = tt.FontRenderingHint;
+															sf.Trimming = StringTrimming.Word;
+															using(Font f = new Font(tt.LfFont.FontFamily, tt.LfFont.SizeInPoints, tt.LfFont.Style))
+																g.DrawString(tt.TextPrivateData.SzAnoText, f, new SolidBrush(tt.RgbColor1), newRect, sf);
+
+															g.ResetTransform();
+															g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+															break;
+														case "TextStump":
+															ImageControl.TiffAnnotation.TextStump ts = (ImageControl.TiffAnnotation.TextStump)figure;
+															StringFormat sf3 = new StringFormat();
+															g.TextRenderingHint = ts.FontRenderingHint;
+
+															g.DrawString(ts.TextPrivateData.SzAnoText, ts.LfFont, new SolidBrush(ts.RgbColor1), ts.LrBounds, sf3);
+															g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+															break;
+														case "TextFromFile":
+															ImageControl.TiffAnnotation.TextFromFile tf = (ImageControl.TiffAnnotation.TextFromFile)figure;
+															StringFormat sf2 = new StringFormat();
+															g.TextRenderingHint = tf.FontRenderingHint;
+
+															g.DrawString(tf.TextPrivateData.SzAnoText, tf.LfFont, new SolidBrush(tf.RgbColor1), tf.LrBounds, sf2);
+															g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+															break;
+														case "AttachANote":
+															ImageControl.TiffAnnotation.AttachANote an = (ImageControl.TiffAnnotation.AttachANote)figure;
+															StringFormat sf1 = new StringFormat();
+
+															g.TextRenderingHint = an.FontRenderingHint;
+
+															g.FillRectangle(Brushes.Black, an.LrBounds.X + 2, an.LrBounds.Y + 2, an.LrBounds.Width, an.LrBounds.Height);
+															g.FillRectangle(new SolidBrush(an.RgbColor1), an.LrBounds);
+															g.DrawRectangle(Pens.Black, an.LrBounds.X, an.LrBounds.Y, an.LrBounds.Width, an.LrBounds.Height);
+
+															System.Drawing.Drawing2D.Matrix mx1 = null;
+															Rectangle newRect1 = an.LrBounds;
+															switch(an.TextPrivateData.NCurrentOrientation)
+															{
+																case 900:
+																	mx1 = new System.Drawing.Drawing2D.Matrix();
+																	newRect1 = new Rectangle(an.LrBounds.X, an.LrBounds.Y + an.LrBounds.Height, an.LrBounds.Height, an.LrBounds.Width);
+																	mx1.RotateAt(270, new PointF(newRect1.X, newRect1.Y));
+																	g.Transform = mx1;
+																	break;
+																case 1800:
+																	mx1 = new System.Drawing.Drawing2D.Matrix();
+																	newRect1 = an.LrBounds;
+																	mx1.RotateAt(180, new PointF(an.LrBounds.Location.X + an.LrBounds.Width / 2, an.LrBounds.Location.Y + an.LrBounds.Height / 2));
+																	g.Transform = mx1;
+																	break;
+																case 2700:
+																	mx1 = new System.Drawing.Drawing2D.Matrix();
+																	newRect1 = new Rectangle(an.LrBounds.X + an.LrBounds.Width, an.LrBounds.Y, an.LrBounds.Height, an.LrBounds.Width);
+																	mx1.RotateAt(90, new PointF(newRect1.X, newRect1.Y));
+																	g.Transform = mx1;
+																	break;
+															}
+															g.DrawString(an.TextPrivateData.SzAnoText, new Font(an.LfFont.FontFamily, an.LfFont.SizeInPoints, an.LfFont.Style), new SolidBrush(an.RgbColor2), newRect1, sf1);
+															g.ResetTransform();
+															g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+															break;
+													}
+												}
+											}
+											tiffAnnotation.Dispose();
+										}
+										Image stamp;
+										if(pageStamps != null)
+											if(its.BurnStamps)
+											foreach(Data.Temp.Objects.StampItem si in pageStamps)
+											{
+												if(si.TypeID == 101)
+													stamp = Environment.GetDSP();
+												else
+													stamp = Environment.GetStamp(si.StampID, its.ImageID);
+												if(!si.Rotate.Equals(0))
+												{
+													mx = new System.Drawing.Drawing2D.Matrix();
+													mx.RotateAt(si.Rotate, new PointF(si.X + (stamp.Width * si.Zoom) / 200, si.Y + (stamp.Height * si.Zoom * drez) / 200));
+													g.Transform = mx;
+												}
+												g.DrawImage(stamp, si.X, si.Y, (stamp.Width * si.Zoom) / 100, (stamp.Height * si.Zoom * drez) / 100);
+												if(!si.Rotate.Equals(0))
+													g.ResetTransform();
+											}
+										else
+											{
+												tiffAnnotation = new ImageControl.TiffAnnotation(this);
+												if(!its.BurnNotes && info.Annotation != null)
+													tiffAnnotation.Parse(info.Annotation);
+												foreach(StampItem si in pageStamps)
+												{
+													if(si.TypeID == 101)
+														continue;
+													Image img = Environment.GetStamp(si.StampID, its.ImageID);
+													tiffAnnotation.CreateImage(new Rectangle(si.X, si.Y, (img.Width * si.Zoom) / 32, (img.Height * si.Zoom) / 32), img, "Stamp");
+
+												}
+												info.Annotation = tiffAnnotation.GetAnnotationBytes(true);
+												tiffAnnotation.Dispose();
+											}
+									}
+								}
+							}
+							if(its.BlackWight.HasValue && its.BlackWight.Value && bmp.PixelFormat != System.Drawing.Imaging.PixelFormat.Format1bppIndexed)
+								Environment.LibTiff.SetImageToTiff(tifw, Environment.LibTiff.ConvertToBitonal(bmp), its.SendNotes && (!its.BurnNotes || !its.BurnStamps) && info.Annotation != null && info.Annotation.Length > 8 ? info.Annotation : null);
+							else
+								if(bmp.PixelFormat != pf)
+								Environment.LibTiff.SetImageToTiff(tifw, Environment.LibTiff.ConvertTo(pf, bmp), its.SendNotes &&(!its.BurnNotes || !its.BurnStamps) && info.Annotation != null && info.Annotation.Length > 8 ? info.Annotation : null);
+							else
+								Environment.LibTiff.SetImageToTiff(tifw, bmp, its.SendNotes && (!its.BurnNotes || !its.BurnStamps) && info.Annotation != null && info.Annotation.Length > 8 ? info.Annotation : null);
+							Environment.LibTiff.SavePage(tifw);
+						}
+					}
+					Environment.LibTiff.TiffCloseWrite(ref tifw);
+
+				}
+				catch(Exception ex)
+				{
+					Error.ErrorShower.OnShowError(this, ex.Message, Environment.StringResources.GetString("Error"));
+					if(!IntPtr.Zero.Equals(tifw))
+						Environment.LibTiff.TiffCloseWrite(ref tifw);
+					Slave.DeleteFile(its.SendFileName);
+					return true;
+
+				}
+			}
+			return false;
+		}
+
+		private bool PDFToTiff(string input, string output, List< int> pages, List<int> colorPages, int imageID, bool burnStamp)
 		{
 			List<Tiff.PageInfo> il = new List<Tiff.PageInfo>();
 
 			List<StampItem> stL = (imageID > 0) ? Environment.DocSignatureData.GetStamps(imageID) : null;
 
 			bool saveColor = pages != null && pages.Count > 0;
-			il = Environment.PDFHelper.GetBitmapsCollectionFromFile(input, pages, 300, 300, colorPages.Count > 0);
+			il = Environment.PDFHelper.GetBitmapsCollectionFromFile(input, pages, MaxSendResolution, MaxSendResolution, colorPages.Count > 0);
 
 			for(int i = 0; i < il.Count; i++)
 			{
@@ -1229,50 +1640,65 @@ namespace Kesco.Lib.Win.Document.Dialogs
 					System.Drawing.Imaging.PixelFormat pf;
 					Bitmap bmp = info.Image;
 					pf = bmp.PixelFormat;
-					if(bmp.HorizontalResolution > 300)
-						if(bmp.VerticalResolution > 300)
-							bmp.SetResolution(300, 300);
+					if(bmp.HorizontalResolution > MaxSendResolution)
+						if(bmp.VerticalResolution > MaxSendResolution)
+							bmp.SetResolution(MaxSendResolution, MaxSendResolution);
 						else
-							bmp.SetResolution(300, bmp.VerticalResolution);
+							bmp.SetResolution(MaxSendResolution, bmp.VerticalResolution);
 
-					if(bmp.VerticalResolution > 300)
-						bmp.SetResolution(bmp.HorizontalResolution, 300);
+					if(bmp.VerticalResolution > MaxSendResolution)
+						bmp.SetResolution(bmp.HorizontalResolution, MaxSendResolution);
 					if(stL != null && stL.Count > 0)
 					{
 						var pageStamps = stL.Where(x => x.Page == pages[i]);
 						if(pageStamps != null && pageStamps.Count() > 0)
 						{
-							if(bmp.PixelFormat != PixelFormat.Format24bppRgb ||
-								bmp.PixelFormat != PixelFormat.Format32bppArgb)
+							if(burnStamp)
 							{
-								Bitmap tm = new Bitmap(bmp);
-								tm.SetResolution(bmp.HorizontalResolution, bmp.VerticalResolution);
-								bmp = tm;
-								tm = null;
+								if(bmp.PixelFormat != PixelFormat.Format24bppRgb ||
+									bmp.PixelFormat != PixelFormat.Format32bppArgb)
+								{
+									Bitmap tm = new Bitmap(bmp);
+									tm.SetResolution(bmp.HorizontalResolution, bmp.VerticalResolution);
+									bmp = tm;
+									tm = null;
+								}
+								float drez = bmp.VerticalResolution / bmp.HorizontalResolution;
+								Matrix mx = null;
+								using(Graphics g = Graphics.FromImage(bmp))
+								{
+									foreach(StampItem si in pageStamps)
+									{
+										if(si.TypeID == 101)
+											continue;
+										Image img = Environment.GetStamp(si.StampID, imageID);
+										if(!si.Rotate.Equals(0))
+										{
+											mx = new Matrix();
+											mx.RotateAt(si.Rotate,
+														new PointF(si.X + (img.Width * si.Zoom) / 64, si.Y + (img.Height * si.Zoom * drez) / 64));
+											g.Transform = mx;
+										}
+										g.DrawImage(img, si.X* 300/96, si.Y* 300/96, (img.Width * si.Zoom)/32, (img.Height * si.Zoom * drez) /32);
+										if(!si.Rotate.Equals(0))
+											g.ResetTransform();
+									}
+								}
 							}
-							float drez = bmp.VerticalResolution / bmp.HorizontalResolution;
-							Matrix mx = null;
-							using(Graphics g = Graphics.FromImage(bmp))
+							else
 							{
+								ImageControl.TiffAnnotation tiffAnnotation = new ImageControl.TiffAnnotation(this.docControl);
 								foreach(StampItem si in pageStamps)
 								{
 									if(si.TypeID == 101)
 										continue;
 									Image img = Environment.GetStamp(si.StampID, imageID);
-									if(!si.Rotate.Equals(0))
-									{
-										mx = new Matrix();
-										mx.RotateAt(si.Rotate,
-													new PointF(si.X + (img.Width * si.Zoom) / 200,
-															   si.Y + (img.Height * si.Zoom * drez) / 200));
-										g.Transform = mx;
-									}
-									g.DrawImage(img, si.X, si.Y, (img.Width * si.Zoom) / 100,
-												(img.Height * si.Zoom * drez) / 100);
-									if(!si.Rotate.Equals(0))
-										g.ResetTransform();
+									tiffAnnotation.CreateImage(new Rectangle(si.X, si.Y, (img.Width * si.Zoom) / 32, (img.Height * si.Zoom) / 32), img, "Stamp");
+									
 								}
-							}
+								info.Annotation = tiffAnnotation.GetAnnotationBytes(true);
+								tiffAnnotation.Dispose();
+							}	
 						}
 					}
 
@@ -1440,7 +1866,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 
 													g.TextRenderingHint = tt.FontRenderingHint;
 													sf.Trimming = StringTrimming.Word;
-													using(Font f = new Font(tt.LfFont.FontFamily, tt.LfFont.SizeInPoints * g.DpiY / (float)ImageControl.TiffAnnotation.GetDevicePixel(), tt.LfFont.Style))
+													using(Font f = new Font(tt.LfFont.FontFamily, tt.LfFont.SizeInPoints, tt.LfFont.Style))
 														g.DrawString(tt.TextPrivateData.SzAnoText, f, new SolidBrush(tt.RgbColor1), newRect, sf);
 
 													g.ResetTransform();
@@ -1495,7 +1921,7 @@ namespace Kesco.Lib.Win.Document.Dialogs
 															g.Transform = mx1;
 															break;
 													}
-													g.DrawString(an.TextPrivateData.SzAnoText, new Font(an.LfFont.FontFamily, an.LfFont.SizeInPoints * g.DpiY / (float)ImageControl.TiffAnnotation.GetDevicePixel(), an.LfFont.Style), new SolidBrush(an.RgbColor2), newRect1, sf1);
+													g.DrawString(an.TextPrivateData.SzAnoText, new Font(an.LfFont.FontFamily, an.LfFont.SizeInPoints, an.LfFont.Style), new SolidBrush(an.RgbColor2), newRect1, sf1);
 													g.ResetTransform();
 													g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
 													break;
@@ -1563,36 +1989,38 @@ namespace Kesco.Lib.Win.Document.Dialogs
 			object[] objs = t.AsyncState as object[];
 			if(objs == null)
 				return;
-			Components.ProcessingDocs pd = objs[0] as Components.ProcessingDocs;
-			if(pd == null) return;
+			Components.ImageToSend pd = objs[0] as Components.ImageToSend;
+			if(pd == null)
+				return;
 			int num = -1;
 			FileInfo fi = null;
-			if(File.Exists(pd.sendFileName))
+			Components.ProcessingDocs doc = null;
+			if(File.Exists(pd.SendFileName))
 			{
-				fi = new FileInfo(pd.sendFileName);
-				num = infos.IndexOf(pd);
+				fi = new FileInfo(pd.SendFileName);
+				doc = infos.FirstOrDefault(x => x.imageToSends != null && x.imageToSends.Contains(pd));
+				num = doc.imageToSends.IndexOf(pd);
 				if(num > -1)
-				infos[num].Size = fi.Length;
-				infos[num].pages = pd.pages;
-				infos[num].pagesType = pd.pagesType;
-				infos[num].formatType = pd.formatType;
-				infos[num].bw = pd.bw;
+					doc.imageToSends[num].Size = fi.Length;
+				doc.imageToSends[num].Pages = pd.Pages;
+				doc.imageToSends[num].PagesType = pd.PagesType;
+				doc.imageToSends[num].FormatType = pd.FormatType;
+				doc.imageToSends[num].BlackWight = pd.BlackWight;
 			}
 			if(num > -1)
-			InvokeIfRequired(new MethodInvoker(() => 
-				{
-					foreach( var con in flowLayoutPanel.Controls)
+				InvokeIfRequired(new MethodInvoker(() =>
 					{
-						LinkLabel li = con as LinkLabel;
-						if(li != null && li.Tag.Equals(pd))
+						foreach(var con in tableLayoutPanelImages.Controls)
 						{
-							li.Text = pd.docString + "(" + (fi.Length > 1024 ? fi.Length > 820000 ? (fi.Length / 1048576f).ToString("N2") + "MB" : (fi.Length / 1024f).ToString("N2") + "KB" : fi.Length.ToString() + "B") + ")";
-							li.Tag = infos[num];
-							linkLabel_LinkClicked(li, new LinkLabelLinkClickedEventArgs(null));
-							break;
+							Controls.CheckebleImageLinkLabel li = con as Controls.CheckebleImageLinkLabel;
+							if(li != null && li.Tag.Equals(pd))
+							{
+								li.Text = doc.docString + "(" + (fi.Length > 1024 ? fi.Length > 820000 ? (fi.Length / 1048576f).ToString("N2") + "MB" : (fi.Length / 1024f).ToString("N2") + "KB" : fi.Length.ToString() + "B") + ")";
+								linkLabel1_LinkClicked(li, new LinkLabelLinkClickedEventArgs(null));
+								break;
+							}
 						}
-					}
-				}));
+					}));
 		}
 
 		private void tabControlSettings_Selected(object sender, TabControlEventArgs e)
@@ -1621,5 +2049,111 @@ namespace Kesco.Lib.Win.Document.Dialogs
 			if(textBoxSelectNum.Text.Trim().Length > 0 && !buttonApply.Visible)
 				buttonApply.Visible = true;
 		}
+
+		private void checkBoxSendNotes_CheckedChanged(object sender, EventArgs e)
+		{
+			checkBoxBurnNotes.Enabled = checkBoxSendNotes.Checked;
+			buttonApply.Visible = true;
+		}
+
+		private void checkBoxBurnNotes_CheckedChanged(object sender, EventArgs e)
+		{
+			if(!buttonApply.Visible)
+				buttonApply.Visible = true;
+		}
+
+		private void radioButtonBurnStamps_CheckedChanged(object sender, EventArgs e)
+		{
+			if(!buttonApply.Visible)
+				buttonApply.Visible = true;
+		}
+
+		private void radioButtonSendStamps_CheckedChanged(object sender, EventArgs e)
+		{
+			if(!buttonApply.Visible)
+				buttonApply.Visible = true;
+		}
+
+		private void docControl_NeedSave(object sender, EventArgs e)
+		{
+
+			if(MessageBox.Show("Сохранить изменения", Environment.StringResources.GetString("Confirmation"), MessageBoxButtons.YesNo) == DialogResult.Yes)
+			{
+				var t = tabControlSettings.Tag as Components.ImageToSend;
+				if(t!= null)
+					docControl.SaveAs(t.SendFileName);
+			}
+		}
+
+		#region Search Image
+
+		private void toolStripButtonFind_Click(object sender, EventArgs e)
+		{
+			var doc = new XmlDocument();
+			XmlElement elOptions = doc.CreateElement("Options");
+			XmlElement elOption = doc.CreateElement("Option");
+			elOption.SetAttribute("name", "Image.Изображение");
+			elOption.SetAttribute("fixed", "true");
+			elOptions.AppendChild(elOption);
+			Search.OptionsDialog optionsDialog = new Search.OptionsDialog(elOptions.OuterXml.Clone() as string, Search.OptionsDialog.EnabledFeatures.Clear | Search.OptionsDialog.EnabledFeatures.Search);
+			optionsDialog.DialogEvent += OptionsDialog_DialogEvent;
+			optionsDialog.Show();
+		}
+
+		private void OptionsDialog_DialogEvent(object source, DialogEventArgs e)
+		{
+			if(e.Dialog.DialogResult == DialogResult.Cancel)
+				return;
+			var dialog = source as Search.OptionsDialog;
+			if(dialog == null)
+				return;
+			if(Environment.DocData.FoundDocsCount() > 0)                    // есть найденные документы
+			{
+				// select doc
+				var uniDialog = new Select.SelectDocUniversalDialog(Environment.DocData.GetFoundDocsIDQuery(Environment.CurEmp.ID), 0, dialog.GetXML(), true);
+				uniDialog.ResultEvent += UniDialog_ResultEvent;
+				uniDialog.Show();
+			}
+			//if(dialog.)
+		}
+
+		private void UniDialog_ResultEvent(object source, DialogResultEvent e)
+		{
+			switch(e.Result)
+			{
+				case DialogResult.OK:
+					if(e.Params.Length == 3)
+					{
+						if(e.Params[1] is int)
+						{
+							var ID = (int)e.Params[1];
+							if(ID > 0)
+								ImageAdd(ID, null);
+						}
+						else if(e.Params[1] is int[])
+						{
+							var IDs = (int[])e.Params[1];
+							foreach(int ID in IDs)
+								ImageAdd(ID, null);
+						}
+					}
+					break;
+				case DialogResult.Retry:
+					if(e.Params.Length == 3 && e.Params[0] is int && e.Params[2] is string)
+					{
+						var searchDialog = new Search.OptionsDialog(e.Params[2].ToString(), Search.OptionsDialog.EnabledFeatures.Clear |  Search.OptionsDialog.EnabledFeatures.Search);
+						searchDialog.DialogEvent += OptionsDialog_DialogEvent;
+						searchDialog.Show();
+					}
+					break;
+			}
+		}
+
+		#endregion
+
+		public const int MaxSendResolution = 300;
+		public const int MaxFaxHorizontalResolution = 204;
+		public const int MaxFaxVerticalResolution = 196;
+
 	}
 }

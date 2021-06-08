@@ -28,27 +28,28 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SendOutDialog));
 			this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
 			this.editor = new MSDN.Html.Editor.HtmlEditorControl();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.panel3 = new System.Windows.Forms.Panel();
-			this.textBoxTitle = new System.Windows.Forms.TextBox();
-			this.label4 = new System.Windows.Forms.Label();
+			this.panelFrom = new System.Windows.Forms.Panel();
+			this.comboBox2 = new System.Windows.Forms.ComboBox();
+			this.labelFrom = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.richTextBoxContact = new Kesco.Lib.Win.Document.Controls.ContactControl();
 			this.label1 = new System.Windows.Forms.LinkLabel();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.panel3 = new System.Windows.Forms.Panel();
+			this.textBoxTitle = new System.Windows.Forms.RichTextBox();
+			this.label4 = new System.Windows.Forms.Label();
 			this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.label2 = new System.Windows.Forms.Label();
-			this.panelFrom = new System.Windows.Forms.Panel();
-			this.comboBox2 = new System.Windows.Forms.ComboBox();
-			this.labelFrom = new System.Windows.Forms.Label();
-			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+			this.tableLayoutPanelImage = new System.Windows.Forms.TableLayoutPanel();
 			this.docControl = new Kesco.Lib.Win.Document.Controls.DocControl();
-			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.buttonApplyAll = new System.Windows.Forms.Button();
 			this.buttonApply = new System.Windows.Forms.Button();
 			this.tabControlSettings = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -66,24 +67,32 @@
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.radioButtonBlackWhite = new System.Windows.Forms.RadioButton();
 			this.radioButtonColor = new System.Windows.Forms.RadioButton();
+			this.tabPageStamp = new System.Windows.Forms.TabPage();
+			this.radioButtonBurnStamps = new System.Windows.Forms.RadioButton();
+			this.radioButtonSendStamps = new System.Windows.Forms.RadioButton();
+			this.checkBoxBurnNotes = new System.Windows.Forms.CheckBox();
+			this.checkBoxSendNotes = new System.Windows.Forms.CheckBox();
+			this.tableLayoutPanelImages = new System.Windows.Forms.TableLayoutPanel();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.toolStripButtonSend = new System.Windows.Forms.ToolStripButton();
-			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButtonFind = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButtonThrum = new System.Windows.Forms.ToolStripButton();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.foldersList = new System.Windows.Forms.ImageList(this.components);
 			this.toolStripContainer1.ContentPanel.SuspendLayout();
 			this.toolStripContainer1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
-			this.panel3.SuspendLayout();
-			this.panel1.SuspendLayout();
-			this.flowLayoutPanel.SuspendLayout();
 			this.panelFrom.SuspendLayout();
-			this.tableLayoutPanel2.SuspendLayout();
+			this.panel1.SuspendLayout();
+			this.panel3.SuspendLayout();
+			this.flowLayoutPanel.SuspendLayout();
+			this.tableLayoutPanelImage.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControlSettings.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -91,19 +100,24 @@
 			((System.ComponentModel.ISupportInitialize)(this.textBoxStartPage)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textBoxEndPage)).BeginInit();
 			this.tabPage2.SuspendLayout();
+			this.tabPageStamp.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// toolStripContainer1
 			// 
+			this.toolStripContainer1.BottomToolStripPanelVisible = false;
 			// 
 			// toolStripContainer1.ContentPanel
 			// 
 			this.toolStripContainer1.ContentPanel.Controls.Add(this.editor);
 			resources.ApplyResources(this.toolStripContainer1.ContentPanel, "toolStripContainer1.ContentPanel");
 			resources.ApplyResources(this.toolStripContainer1, "toolStripContainer1");
+			this.toolStripContainer1.LeftToolStripPanelVisible = false;
 			this.toolStripContainer1.Name = "toolStripContainer1";
+			this.toolStripContainer1.RightToolStripPanelVisible = false;
+			this.toolStripContainer1.TopToolStripPanelVisible = false;
 			// 
 			// editor
 			// 
@@ -122,75 +136,17 @@
 			// 
 			// splitContainer1.Panel2
 			// 
-			this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel2);
+			this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanelImage);
 			// 
 			// tableLayoutPanel1
 			// 
 			resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-			this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 3);
-			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 2);
-			this.tableLayoutPanel1.Controls.Add(this.toolStripContainer1, 0, 5);
-			this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel, 0, 4);
 			this.tableLayoutPanel1.Controls.Add(this.panelFrom, 0, 0);
+			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
+			this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 2);
+			this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel, 0, 3);
+			this.tableLayoutPanel1.Controls.Add(this.toolStripContainer1, 0, 4);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			// 
-			// panel3
-			// 
-			this.panel3.Controls.Add(this.textBoxTitle);
-			this.panel3.Controls.Add(this.label4);
-			resources.ApplyResources(this.panel3, "panel3");
-			this.panel3.Name = "panel3";
-			// 
-			// textBoxTitle
-			// 
-			resources.ApplyResources(this.textBoxTitle, "textBoxTitle");
-			this.textBoxTitle.Name = "textBoxTitle";
-			// 
-			// label4
-			// 
-			resources.ApplyResources(this.label4, "label4");
-			this.label4.Name = "label4";
-			// 
-			// panel1
-			// 
-			resources.ApplyResources(this.panel1, "panel1");
-			this.panel1.Controls.Add(this.richTextBoxContact);
-			this.panel1.Controls.Add(this.label1);
-			this.panel1.Controls.Add(this.comboBox1);
-			this.panel1.Name = "panel1";
-			// 
-			// richTextBoxContact
-			// 
-			resources.ApplyResources(this.richTextBoxContact, "richTextBoxContact");
-			this.richTextBoxContact.Name = "richTextBoxContact";
-			this.richTextBoxContact.SearchStart += new System.EventHandler(this.richTextBoxContact_SearchStart);
-			this.richTextBoxContact.FindEMail += new System.EventHandler(richTextBoxContact_FindEMail); 
-			this.richTextBoxContact.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBoxContact_LinkClicked);
-			this.richTextBoxContact.TextChanged += new System.EventHandler(this.richTextBoxContact_TextChanged);
-			// 
-			// label1
-			// 
-			resources.ApplyResources(this.label1, "label1");
-			this.label1.Name = "label1";
-			this.label1.TabStop = true;
-			this.label1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.label1_LinkClicked);
-			// 
-			// comboBox1
-			// 
-			resources.ApplyResources(this.comboBox1, "comboBox1");
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Name = "comboBox1";
-			// 
-			// flowLayoutPanel
-			// 
-			resources.ApplyResources(this.flowLayoutPanel, "flowLayoutPanel");
-			this.flowLayoutPanel.Controls.Add(this.label2);
-			this.flowLayoutPanel.Name = "flowLayoutPanel";
-			// 
-			// label2
-			// 
-			resources.ApplyResources(this.label2, "label2");
-			this.label2.Name = "label2";
 			// 
 			// panelFrom
 			// 
@@ -211,13 +167,73 @@
 			resources.ApplyResources(this.labelFrom, "labelFrom");
 			this.labelFrom.Name = "labelFrom";
 			// 
-			// tableLayoutPanel2
+			// panel1
 			// 
-			resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
-			this.tableLayoutPanel2.Controls.Add(this.docControl, 0, 3);
-			this.tableLayoutPanel2.Controls.Add(this.linkLabel1, 0, 0);
-			this.tableLayoutPanel2.Controls.Add(this.panel2, 0, 2);
-			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+			resources.ApplyResources(this.panel1, "panel1");
+			this.panel1.Controls.Add(this.richTextBoxContact);
+			this.panel1.Controls.Add(this.label1);
+			this.panel1.Controls.Add(this.comboBox1);
+			this.panel1.Name = "panel1";
+			// 
+			// richTextBoxContact
+			// 
+			resources.ApplyResources(this.richTextBoxContact, "richTextBoxContact");
+			this.richTextBoxContact.Cursor = System.Windows.Forms.Cursors.IBeam;
+			this.richTextBoxContact.Name = "richTextBoxContact";
+			this.richTextBoxContact.SearchStart += new System.EventHandler(this.richTextBoxContact_SearchStart);
+			this.richTextBoxContact.FindEMail += new System.EventHandler(this.richTextBoxContact_FindEMail);
+			this.richTextBoxContact.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBoxContact_LinkClicked);
+			this.richTextBoxContact.TextChanged += new System.EventHandler(this.richTextBoxContact_TextChanged);
+			// 
+			// label1
+			// 
+			resources.ApplyResources(this.label1, "label1");
+			this.label1.Name = "label1";
+			this.label1.TabStop = true;
+			this.label1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.label1_LinkClicked);
+			// 
+			// comboBox1
+			// 
+			resources.ApplyResources(this.comboBox1, "comboBox1");
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Name = "comboBox1";
+			// 
+			// panel3
+			// 
+			this.panel3.Controls.Add(this.textBoxTitle);
+			this.panel3.Controls.Add(this.label4);
+			resources.ApplyResources(this.panel3, "panel3");
+			this.panel3.Name = "panel3";
+			// 
+			// textBoxTitle
+			// 
+			resources.ApplyResources(this.textBoxTitle, "textBoxTitle");
+			this.textBoxTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.textBoxTitle.Name = "textBoxTitle";
+			// 
+			// label4
+			// 
+			resources.ApplyResources(this.label4, "label4");
+			this.label4.Name = "label4";
+			// 
+			// flowLayoutPanel
+			// 
+			resources.ApplyResources(this.flowLayoutPanel, "flowLayoutPanel");
+			this.flowLayoutPanel.Controls.Add(this.label2);
+			this.flowLayoutPanel.Name = "flowLayoutPanel";
+			// 
+			// label2
+			// 
+			resources.ApplyResources(this.label2, "label2");
+			this.label2.Name = "label2";
+			// 
+			// tableLayoutPanelImage
+			// 
+			resources.ApplyResources(this.tableLayoutPanelImage, "tableLayoutPanelImage");
+			this.tableLayoutPanelImage.Controls.Add(this.docControl, 0, 2);
+			this.tableLayoutPanelImage.Controls.Add(this.panel2, 0, 1);
+			this.tableLayoutPanelImage.Controls.Add(this.tableLayoutPanelImages, 0, 0);
+			this.tableLayoutPanelImage.Name = "tableLayoutPanelImage";
 			// 
 			// docControl
 			// 
@@ -226,33 +242,43 @@
 			this.docControl.CurDocString = null;
 			this.docControl.Cursor = System.Windows.Forms.Cursors.WaitCursor;
 			resources.ApplyResources(this.docControl, "docControl");
-			this.docControl.FileName = "";
+			this.docControl.DocumentID = 0;
+			this.docControl.EmpName = null;
 			this.docControl.ForceRelicate = false;
+			this.docControl.ImageID = -1;
 			this.docControl.ImagesPanelOrientation = Kesco.Lib.Win.ImageControl.ImageControl.TypeThumbnailPanelOrientation.Left;
 			this.docControl.IsEditNotes = false;
 			this.docControl.IsMain = false;
 			this.docControl.IsMoveImage = true;
 			this.docControl.Name = "docControl";
+			this.docControl.Page = 0;
+			this.docControl.PersonParamStr = "clid=4&return=1";
 			this.docControl.SelectionMode = false;
 			this.docControl.ShowThumbPanel = false;
 			this.docControl.ShowToolBar = true;
 			this.docControl.ShowWebPanel = false;
-			this.docControl.SplinterPlace = new System.Drawing.Point(200, 57);
+			this.docControl.SplinterPlace = new System.Drawing.Point(200, 61);
+			this.docControl.Subscribe = new System.Guid("00000000-0000-0000-0000-000000000000");
 			this.docControl.WatchOnFile = false;
+			this.docControl.Zoom = 100;
+			this.docControl.ZoomText = "";
+			this.docControl.NeedSave += new System.EventHandler(this.docControl_NeedSave);
 			this.docControl.LoadComplete += new System.EventHandler(this.docControl_LoadComplete);
-			// 
-			// linkLabel1
-			// 
-			resources.ApplyResources(this.linkLabel1, "linkLabel1");
-			this.linkLabel1.Name = "linkLabel1";
-			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.buttonApplyAll);
 			this.panel2.Controls.Add(this.buttonApply);
 			this.panel2.Controls.Add(this.tabControlSettings);
 			resources.ApplyResources(this.panel2, "panel2");
 			this.panel2.Name = "panel2";
+			// 
+			// buttonApplyAll
+			// 
+			resources.ApplyResources(this.buttonApplyAll, "buttonApplyAll");
+			this.buttonApplyAll.Name = "buttonApplyAll";
+			this.buttonApplyAll.UseVisualStyleBackColor = true;
+			this.buttonApplyAll.Click += new System.EventHandler(this.buttonApplyAll_Click);
 			// 
 			// buttonApply
 			// 
@@ -266,6 +292,7 @@
 			this.tabControlSettings.Controls.Add(this.tabPage1);
 			this.tabControlSettings.Controls.Add(this.tabPage4);
 			this.tabControlSettings.Controls.Add(this.tabPage2);
+			this.tabControlSettings.Controls.Add(this.tabPageStamp);
 			resources.ApplyResources(this.tabControlSettings, "tabControlSettings");
 			this.tabControlSettings.Name = "tabControlSettings";
 			this.tabControlSettings.SelectedIndex = 0;
@@ -394,7 +421,6 @@
 			this.radioButtonBlackWhite.TabStop = true;
 			this.radioButtonBlackWhite.UseVisualStyleBackColor = true;
 			this.radioButtonBlackWhite.CheckedChanged += new System.EventHandler(this.radioButtonBlackWhite_CheckedChanged);
-
 			// 
 			// radioButtonColor
 			// 
@@ -404,11 +430,56 @@
 			this.radioButtonColor.UseVisualStyleBackColor = true;
 			this.radioButtonColor.CheckedChanged += new System.EventHandler(this.radioButtonColor_CheckedChanged);
 			// 
+			// tabPageStamp
+			// 
+			this.tabPageStamp.BackColor = System.Drawing.SystemColors.Control;
+			this.tabPageStamp.Controls.Add(this.radioButtonBurnStamps);
+			this.tabPageStamp.Controls.Add(this.radioButtonSendStamps);
+			this.tabPageStamp.Controls.Add(this.checkBoxBurnNotes);
+			this.tabPageStamp.Controls.Add(this.checkBoxSendNotes);
+			resources.ApplyResources(this.tabPageStamp, "tabPageStamp");
+			this.tabPageStamp.Name = "tabPageStamp";
+			// 
+			// radioButtonBurnStamps
+			// 
+			resources.ApplyResources(this.radioButtonBurnStamps, "radioButtonBurnStamps");
+			this.radioButtonBurnStamps.Name = "radioButtonBurnStamps";
+			this.radioButtonBurnStamps.UseVisualStyleBackColor = true;
+			this.radioButtonBurnStamps.CheckedChanged += new System.EventHandler(this.radioButtonBurnStamps_CheckedChanged);
+			// 
+			// radioButtonSendStamps
+			// 
+			resources.ApplyResources(this.radioButtonSendStamps, "radioButtonSendStamps");
+			this.radioButtonSendStamps.Checked = true;
+			this.radioButtonSendStamps.Name = "radioButtonSendStamps";
+			this.radioButtonSendStamps.TabStop = true;
+			this.radioButtonSendStamps.UseVisualStyleBackColor = true;
+			this.radioButtonSendStamps.CheckedChanged += new System.EventHandler(this.radioButtonSendStamps_CheckedChanged);
+			// 
+			// checkBoxBurnNotes
+			// 
+			resources.ApplyResources(this.checkBoxBurnNotes, "checkBoxBurnNotes");
+			this.checkBoxBurnNotes.Name = "checkBoxBurnNotes";
+			this.checkBoxBurnNotes.UseVisualStyleBackColor = true;
+			this.checkBoxBurnNotes.CheckedChanged += new System.EventHandler(this.checkBoxBurnNotes_CheckedChanged);
+			// 
+			// checkBoxSendNotes
+			// 
+			resources.ApplyResources(this.checkBoxSendNotes, "checkBoxSendNotes");
+			this.checkBoxSendNotes.Name = "checkBoxSendNotes";
+			this.checkBoxSendNotes.UseVisualStyleBackColor = true;
+			this.checkBoxSendNotes.CheckedChanged += new System.EventHandler(this.checkBoxSendNotes_CheckedChanged);
+			// 
+			// tableLayoutPanelImages
+			// 
+			resources.ApplyResources(this.tableLayoutPanelImages, "tableLayoutPanelImages");
+			this.tableLayoutPanelImages.Name = "tableLayoutPanelImages";
+			// 
 			// toolStrip1
 			// 
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonSend,
-            this.toolStripButton2,
+            this.toolStripButtonFind,
             this.toolStripButtonThrum});
 			resources.ApplyResources(this.toolStrip1, "toolStrip1");
 			this.toolStrip1.Name = "toolStrip1";
@@ -419,11 +490,12 @@
 			this.toolStripButtonSend.Name = "toolStripButtonSend";
 			this.toolStripButtonSend.Click += new System.EventHandler(this.toolStripButtonSend_Click);
 			// 
-			// toolStripButton2
+			// toolStripButtonFind
 			// 
-			this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			resources.ApplyResources(this.toolStripButton2, "toolStripButton2");
-			this.toolStripButton2.Name = "toolStripButton2";
+			this.toolStripButtonFind.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.toolStripButtonFind, "toolStripButtonFind");
+			this.toolStripButtonFind.Name = "toolStripButtonFind";
+			this.toolStripButtonFind.Click += new System.EventHandler(this.toolStripButtonFind_Click);
 			// 
 			// toolStripButtonThrum
 			// 
@@ -449,6 +521,12 @@
 			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
 			resources.ApplyResources(this.toolStripStatusLabel1, "toolStripStatusLabel1");
 			// 
+			// foldersList
+			// 
+			this.foldersList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("foldersList.ImageStream")));
+			this.foldersList.TransparentColor = System.Drawing.SystemColors.Window;
+			this.foldersList.Images.SetKeyName(0, "");
+			// 
 			// SendOutDialog
 			// 
 			resources.ApplyResources(this, "$this");
@@ -464,19 +542,20 @@
 			this.toolStripContainer1.PerformLayout();
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
-			this.panel3.ResumeLayout(false);
-			this.panel3.PerformLayout();
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
-			this.flowLayoutPanel.ResumeLayout(false);
-			this.flowLayoutPanel.PerformLayout();
 			this.panelFrom.ResumeLayout(false);
 			this.panelFrom.PerformLayout();
-			this.tableLayoutPanel2.ResumeLayout(false);
-			this.tableLayoutPanel2.PerformLayout();
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
+			this.panel3.ResumeLayout(false);
+			this.panel3.PerformLayout();
+			this.flowLayoutPanel.ResumeLayout(false);
+			this.flowLayoutPanel.PerformLayout();
+			this.tableLayoutPanelImage.ResumeLayout(false);
+			this.tableLayoutPanelImage.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.tabControlSettings.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
@@ -487,6 +566,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.textBoxEndPage)).EndInit();
 			this.tabPage2.ResumeLayout(false);
 			this.tabPage2.PerformLayout();
+			this.tabPageStamp.ResumeLayout(false);
+			this.tabPageStamp.PerformLayout();
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
 			this.statusStrip1.ResumeLayout(false);
@@ -497,34 +578,17 @@
 		}
 
 		#endregion
-
-		private MSDN.Html.Editor.HtmlEditorControl editor;
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private System.Windows.Forms.ToolStrip toolStrip1;
 		private System.Windows.Forms.ToolStripButton toolStripButtonSend;
 		private System.Windows.Forms.StatusStrip statusStrip1;
-		private System.Windows.Forms.ToolStripButton toolStripButton2;
+		private System.Windows.Forms.ToolStripButton toolStripButtonFind;
 		private System.Windows.Forms.ToolStripButton toolStripButtonThrum;
 		private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-		private System.Windows.Forms.LinkLabel label1;
-		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.ToolStripContainer toolStripContainer1;
-		private System.Windows.Forms.LinkLabel linkLabel1;
 		private System.Windows.Forms.Panel panel2;
-		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.SplitContainer splitContainer1;
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanelImage;
 		private Controls.DocControl docControl;
-		private System.Windows.Forms.Panel panel3;
-		private System.Windows.Forms.TextBox textBoxTitle;
-		private System.Windows.Forms.Label label4;
-		private Controls.ContactControl richTextBoxContact;
-		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
-		private System.Windows.Forms.ComboBox comboBox1;
-		private System.Windows.Forms.Panel panelFrom;
-		private System.Windows.Forms.ComboBox comboBox2;
-		private System.Windows.Forms.Label labelFrom;
 		private System.Windows.Forms.TabControl tabControlSettings;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.RadioButton tifRadio;
@@ -542,5 +606,28 @@
 		private System.Windows.Forms.Button buttonApply;
 		private System.Windows.Forms.RadioButton radioButtonBlackWhite;
 		private System.Windows.Forms.RadioButton radioButtonColor;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+		private System.Windows.Forms.Panel panel3;
+		private System.Windows.Forms.RichTextBox textBoxTitle;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.LinkLabel label1;
+		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+		private MSDN.Html.Editor.HtmlEditorControl editor;
+		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Panel panelFrom;
+		private System.Windows.Forms.ComboBox comboBox2;
+		private System.Windows.Forms.Label labelFrom;
+		private System.Windows.Forms.TabPage tabPageStamp;
+		private Controls.ContactControl richTextBoxContact;
+		private System.Windows.Forms.RadioButton radioButtonBurnStamps;
+		private System.Windows.Forms.RadioButton radioButtonSendStamps;
+		private System.Windows.Forms.CheckBox checkBoxBurnNotes;
+		private System.Windows.Forms.CheckBox checkBoxSendNotes;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanelImages;
+		private System.Windows.Forms.ImageList foldersList;
+		private System.Windows.Forms.Button buttonApplyAll;
 	}
 }

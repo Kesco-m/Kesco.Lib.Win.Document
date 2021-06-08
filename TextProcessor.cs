@@ -31,179 +31,174 @@ namespace Kesco.Lib.Win.Document
         #endregion
     }
 
-    #endregion
+	#endregion
 
-    public class TextProcessor : LocalObject
-    {
-        #region Like
+	public class TextProcessor : LocalObject
+	{
+		#region Like
 
-        public static bool MultiLike(string first, string second)
-        {
-            string[] secondArray = second.Split(new[] {' '});
+		public static bool MultiLike(string first, string second)
+		{
+			string[] secondArray = second.Split(new[] { ' ' });
 
-            bool found = true;
+			bool found = true;
 
-            for (int i = 0; i < secondArray.Length; i++)
-            {
-                found = (first.ToLower().IndexOf(secondArray[i].ToLower()) != -1);
-                if (!found)
-                    break;
-            }
+			for(int i = 0; i < secondArray.Length; i++)
+			{
+				found = (first.ToLower().IndexOf(secondArray[i].ToLower()) != -1);
+				if(!found)
+					break;
+			}
 
-            return found;
-        }
+			return found;
+		}
 
-        #endregion
+		#endregion
 
-        #region Replace
+		#region Replace
 
-        public static string ReplaceKesco(string s)
-        {
-            const string bad = @"^\\\\Kescom\.com\\common";
-            const string good = "U:";
+		public static string ReplaceKesco(string s)
+		{
+			const string bad = @"^\\\\Kescom\.com\\common";
+			const string good = "U:";
 
-            var r = new Regex(bad, RegexOptions.IgnoreCase);
+			var r = new Regex(bad, RegexOptions.IgnoreCase);
 
-            Match m = r.Match(s);
+			Match m = r.Match(s);
 
-            if (m.Success)
-                s = r.Replace(s, good);
+			if(m.Success)
+				s = r.Replace(s, good);
 
-            return s;
-        }
+			return s;
+		}
 
-        #endregion
+		#endregion
 
-        #region Parse Scan Info
+		#region Parse Scan Info
 
-        public static ScanInfo ParseScanInfo(FileInfo f)
-        {
-            return ParseScanInfo(f.Name, f.CreationTimeUtc.Year);
-        }
+		public static ScanInfo ParseScanInfo(FileInfo f)
+		{
+			return ParseScanInfo(f.Name, f.CreationTimeUtc.Year);
+		}
 
-        public static ScanInfo ParseScanInfo(string name, int year)
-        {
-            if (Regex.IsMatch(name, @"^_\d+"))
-            {
-                var r = new Regex(@"^_(?<month>\d\d)(?<day>\d\d)(?<hour>\d\d)(?<minute>\d\d)(?<second>\d\d)");
-                Match m = r.Match(name);
+		public static ScanInfo ParseScanInfo(string name, int year)
+		{
+			if(Regex.IsMatch(name, @"^_\d+"))
+			{
+				var r = new Regex(@"^_(?<month>\d\d)(?<day>\d\d)(?<hour>\d\d)(?<minute>\d\d)(?<second>\d\d)");
+				Match m = r.Match(name);
 
-                if (m.Success)
-                {
-                    try
-                    {
-                        var fromFile = new DateTime(
-                            year,
-                            Int32.Parse(m.Groups["month"].Value),
-                            Int32.Parse(m.Groups["day"].Value),
-                            Int32.Parse(m.Groups["hour"].Value),
-                            Int32.Parse(m.Groups["minute"].Value),
-                            Int32.Parse(m.Groups["second"].Value));
+				if(m.Success)
+				{
+					try
+					{
+						var fromFile = new DateTime(
+							year,
+							Int32.Parse(m.Groups["month"].Value),
+							Int32.Parse(m.Groups["day"].Value),
+							Int32.Parse(m.Groups["hour"].Value),
+							Int32.Parse(m.Groups["minute"].Value),
+							Int32.Parse(m.Groups["second"].Value));
 
-                        return new ScanInfo(fromFile, "");
-                    }
-                    catch (Exception ex)
-                    {
-                        Data.Env.WriteToLog(new DetailedException("Wrong info in scan " + name, ex));
-                    }
-                }
-            }
-            else if (name.Length == 21 && Regex.IsMatch(name, @"^\d{17}.(tif|pdf)$", RegexOptions.IgnoreCase))
-            {
-                var r =
-                    new Regex(@"^(?<year>\d\d\d\d)(?<month>\d\d)(?<day>\d\d)(?<hour>\d\d)(?<minute>\d\d)(?<second>\d\d)");
-                Match m = r.Match(name);
+						return new ScanInfo(fromFile, "");
+					}
+					catch(Exception ex)
+					{
+						Data.Env.WriteToLog(new DetailedException("Wrong info in scan " + name, ex));
+					}
+				}
+			}
+			else if(name.Length == 21 && Regex.IsMatch(name, @"^\d{17}.(tif|pdf)$", RegexOptions.IgnoreCase))
+			{
+				var r = new Regex(@"^(?<year>\d\d\d\d)(?<month>\d\d)(?<day>\d\d)(?<hour>\d\d)(?<minute>\d\d)(?<second>\d\d)");
+				Match m = r.Match(name);
 
-                if (m.Success)
-                {
-                    try
-                    {
-                        var fromFile = new DateTime(
-                            Int32.Parse(m.Groups["year"].Value),
-                            Int32.Parse(m.Groups["month"].Value),
-                            Int32.Parse(m.Groups["day"].Value),
-                            Int32.Parse(m.Groups["hour"].Value),
-                            Int32.Parse(m.Groups["minute"].Value),
-                            Int32.Parse(m.Groups["second"].Value));
+				if(m.Success)
+				{
+					try
+					{
+						var fromFile = new DateTime(
+							Int32.Parse(m.Groups["year"].Value),
+							Int32.Parse(m.Groups["month"].Value),
+							Int32.Parse(m.Groups["day"].Value),
+							Int32.Parse(m.Groups["hour"].Value),
+							Int32.Parse(m.Groups["minute"].Value),
+							Int32.Parse(m.Groups["second"].Value));
 
-                        return new ScanInfo(fromFile, "");
-                    }
-                    catch (Exception ex)
-                    {
-                        Data.Env.WriteToLog(new DetailedException("Wrong info in scan " + name, ex));
-                    }
-                }
-            }
-            else if (Regex.IsMatch(name, @"^.+_\d+\.(tif|pdf)$"))
-            {
-                var r =
-                    new Regex(
-                        @"^(?<descr>.+)_(?<year>\d\d\d\d)(?<month>\d\d)(?<day>\d\d)(?<hour>\d\d)(?<minute>\d\d)(?<second>\d\d)\.(tif|pdf)$");
-                Match m = r.Match(name);
+						return new ScanInfo(fromFile, "");
+					}
+					catch(Exception ex)
+					{
+						Data.Env.WriteToLog(new DetailedException("Wrong info in scan " + name, ex));
+					}
+				}
+			}
+			else if(Regex.IsMatch(name, @"^.+_\d+\.(tif|pdf)$"))
+			{
+				var r = new Regex(@"^(?<descr>.+)_(?<year>\d\d\d\d)(?<month>\d\d)(?<day>\d\d)(?<hour>\d\d)(?<minute>\d\d)(?<second>\d\d)\.(tif|pdf)$");
+				Match m = r.Match(name);
 
-                if (m.Success)
-                {
-                    try
-                    {
-                        var fromFile = new DateTime(
-                            Int32.Parse(m.Groups["year"].Value),
-                            Int32.Parse(m.Groups["month"].Value),
-                            Int32.Parse(m.Groups["day"].Value),
-                            Int32.Parse(m.Groups["hour"].Value),
-                            Int32.Parse(m.Groups["minute"].Value),
-                            Int32.Parse(m.Groups["second"].Value));
+				if(m.Success)
+				{
+					try
+					{
+						var fromFile = new DateTime(
+							Int32.Parse(m.Groups["year"].Value),
+							Int32.Parse(m.Groups["month"].Value),
+							Int32.Parse(m.Groups["day"].Value),
+							Int32.Parse(m.Groups["hour"].Value),
+							Int32.Parse(m.Groups["minute"].Value),
+							Int32.Parse(m.Groups["second"].Value));
 
-                        return new ScanInfo(fromFile, m.Groups["descr"].Value);
-                    }
-                    catch (Exception ex)
-                    {
-                        Data.Env.WriteToLog(new DetailedException("Wrong info in scan " + name, ex));
-                    }
-                }
-            }
+						return new ScanInfo(fromFile, m.Groups["descr"].Value);
+					}
+					catch(Exception ex)
+					{
+						Data.Env.WriteToLog(new DetailedException("Wrong info in scan " + name, ex));
+					}
+				}
+			}
 
-            return null;
-        }
+			return null;
+		}
 
-        #endregion
+		#endregion
 
-        #region Form Scan File Name
+		#region Form Scan File Name
 
-        public static string FormScanFileName(FileInfo f, ScanInfo info)
-        {
-            string name = string.IsNullOrEmpty(info.Descr)
-                              ? "_" + info.Date.ToString("MMddHHmmss")
-                              : info.Descr + "_" + info.Date.ToString("yyyyMMddHHmmss");
+		public static string FormScanFileName(FileInfo f, ScanInfo info)
+		{
+			string name = string.IsNullOrEmpty(info.Descr) ? "_" + info.Date.ToString("MMddHHmmss") : info.Descr + "_" + info.Date.ToString("yyyyMMddHHmmss");
 
-            name += f.Extension.ToLower();
+			name += f.Extension.ToLower();
 
-            return name;
-        }
+			return name;
+		}
 
-        #endregion
+		#endregion
 
-        #region Stuff
+		#region Stuff
 
-        public static string Stuff(string s, string stuff)
-        {
-            return s.Length > 0 ? s + stuff : s;
-        }
+		public static string Stuff(string s, string stuff)
+		{
+			return s.Length > 0 ? s + stuff : s;
+		}
 
-        public static string StuffSpace(string s)
-        {
-            return Stuff(s, " ");
-        }
+		public static string StuffSpace(string s)
+		{
+			return Stuff(s, " ");
+		}
 
-        public static string StuffNewLine(string s)
-        {
-            return Stuff(s, System.Environment.NewLine);
-        }
+		public static string StuffNewLine(string s)
+		{
+			return Stuff(s, System.Environment.NewLine);
+		}
 
-        public static string StuffComma(string s)
-        {
-            return Stuff(s, ", ");
-        }
+		public static string StuffComma(string s)
+		{
+			return Stuff(s, ", ");
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }
